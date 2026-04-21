@@ -1,0 +1,2359 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgentQC VER 1.0 사용자 매뉴얼</title>
+<style>
+/* ── 공통 변수 ── */
+:root {
+  --blue: #1a6fc4;
+  --blue-light: #e8f1fb;
+  --blue-mid: #3a8ee0;
+  --teal: #2aace2;
+  --dark: #1e2330;
+  --gray: #555;
+  --gray-light: #f5f6f8;
+  --gray-mid: #e0e2e8;
+  --border: #d0d4dc;
+  --green: #2e9e5b;
+  --orange: #e06a1a;
+  --red: #d02020;
+  --yellow: #f5a623;
+  --white: #fff;
+  --sidebar-w: 240px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif; font-size: 14px; line-height: 1.7; color: var(--dark); background: #eef0f4; }
+
+/* ── 레이아웃 ── */
+#app { display: flex; min-height: 100vh; }
+
+/* ── 사이드바 ── */
+#sidebar {
+  width: var(--sidebar-w);
+  background: var(--dark);
+  color: #cdd5e0;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  overflow-y: auto;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+#sidebar-logo {
+  padding: 20px 18px 16px;
+  border-bottom: 1px solid #2e3545;
+}
+#sidebar-logo .logo-text { font-size: 15px; font-weight: 900; color: #fff; letter-spacing: 0.1em; }
+#sidebar-logo .logo-sub { font-size: 10px; color: #7a8aa0; margin-top: 2px; }
+#sidebar-logo .logo-ver { display: inline-block; background: var(--blue); color: #fff; font-size: 10px; font-weight: 700; padding: 1px 8px; border-radius: 3px; margin-top: 6px; }
+
+#nav { flex: 1; padding: 10px 0; }
+.nav-search {
+  padding: 10px 18px 14px;
+  border-bottom: 1px solid #2e3545;
+}
+.nav-search-box {
+  display: flex;
+  gap: 8px;
+}
+.nav-search-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.nav-search input {
+  width: 100%;
+  border: 1px solid #3b455b;
+  background: #141b27;
+  color: #eef4ff;
+  border-radius: 6px;
+  padding: 9px 11px;
+  font-size: 12px;
+  outline: none;
+}
+.nav-search input::placeholder {
+  color: #70819b;
+}
+.nav-search input:focus {
+  border-color: var(--blue-mid);
+  box-shadow: 0 0 0 3px rgba(58, 142, 224, 0.18);
+}
+.nav-search button {
+  border: none;
+  border-radius: 6px;
+  background: var(--blue);
+  color: var(--white);
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.nav-search button:hover {
+  background: var(--blue-mid);
+}
+.nav-search button:disabled {
+  background: #445066;
+  color: #9aaabf;
+  cursor: not-allowed;
+}
+.nav-search-status {
+  min-height: 16px;
+  margin-top: 8px;
+  font-size: 11px;
+  color: #7a8aa0;
+}
+.nav-item.search-match {
+  background: #253045;
+  color: #d8e4f4;
+}
+.content-search-token {
+  display: inline-block;
+  background: #fff3a3;
+  color: inherit;
+  border-radius: 4px;
+  padding: 0 4px;
+  box-shadow: 0 0 0 4px rgba(245, 166, 35, 0.18);
+  scroll-margin-top: 24px;
+}
+.section-overview-order {
+  padding-left: 20px;
+  font-size: 13px;
+  color: var(--gray);
+  line-height: 2;
+  margin: 8px 0 18px;
+}
+.nav-group-label {
+  font-size: 10px; font-weight: 700; color: #5a6a80;
+  padding: 14px 18px 4px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 18px;
+  cursor: pointer;
+  font-size: 12.5px;
+  color: #9aaabf;
+  border-left: 3px solid transparent;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.nav-item:hover { background: #253045; color: #d8e4f4; }
+.nav-item.active { background: #1a2840; color: #fff; border-left-color: var(--blue-mid); font-weight: 700; }
+.nav-item .nav-step {
+  font-size: 10px; font-weight: 700;
+  background: #2e3d55; color: #7a9abf;
+  padding: 1px 6px; border-radius: 2px;
+  flex-shrink: 0;
+}
+.nav-item.active .nav-step { background: var(--blue); color: #fff; }
+
+/* ── 본문 영역 ── */
+#main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  padding: 28px 32px;
+  min-height: 100vh;
+}
+/* ── 섹션 표시/숨김 ── */
+.section { display: none; }
+.section.active { display: block; }
+
+/* ── A4 페이지 카드 ── */
+.page {
+  width: 210mm;
+  min-height: 140mm;
+  background: var(--white);
+  margin: 0 auto 24px;
+  padding: 14mm 14mm 12mm;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+  position: relative;
+}
+.page-contact {
+  position: absolute;
+  right: 8mm;
+  bottom: 4mm;
+  font-size: 11px;
+  color: var(--blue);
+  font-weight: 700;
+}
+@media print {
+  .page-contact {
+    position: static;
+    display: block;
+    text-align: right;
+    margin-top: 8mm;
+  }
+}
+/* ── 챕터 헤더 ── */
+.chapter-header {
+  background: var(--blue-light);
+  border-left: 6px solid var(--blue);
+  padding: 16px 22px;
+  margin-bottom: 28px;
+  border-radius: 0 8px 8px 0;
+}
+.chapter-header h1 { font-size: 26px; font-weight: 900; color: var(--blue); }
+.chapter-header p { font-size: 12px; color: var(--gray); margin-top: 3px; }
+.chapter-header p.intro-text { font-size: 13.5px; color: var(--dark); margin-top: 10px; line-height: 1.8; }
+.chapter-header p.intro-text strong { color: var(--blue); }
+
+/* ── 섹션 제목 ── */
+h2.section-title {
+  font-size: 20px; font-weight: 900; color: var(--dark);
+  margin: 26px 0 10px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid var(--blue-light);
+}
+h3.sub-title { font-size: 15px; font-weight: 700; color: var(--dark); margin: 18px 0 7px; }
+
+/* ── 안내 박스 ── */
+.notice-box { background: #fffbe6; border: 1.5px solid #f5c842; border-radius: 8px; padding: 10px 14px; font-size: 13px; margin: 10px 0; }
+.notice-box.info { background: var(--blue-light); border-color: var(--blue); }
+.notice-box.danger { background: #fff0f0; border-color: var(--red); }
+
+/* ── 흐름도 ── */
+.flow-diagram { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 20px 0; padding: 18px; background: var(--gray-light); border-radius: 8px; }
+.flow-box { background: var(--white); border: 1.5px solid var(--blue); border-radius: 8px; padding: 10px 18px; text-align: center; font-weight: 700; font-size: 13px; color: var(--blue); min-width: 80px; }
+.flow-arrow { font-size: 20px; color: var(--blue-mid); font-weight: 900; }
+
+/* ── 상태 배지 ── */
+.status-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0; }
+.badge { display: inline-block; padding: 3px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+.badge-green { background: #d4f0e0; color: #1a6e40; }
+.badge-yellow { background: #fff3cc; color: #7a5800; }
+.badge-red { background: #ffe0e0; color: #8a0000; }
+.badge-blue { background: var(--blue-light); color: var(--blue); }
+
+/* ── 요약 박스 ── */
+.summary-box { border: 1.5px solid var(--border); border-radius: 8px; padding: 14px 18px; background: var(--gray-light); margin: 18px 0; }
+.summary-box ul { padding-left: 20px; }
+.summary-box ul li { font-size: 13px; line-height: 1.9; }
+.summary-box ul li strong { color: var(--blue); }
+
+/* ── 단계별 안내 ── */
+.step-instruction { display: flex; gap: 12px; margin: 14px 0; align-items: flex-start; }
+.step-content { flex: 1; }
+.step-content strong { font-size: 14px; color: var(--dark); display: block; margin-bottom: 3px; }
+.step-content p, .step-content ul { font-size: 13px; color: var(--gray); }
+.step-content ul { padding-left: 16px; }
+
+/* ── 2컬럼 ── */
+.two-col { display: flex; flex-direction: column; gap: 14px; margin: 14px 0; width: 100%; }
+.two-col > * { width: 100%; }
+
+/* ── 필드 박스 ── */
+.field-box { background: var(--gray-light); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+.field-box .field-title { font-size: 11px; font-weight: 700; color: var(--blue); margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.08em; }
+.field-row { display: flex; align-items: baseline; gap: 8px; padding: 3px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+.field-row:last-child { border-bottom: none; }
+.field-label { font-weight: 700; color: var(--dark); min-width: 100px; flex-shrink: 0; }
+.field-desc { color: var(--gray); }
+.field-required { color: var(--red); font-size: 10px; }
+
+/* ── 스크린 목업 ── */
+.screen-mock { background: var(--gray-light); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin: 7px 0; font-size: 12px; color: var(--gray); }
+.screen-mock .mock-title { font-size: 10px; font-weight: 700; color: var(--blue); background: var(--blue-light); padding: 2px 8px; border-radius: 3px; display: inline-block; margin-bottom: 7px; }
+.screen-mock .mock-menu { border-left: 3px solid var(--blue); padding-left: 10px; font-size: 12px; color: var(--dark); line-height: 2; }
+.mock-highlight { background: var(--blue); color: white; padding: 1px 7px; border-radius: 3px; font-size: 12px; }
+
+/* ── 메뉴 경로 ── */
+.menu-path { font-size: 12px; color: var(--gray); background: var(--gray-light); border: 1px solid var(--border); padding: 5px 10px; border-radius: 4px; display: inline-block; margin: 3px 0 10px; }
+.menu-path span { color: var(--blue); font-weight: 700; }
+
+/* ── 버튼 데모 ── */
+.btn-demo { display: inline-block; border: 1.5px solid var(--blue); color: var(--blue); padding: 3px 12px; border-radius: 4px; font-size: 12px; font-weight: 700; margin: 2px; }
+.btn-demo.primary { background: var(--blue); color: white; }
+.btn-demo.danger { border-color: var(--red); color: var(--red); }
+
+/* ── 테이블 ── */
+table.manual-table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 10px 0; }
+table.manual-table th { background: var(--blue); color: white; padding: 7px 9px; text-align: left; font-weight: 700; }
+table.manual-table td { padding: 6px 9px; border-bottom: 1px solid var(--border); vertical-align: top; }
+table.manual-table tr:nth-child(even) td { background: var(--gray-light); }
+table.manual-table td strong { color: var(--blue); }
+table.flow-table th { background: var(--dark); }
+
+/* ── FAQ ── */
+.faq-item { margin: 14px 0; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.faq-q { background: var(--blue-light); padding: 9px 14px; font-weight: 700; font-size: 13px; color: var(--blue); display: flex; align-items: center; gap: 7px; }
+.faq-q::before { content: "Q"; background: var(--blue); color: white; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+.faq-a { padding: 10px 14px; font-size: 13px; line-height: 1.8; color: var(--dark); }
+
+/* ── LOT 규칙 셀 ── */
+.rule-cell { text-align: center; }
+.rule-warning { color: var(--yellow); font-weight: 700; }
+.rule-reject { color: var(--red); font-weight: 700; }
+
+/* ── 상태 포인트 ── */
+.status-point { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 700; margin-right: 12px; }
+.dot-green { width: 12px; height: 12px; border-radius: 50%; background: var(--green); display: inline-block; }
+.dot-yellow { width: 10px; height: 10px; border-radius: 0; background: var(--yellow); display: inline-block; transform: rotate(45deg); }
+.dot-red { width: 12px; height: 12px; border-radius: 2px; background: var(--red); display: inline-block; }
+
+/* ── STEP 카드 그리드 (목차) ── */
+.step-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+.step-card { border: 1.5px solid var(--border); border-radius: 10px; padding: 16px 18px 13px; background: var(--white); }
+.step-card.active { border-color: var(--blue); background: var(--blue-light); }
+.step-label { font-size: 11px; font-weight: 700; color: var(--blue-mid); letter-spacing: 0.1em; margin-bottom: 3px; }
+.step-title { font-size: 20px; font-weight: 900; color: var(--dark); margin-bottom: 8px; }
+.step-card ul { list-style: none; padding: 0; }
+.step-card ul li { font-size: 12px; color: var(--gray); padding: 1px 0; }
+.step-card ul li::before { content: "- "; }
+
+/* ── 연락처 ── */
+.contact-note { font-size: 12px; color: var(--gray); margin-top: 14px; border-top: 1px solid var(--border); padding-top: 9px; }
+
+/* ── 인쇄 ── */
+@media print {
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { background: white !important; font-size: 15px; }
+  #app { background: white !important; }
+  #sidebar { display: none !important; }
+  #main { margin-left: 0 !important; padding: 0 !important; background: white !important; }
+  .page {
+    box-shadow: none !important;
+    page-break-after: always;
+    page-break-inside: avoid;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: auto !important;
+    background: white !important;
+  }
+  .section { display: block !important; }
+
+  /* 제목 크기 확대 */
+  .chapter-header h1 { font-size: 30px !important; }
+  .chapter-header p   { font-size: 13px !important; }
+  h2.section-title    { font-size: 22px !important; }
+  h3.sub-title        { font-size: 17px !important; }
+
+  /* 본문·박스 크기 확대 */
+  .notice-box         { font-size: 14px !important; }
+  .summary-box ul li  { font-size: 14px !important; }
+  .step-content strong { font-size: 15px !important; }
+  .step-content p,
+  .step-content ul    { font-size: 13.5px !important; }
+
+  /* 필드·테이블 크기 확대 */
+  .field-row          { font-size: 13px !important; }
+  .field-label        { min-width: 110px !important; }
+  table.manual-table  { font-size: 13px !important; }
+  table.manual-table th,
+  table.manual-table td { padding: 8px 10px !important; }
+
+  /* FAQ 크기 확대 */
+  .faq-q { font-size: 14px !important; }
+  .faq-a { font-size: 13.5px !important; }
+
+  /* 메뉴경로·스크린목업 */
+  .menu-path  { font-size: 13px !important; }
+  .screen-mock { font-size: 13px !important; }
+
+  /* 네비 경로 텍스트 */
+  .flow-box   { font-size: 14px !important; }
+
+  @page { size: A4; margin: 15mm 20mm; }
+}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- ══════════════════════════════════════════
+     사이드바
+══════════════════════════════════════════ -->
+<nav id="sidebar">
+  <div id="sidebar-logo">
+    <div class="logo-text">(주)KAISER LAB</div>
+    <div class="logo-sub">AgentQC 사용자 매뉴얼</div>
+    <span class="logo-ver">VER 1.0</span>
+  </div>
+  <div class="nav-search">
+    <div class="nav-search-box">
+      <input type="search" id="nav-search-input" placeholder="섹션 검색" aria-label="섹션 검색">
+      <button type="button" id="nav-search-button">검색</button>
+    </div>
+    <div class="nav-search-actions">
+      <button type="button" id="nav-search-prev" disabled>이전결과</button>
+      <button type="button" id="nav-search-next" disabled>다음결과</button>
+    </div>
+    <div class="nav-search-status" id="nav-search-status"></div>
+  </div>
+  <div id="nav">
+    <div class="nav-group-label">시작하기</div>
+    <div class="nav-item active" data-target="sec-intro">
+      <span class="nav-step">―</span> 사전 안내
+    </div>
+
+    <div class="nav-group-label">STEP 01 홈</div>
+    <div class="nav-item" data-target="sec-qc-result">
+      <span class="nav-step">01</span> QC 결과 확인
+    </div>
+    <div class="nav-item" data-target="sec-dashboard">
+      <span class="nav-step">01</span> 대시보드
+    </div>
+    <div class="nav-item" data-target="sec-dashboard-basic">
+      <span class="nav-step">01</span> 대시보드 기본 사용법
+    </div>
+    <div class="nav-item" data-target="sec-barcode">
+      <span class="nav-step">01</span> 바코드 출력
+    </div>
+    <div class="nav-item" data-target="sec-data-query">
+      <span class="nav-step">01</span> QC 데이터 조회
+    </div>
+    <div class="nav-item" data-target="sec-rule-refresh">
+      <span class="nav-step">01</span> Rule Refresh
+    </div>
+
+    <div class="nav-group-label">STEP 02 환자 결과 확인</div>
+    <div class="nav-item" data-target="sec-patient">
+      <span class="nav-step">02</span> 환자 결과 확인
+    </div>
+
+    <div class="nav-group-label">STEP 03 X-Bar</div>
+    <div class="nav-item" data-target="sec-xbar">
+      <span class="nav-step">03</span> X-Bar 차트
+    </div>
+    <div class="nav-item" data-target="sec-xbar-settings">
+      <span class="nav-step">03</span> X-Bar 설정
+    </div>
+
+    <div class="nav-group-label">STEP 04 장비간 상관성 평가</div>
+    <div class="nav-item" data-target="sec-correlation">
+      <span class="nav-step">04</span> 장비간 상관성 평가
+    </div>
+
+    <div class="nav-group-label">STEP 05 보고서</div>
+    <div class="nav-item" data-target="sec-reports">
+      <span class="nav-step">05</span> 허용범위 보고서
+    </div>
+    <div class="nav-item" data-target="sec-reports">
+      <span class="nav-step">05</span> CV Report
+    </div>
+    <div class="nav-item" data-target="sec-reports">
+      <span class="nav-step">05</span> 정성 보고서
+    </div>
+    <div class="nav-item" data-target="sec-reports">
+      <span class="nav-step">05</span> 보고서 통합 조회
+    </div>
+
+    <div class="nav-group-label">STEP 06 정도관리 설정</div>
+    <div class="nav-item" data-target="sec-test-item">
+      <span class="nav-step">06</span> 검사항목
+    </div>
+    <div class="nav-item" data-target="sec-qc-lot">
+      <span class="nav-step">06</span> QC LOT
+    </div>
+    <div class="nav-item" data-target="sec-lot-faq">
+      <span class="nav-step">06</span> LOT FAQ
+    </div>
+    <div class="nav-item" data-target="sec-allowable">
+      <span class="nav-step">06</span> Target/허용범위
+    </div>
+    <div class="nav-item" data-target="sec-reagent">
+      <span class="nav-step">06</span> Reagent
+    </div>
+    <div class="nav-item" data-target="sec-reagent-lot">
+      <span class="nav-step">06</span> Reagent LOT
+    </div>
+
+    <div class="nav-group-label">STEP 07 프로그램 설정</div>
+    <div class="nav-item" data-target="sec-basic-master">
+      <span class="nav-step">07</span> 기본 마스터 관리
+    </div>
+    <div class="nav-item" data-target="sec-material">
+      <span class="nav-step">07</span> 검사실별 물질 관리
+    </div>
+    <div class="nav-item" data-target="sec-equipment">
+      <span class="nav-step">07</span> 장비 마스터
+    </div>
+
+    <div class="nav-group-label">STEP 08 로그인</div>
+    <div class="nav-item" data-target="sec-user-create">
+      <span class="nav-step">08</span> 사용자 계정 만들기
+    </div>
+    <div class="nav-item" data-target="sec-password">
+      <span class="nav-step">08</span> 비밀번호 변경하기
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     본문
+══════════════════════════════════════════ -->
+<main id="main">
+<!-- ─────────────────────────────────────────
+     섹션: 사전 안내
+───────────────────────────────────────── -->
+<section class="section active" id="sec-intro">
+<div class="page">
+      <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>정도관리 프로그램 이용안내</h1>
+    <p>매뉴얼을 읽기 전에 반드시 이해해야 할 기본 개념을 설명합니다</p>
+    <p class="intro-text">본 매뉴얼을 읽기 전에, 카이저랩 AgentQC 프로그램이 <strong>어떤 구조로 동작하는지</strong>,<br>
+    그리고 정상적인 QC 데이터 흐름을 위해 <strong>반드시 이해해야 할 기본 개념</strong>을 설명할 것이에요!</p>
+  </div>
+
+  <h2 class="section-title">정도관리 데이터는 이렇게 들어와요</h2>
+  <p style="font-size:13px; color:var(--gray); margin-bottom:10px;">
+    정도관리 프로그램은 장비와 직접 연결되어 있지 않아요.<br>
+    반드시 인터페이스 프로그램을 거쳐서 데이터가 들어와요.
+    따라서, <strong>인터페이스 프로그램이 켜져 있어야</strong> 정도관리 프로그램에 데이터가 정상적으로 들어올 수 있어요.
+  </p>
+  <div class="flow-diagram">
+    <div class="flow-box">검사 장비</div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-box">인터페이스</div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-box">정도관리 프로그램</div>
+  </div>
+  
+  <h2 class="section-title">정도관리 프로그램은 보조 도구예요</h2>
+  <p style="font-size:13px; color:var(--gray); margin-bottom:10px;">정도관리 결과를 규칙에 맞게 분석해 아래와 같이 상태를 알려줘요.</p>
+  <div class="status-row">
+    <span class="badge badge-green">정상: 현재 검사 상태가 안정적입니다.</span><br>
+    <span class="badge badge-yellow">주의: 바로 중단할 필요는 없지만, 확인이 필요합니다.</span><br>
+    <span class="badge badge-red">거부: 조치 없이 검사를 진행하기 어렵습니다.</span>
+  </div>
+  <p style="font-size:13px; color:var(--gray); margin-top:8px;">
+    해당 판단은 도움용 안내에요. <strong>최종 판단과 조치는 항상 사용자가 결정해야 해요.</strong>
+  </p>
+
+  <h2 class="section-title">숫자만 중요한 게 아니에요</h2>
+  <p style="font-size:13px; color:var(--gray); margin-bottom:10px;">정도관리 프로그램은 결과값뿐 아니라 <strong>
+  어떤 조건에서 측정됐는지  </strong> 함께 관리해요. </p>
+  <ul style="padding-left:20px; font-size:13px; color:var(--gray); line-height:2;">
+    <li>정도관리 물질 LOT(타깃값)</li>
+    <li>검사항목, 레벨</li>
+    <li>장비 정보</li>
+    <li>측정 날짜, LOT의 시작일자, 종료일자, 유효일자 등</li>
+  </ul>
+  <p style="font-size:13px; margin-top:8px;">이 정보가 정확해야 나중에 문제가 생겼을 때 <strong>원인을 빠르게 찾을 수 있어요.</strong><br> 마스터 코드 관리를 성실하게 진행해주세요!</p>
+
+  <h2 class="section-title">이것만 기억하면 충분합니다 <span style="font-size:15px; font-weight:400;">(최종 3줄 요약)</span></h2>
+  <div class="summary-box">
+    <ul>
+      <li>정도관리 데이터는 <strong>인터페이스 프로그램이 켜져 있어야</strong> 들어옵니다. 실행 중인지 확인해주세요.</li>
+      <li>정도관리 프로그램에서 나온 결과 해석의 <strong>참고용</strong>이며, 최종 판단 책임은 사용자에게 있어요.</li>
+      <li><strong>정확한 LOT 정보</strong>가 정도관리의 기본이에요. 마스터 코드 관리에 성실히 임해주세요.</li>
+    </ul>
+  </div>
+</div>
+</section>
+<section class="section" id="sec-qc-result">
+<div class="page">
+      <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>QC 결과 확인</h1>
+    <p>STEP 01 — Levey-Jennings 차트와 검사항목별 결과를 한 화면에서 확인</p>
+    <p class="intro-text">
+      대시보드가 전체 현황을 한눈에 보는 화면이라면, <strong>QC 결과 확인</strong>은 특정 장비·물질의 상세 결과를
+      Levey-Jennings 차트와 함께 확인하는 화면이에요.
+    </p>
+  </div>
+
+  <div class="menu-path">메뉴 > 홈 > <span>QC 결과 확인</span></div>
+
+  <h2 class="section-title">화면 구성</h2>
+
+  <h3 class="sub-title">① 조회 조건</h3>
+  <div class="field-box">
+    <div class="field-title">검색 조건 필터</div>
+    <div class="field-row"><span class="field-label">데이터 조회</span><span class="field-desc">결과 테이블에 표시할 기간 (시작일자 ~ 종료일자)</span></div>
+    <div class="field-row"><span class="field-label">차트 조회</span><span class="field-desc">Levey-Jennings 차트에 표시할 기간 (데이터 조회 기간과 독립 설정 가능)</span></div>
+    <div class="field-row"><span class="field-label">검사실</span><span class="field-desc">검사실 선택</span></div>
+    <div class="field-row"><span class="field-label">장비</span><span class="field-desc">장비 선택</span></div>
+    <div class="field-row"><span class="field-label">물질</span><span class="field-desc">전체 또는 특정 물질 선택</span></div>
+    <div class="field-row"><span class="field-label">물질구분</span><span class="field-desc">QC / 허용범위 설정용 등</span></div>
+    <div class="field-row"><span class="field-label">검사항목</span><span class="field-desc">전체 또는 특정 검사항목 선택</span></div>
+    <div class="field-row"><span class="field-label">레벨</span><span class="field-desc">전체 / Lv1 / Lv2 / Lv3 / Lv4</span></div>
+  </div>
+  <div class="notice-box info" style="margin-top:10px;">
+    <strong>데이터 조회</strong>와 <strong>차트 조회</strong> 기간을 각각 다르게 설정할 수 있어요.<br>
+    예: 차트는 최근 1개월, 테이블은 최근 1주일만 표시
+  </div>
+
+  <h3 class="sub-title">② Levey-Jennings 차트</h3>
+  <table class="manual-table">
+    <thead><tr><th>구성 요소</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>범례 (L1 / L2 / L3)</strong></td><td>LOT별 라인 색상 구분. LOT 코드와 유효기간 표시</td></tr>
+      <tr><td><strong>±3SD 기준선</strong></td><td>빨간 수평선 — 이 선을 넘으면 1(3s) Rule 위반</td></tr>
+      <tr><td><strong>Mean 기준선</strong></td><td>검정 수평선 — 설정된 타깃 평균값</td></tr>
+      <tr><td><strong>데이터 포인트</strong></td><td>LOT별 색상으로 구분된 QC 결과값 점/라인</td></tr>
+      <tr><td><strong>빨간 수직선</strong></td><td>Rule 위반 발생 시점 표시</td></tr>
+      <tr><td><strong>초록 수직선</strong></td><td>선택된 데이터 포인트 위치 표시</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub-title">③ 검사항목별 결과 테이블</h3>
+  <p style="font-size:13px; color:var(--gray); margin-bottom:8px;">
+    Level 1 / Level 2 / Level 3를 가로로 나란히 표시하며, 동일 순번의 결과를 한 행에서 비교할 수 있어요.
+  </p>
+  <table class="manual-table">
+    <thead>
+      <tr>
+        <th>컬럼</th><th>설명</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>검사항목</strong></td><td>검사 순번</td></tr>
+      <tr><td><strong>검사일시</strong></td><td>QC 결과가 수신된 날짜 및 시간</td></tr>
+      <tr><td><strong>결과</strong></td><td>측정 결과값. 선택 시 차트에 초록 수직선으로 위치 표시됨</td></tr>
+      <tr><td><strong>상태</strong></td><td>정상 / 주의 / 거부</td></tr>
+      <tr><td><strong>Rule</strong></td><td>위반된 Westgard Rule 표시 (예: 1(3s))</td></tr>
+      <tr><td><strong>Range</strong></td><td>해당 LOT의 허용범위 (하한~상한)</td></tr>
+      <tr><td><strong>Comment</strong></td><td>등록된 코멘트 표시</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="section-title">주요 기능</h2>
+  <table class="manual-table">
+    <thead><tr><th>기능</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>결과 선택 → 차트 연동</strong></td><td>테이블에서 결과값을 클릭하면 차트에 해당 포인트가 초록 수직선으로 표시됨</td></tr>
+      <tr><td><strong>삭제</strong></td><td>선택한 결과 삭제 (권한이 부여된 사용자만 가능)</td></tr>
+      <tr><td><strong>Comment 등록</strong></td><td>이상치 데이터에 코멘트 등록</td></tr>
+      <tr><td><strong>Excel 출력</strong></td><td>조회된 결과 전체를 엑셀 파일로 저장</td></tr>
+      <tr><td><strong>인쇄</strong></td><td>차트 + 테이블을 함께 인쇄</td></tr>
+    </tbody>
+  </table>
+
+  <div class="notice-box" style="margin-top:14px;">
+    <strong>Target 재조</strong>가 Comment 열에 표시된 경우, 해당 시점에 LOT 타깃값이 변경되었음을 의미해요.<br>
+    Rule 위반이 의심될 경우 해당 시점 전후 데이터를 함께 확인해주세요.
+  </div>
+</div>
+</section>
+<section class="section" id="sec-dashboard">
+<div class="page">
+        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>대시보드</h1>
+    <p>STEP 01 — 화면 구성 및 핵심 기능</p>
+    <p class="intro-text">카이저랩 AgentQC의 핵심이에요, 가장 먼저 보이는 화면이에요.<br>
+    정도관리 검사 후, 가장 먼저 확인하는 <strong>정도관리 현황판</strong>이에요.</p>
+  </div>
+
+  <div class="menu-path">메뉴 > 홈 > <span>대시보드</span></div>
+
+  <h3 class="sub-title">대시보드 [ 화면 구성 ]</h3>
+  <div style="background:var(--gray-light); border:1px solid var(--border); border-radius:8px; padding:12px 14px; margin-bottom:14px; font-size:12px;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+      <div><span style="background:var(--red); color:white; padding:1px 6px; border-radius:3px; font-size:10px; margin-right:4px;">RED</span><strong>검색 필터</strong> — 조회 조건</div>
+      <div><span style="background:var(--blue); color:white; padding:1px 6px; border-radius:3px; font-size:10px; margin-right:4px;">BLUE</span><strong>검사실별 정보 표기</strong></div>
+      <div><span style="background:var(--dark); color:white; padding:1px 6px; border-radius:3px; font-size:10px; margin-right:4px;">BLACK</span><strong>LOT별 정보 표기</strong></div>
+      <div>장비 탭 / 검사실(파트, 전체) 탭 / 레벨 탭</div>
+      <div><strong>LOT별 도넛 차트</strong> — 정상/주의/거부 비율</div>
+      <div><strong>데이터 테이블 + 레비젠다이우스 차트</strong></div>
+    </div>
+  </div>
+
+  <h3 class="sub-title">대시보드 핵심 기능 및 컨텐츠</h3>
+  <table class="manual-table">
+    <thead><tr><th>기능</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>정도관리 검사 총 건수</strong></td><td>검사실별 총 검사건수 현황 확인</td></tr>
+      <tr><td><strong>2가지 뷰어</strong></td><td>레벨별 View / 검사별 View</td></tr>
+      <tr><td><strong>LOT별 도넛 차트</strong></td><td>LOT별 정상, 주의, 거부 비율 확인</td></tr>
+      <tr><td><strong>데이터 테이블과 LJ 차트</strong></td><td>상세 데이터 확인 가능한 데이터 테이블과 연결된 레비젠다이우스 차트</td></tr>
+      <tr><td><strong>이상치 알림 및 코멘트 기능</strong></td><td>이상치 데이터 증가 조치(Comment)</td></tr>
+      <tr><td><strong>추가 정보 표기</strong></td><td>Rule 설정 정보, Target 설정 정보, Period Statistics, Cumulative</td></tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:14px;">
+    <strong style="font-size:13px;">대시보드에 표시되는 상태 포인트</strong>
+    <div style="margin-top:8px;">
+      <span class="status-point"><span class="dot-green"></span>정상</span>
+      <span class="status-point"><span class="dot-yellow"></span>주의</span>
+      <span class="status-point"><span class="dot-red"></span>거부</span>
+    </div>
+  </div>
+</div>
+</section>
+<section class="section" id="sec-dashboard-basic">
+<div class="page">
+      <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>대시보드 사용법</h1>
+    <p>STEP 01 — 기본 및 고급 사용법</p>
+  </div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>① 당일 정상/주의/거부 건수 확인</strong>
+      <div class="screen-mock" style="margin-top:8px;">
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:8px; text-align:center;">
+          <div><div style="font-size:22px; font-weight:900; color:var(--dark);">60</div><div style="font-size:11px; color:var(--gray);">총 검사건수</div></div>
+          <div><div style="font-size:22px; font-weight:900; color:var(--green);">51</div><div style="font-size:11px; color:var(--gray);">정상</div></div>
+          <div><div style="font-size:22px; font-weight:900; color:var(--yellow);">3</div><div style="font-size:11px; color:var(--gray);">주의</div></div>
+          <div><div style="font-size:22px; font-weight:900; color:var(--red);">6</div><div style="font-size:11px; color:var(--gray);">거부</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>② 이상치 데이터 확인</strong>
+      <p style="font-size:12.5px; color:var(--gray); margin:4px 0;">거부 박스 클릭 → 거부 상세 데이터창을 열어 어떤 장비, 검사항목, LOT에서 나왔는지 확인</p>
+    </div>
+  </div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>③ 코멘트를 작성하거나 클릭하여 화면 이동</strong>
+      <p style="font-size:12.5px; color:var(--gray); margin:4px 0;">
+        <strong>③-1 코멘트 바로 등록하기:</strong> ① 데이터 선택 → ② 코멘트 등록 버튼 클릭 → ③ 코멘트 선택 창에서 코멘트 선택 → ④ 등록<br>
+        <strong>③-2 데이터 확인하고 코멘트 등록하기:</strong> 거부 상세 데이터창에서 클릭하면 해당 화면으로 바로 이동해요.
+      </p>
+    </div>
+  </div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>④ LJ 차트 넓게 보기</strong>
+      <p style="font-size:12.5px; color:var(--gray); margin:4px 0;">가름선을 드래그해서 차트를 넓게 보거나, 데이터 테이블을 넓게 볼 수 있어요.</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">대시보드 고급 사용법</h2>
+  <div class="two-col">
+    <div>
+      <h3 class="sub-title">기본 보기 변경하기 (레벨별/검사별)</h3>
+      <p style="font-size:12.5px; color:var(--gray);">검사별 보기로 바꾸면, 검사항목 탭으로 변경되고 검사항목별 데이터를 볼 수 있어요.</p>
+
+      <h3 class="sub-title" style="margin-top:14px;">최근 검사 결과만 보기</h3>
+      <p style="font-size:12.5px; color:var(--gray);">조회 기간을 '당일'로 지정하면 결과 조회 시간을 조절할 수 있어요. 최근 검사 시간으로 조절하면 가장 최근 결과만 볼 수 있어요!</p>
+
+      <h3 class="sub-title" style="margin-top:14px;">원하는 LOT/레벨만 보기</h3>
+      <p style="font-size:12.5px; color:var(--gray);">도넛 차트를 클릭하면 해당 LOT(or 레벨) 데이터를 on/off 할 수 있어요. LJ 차트의 범례를 클릭하면 차트에 그려지는 LOT별 라인을 on/off 할 수 있어요.</p>
+    </div>
+    <div>
+      <h3 class="sub-title">추가 정보 표기</h3>
+      <table class="manual-table">
+        <thead><tr><th>항목</th><th>내용</th></tr></thead>
+        <tbody>
+          <tr><td>Rule 설정 정보</td><td>Westgard MultiRule 정보</td></tr>
+          <tr><td>Target 설정 정보</td><td>해당 LOT의 타깃 설정 정보</td></tr>
+          <tr><td>Period Statistics</td><td>LOT의 기간 내 통계(Mean, SD, CV)</td></tr>
+          <tr><td>Cumulative</td><td>기간 내 LOT별 통계(Mean, SD, CV)</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title" style="margin-top:14px;">데이터 출력 / 취소 / 수정</h3>
+            <p style="font-size:11.5px; color:var(--gray);">*데이터 삭제 기능은 QC 신뢰성을 위해 병원에서 요청할 경우에만 해당하는 사용자에게 권한을 부여합니다.</p>
+
+      <h3 class="sub-title" style="margin-top:14px;">Multi Sort</h3>
+      <p style="font-size:12.5px; color:var(--gray);">Multi Sort를 체크한 후, 항목을 클릭하면 여러 기준 값으로 정렬할 수 있어요.<br>한 번 클릭: 오름차순 / 두 번 클릭: 내림차순 / 세 번 클릭: 초기화</p>
+    </div>
+  </div>
+</div>
+</section>
+<section class="section" id="sec-barcode">
+<div class="page">
+        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>Barcode 기능</h1>
+    <p>STEP 01 — 바코드를 생성하여 QC를 접수하거나 임시 검체를 접수</p>
+    <p class="intro-text">바코드를 생성하여 QC를 접수하거나, 임시의 검체를 접수할 수 있어요.</p>
+  </div>
+
+  <div class="menu-path">메뉴 > 홈 > <span>바코드 출력</span></div>
+
+  <div class="two-col">
+    <div>
+      <h3 class="sub-title">사용 방법</h3>
+      <ol style="padding-left:20px; font-size:13px; color:var(--gray); line-height:2.2;">
+        <li>검사실-장비 / 물질 / 레벨 선택</li>
+        <li>접수 일자, 바코드 출력 선택 후 접수</li>
+      </ol>
+    </div>
+    <div>
+      <h3 class="sub-title">접수 시 바코드 출력</h3>
+      <div class="notice-box">
+        바코드 접수와 출력은 별개의 기능이에요.<br>
+        바코드를 생성(접수)한 후, 프린터기로 바로 출력하고 싶다면 <strong>접수시 Barcode 출력을 체크</strong>해야 해요.<br>
+        *체크하지 않고 출력한 경우, 접수 정보창에서 Barcode 재출력 버튼을 눌러 재출력 할 수 있어요.
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sub-title" style="margin-top:16px;">Barcode 번호만 조회</h3>
+  <p style="font-size:13px; color:var(--gray);">
+    인터페이스를 통해 결과값이 전송되면 접수 정보가 없어지기 때문에 바코드 번호가 없는 리스트만 표시돼요.<br>
+    이럴 때는 <strong>Barcode 번호만</strong>을 체크하고 조회하면 해당 화면에서 생성한 바코드만 볼 수 있어요.
+  </p>
+
+</div>
+</section>
+<section class="section" id="sec-data-query">
+<div class="page">
+        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>QC 데이터 조회</h1>
+    <p>STEP 01 — 원하는 조회 조건이 더 상세할 때</p>
+    <p class="intro-text">원하는 조회 조건이 더 있나요?<br>
+    그런 상황에서는 대시보드가 아닌, <strong>QC 데이터 조회</strong>를 사용해주세요!</p>
+  </div>
+
+  <div class="menu-path">메뉴 > 홈 > <span>QC 데이터 조회</span></div>
+
+  <div class="two-col">
+    <div>
+      <h3 class="sub-title">QC 데이터 조회 메뉴의 기능</h3>
+      <ul style="padding-left:20px; font-size:13px; line-height:2.2; color:var(--gray);">
+        <li>Comment 등록 기능</li>
+        <li>Excel 출력 기능</li>
+        <li>Multi Sort 기능</li>
+        <li>중복결과 체크 기능</li>
+        <li>결과 취소 기능</li>
+        <li>Rule Refresh 기능</li>
+      </ul>
+      <div>
+      <h3 class="sub-title">① 검색할 조건 선택 후 조회하기</h3>
+      <div class="field-box">
+        <div class="field-title">검색 조건 필터</div>
+        <div class="field-row"><span class="field-label">검색 기간</span><span class="field-desc">시작일자 ~ 종료일자 (시간 포함)</span></div>
+        <div class="field-row"><span class="field-label">검사실/장비</span><span class="field-desc">검사실 및 장비 선택</span></div>
+        <div class="field-row"><span class="field-label">물질</span><span class="field-desc">물질 선택</span></div>
+        <div class="field-row"><span class="field-label">검사항목</span><span class="field-desc">검사항목 선택</span></div>
+        <div class="field-row"><span class="field-label">물질종류</span><span class="field-desc">ALL / QC / 허용범위 설정용</span></div>
+        <div class="field-row"><span class="field-label">레벨</span><span class="field-desc">ALL / Lv1 / Lv2 / Lv3 / Lv4</span></div>
+        <div class="field-row"><span class="field-label">상태</span><span class="field-desc">ALL / 정상 / 주의 / 거부</span></div>
+        <div class="field-row"><span class="field-label">규칙</span><span class="field-desc">ALL / 1(2s) / 1(3s) / 2(2s) …</span></div>
+        <div class="field-row"><span class="field-label">Comment</span><span class="field-desc">ALL / 등록 / 미등록</span></div>
+        <div class="field-row"><span class="field-label">값 필터</span><span class="field-desc field-required">(필수 아님)</span></div>
+      </div>
+    </div>
+      <h3 class="sub-title" style="margin-top:14px;">② Comment 등록 기능</h3>
+      <p style="font-size:12.5px; color:var(--gray);">① 데이터 선택 → ② 코멘트 등록 버튼 클릭 → ③ 코멘트 선택창에서 선택/입력 후 등록</p>
+
+      <h3 class="sub-title" style="margin-top:12px;">③ Excel 출력 기능</h3>
+      <p style="font-size:12.5px; color:var(--gray);">엑셀 출력 버튼 클릭 → 파일명 수정 후 저장<br>데이터 선택/미선택 상관없이, 조회한 모든 데이터가 엑셀로 출력됨</p>
+
+      <h3 class="sub-title" style="margin-top:12px;">④ 중복결과 체크 + 결과 취소 기능</h3>
+      <p style="font-size:12.5px; color:var(--gray);">인터페이스 테스트 중이거나, 장비에서 중복된 결과를 잘못 보냈을 때 사용하는 기능이에요.<br>① 체크박스 체크 → ② 중복 결과가 체크됨 → ③ 취소 버튼 클릭</p>
+    </div>
+    
+    
+  </div>
+</div>
+</section>
+<section class="section" id="sec-rule-refresh">
+<div class="page">
+        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>Rule Refresh</h1>
+    <p>STEP 01 — LOT 타깃값 변경 후 반드시 진행해야 하는 재계산</p>
+    <p class="intro-text">기존에 사용하던 LOT의 타깃값이 잘못되어 있는 것을 늦게 알았어요.<br>
+    LOT 타깃값을 수정했는데, 결과의 상태(주의, 거부)는 정상으로 변하지 않았죠?<br>
+    이런 상황에서 사용하는 게 <strong>Rule Refresh</strong>에요.</p>
+  </div>
+
+  <div class="notice-box danger" style="margin-bottom:16px;">
+    등록된 결과가 있는 LOT의 타깃값이 변경되었을 경우에는 <strong>필수적으로 Rule Refresh를 진행</strong>해주세요!
+  </div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>① 등록된 결과가 있는 LOT의 타깃값 변경</strong>
+      <div class="menu-path">메뉴 > 정도관리 설정 > <span>QC LOT</span> → LOT 타깃값을 수정</div>
+    </div>
+  </div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>② 해당 LOT의 시작일자, 종료일자를 데이터 조회 구간으로 설정</strong>
+      <div class="menu-path">메뉴 > 홈 > <span>QC 데이터 조회</span> → 데이터 조회 구간을 LOT의 시작일자, 종료일자로 변경</div>
+    </div>
+  </div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>③ Rule Refresh 버튼 클릭</strong>
+      <div class="notice-box" style="margin-top:8px;">해당 작업의 소요 시간이 많이 걸리므로, <strong>여유 있게 작업 시작해 주세요.</strong></div>
+    </div>
+  </div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>④ 작업 완료 후, 작업된 리스트를 엑셀로 출력할 수 있게 안내창이 표시됨</strong>
+    </div>
+  </div>
+</div>
+</section>
+<section class="section" id="sec-patient">
+<div class="page">
+        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>환자 결과 확인</h1>
+    <p>STEP 02 — 환자 결과 조회</p>
+    <p class="intro-text">AgentQC 프로그램에서 정도관리 데이터만 확인하는 것이 아니라<br>
+    <strong>환자 데이터도 가져와서 확인</strong>할 수 있도록 구현했어요.</p>
+  </div>
+
+
+  <div class="menu-path">메뉴 > <span>환자 결과 확인</span></div>
+  <table class="manual-table">
+    <thead><tr><th>기능</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>환자 데이터 조회</strong></td><td>단순한 환자 결과 조회 화면이에요.</td></tr>
+      <tr><td><strong>데이터 검색</strong></td><td>검체번호로 데이터 검색</td></tr>
+      <tr><td><strong>데이터 삭제</strong></td><td>좌측 리스트에서 우측 마우스 클릭 시, 삭제 화살표이 표시되고 선택 시 데이터 삭제됨</td></tr>
+      <tr><td><strong>이미지 다운로드</strong></td><td>스캐터그램 이미지 우측 마우스 클릭 시, 이미지 다운로드 가능</td></tr>
+    </tbody>
+  </table>
+</div>
+</section>
+<section class="section" id="sec-xbar">
+<div class="page">
+        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>X-Bar</h1>
+    <p>STEP 03 — X-Bar 차트 / X-Bar 설정</p>
+    <p class="intro-text">환자 데이터를 일정한 갯수로 묶어 평균을 내고 변화를 관찰하는 <strong>X-Bar 차트</strong> 기능이에요.</p>
+  </div>
+
+  <div class="menu-path">메뉴 > X-Bar > <span>X-Bar 차트</span></div>
+  <p style="font-size:13px; color:var(--gray); margin-bottom:10px;">
+    환자 데이터를 일정한 갯수(기본값 20개)로 묶어 평균을 내고, 그 변화 추이를 시각적으로 확인하는 차트예요.<br>
+    Upper Limit / Mean / Lower Limit 기준선이 표시되며, Limit을 벗어난 점은 <strong>빨간 점</strong>으로 강조돼요.
+  </p>
+
+  <h3 class="sub-title">조회 조건</h3>
+  <table class="manual-table">
+    <thead><tr><th>항목</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>검사실</strong></td><td>조회할 검사실을 선택해요.</td></tr>
+      <tr><td><strong>검사장비</strong></td><td>전체 장비 또는 특정 장비를 선택할 수 있어요.</td></tr>
+      <tr><td><strong>조회기간</strong></td><td>시작일~종료일을 지정해 기간별 차트를 확인해요.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub-title" style="margin-top:18px;">화면 구성</h3>
+  <table class="manual-table">
+    <thead><tr><th>구성 요소</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>장비 탭</strong></td><td>상단 탭으로 장비별 차트를 전환할 수 있어요. (예: BC-6800Plus-1, BC-6800Plus-2)</td></tr>
+      <tr><td><strong>좌측 정보 패널</strong></td><td>검사항목명, 사용 구간, N수, Mean, CV(%)를 표시해요.<br>평균가중 Mean / 평균가중 CV도 함께 확인할 수 있어요.</td></tr>
+      <tr><td><strong>X-Bar 차트</strong></td><td>검사항목별로 날짜에 따른 평균값 변화를 꺾은선 그래프로 표시해요.<br>Upper Limit · Mean · Lower Limit 기준선이 함께 표시돼요.</td></tr>
+      <tr><td><strong>툴팁</strong></td><td>차트 데이터 포인트에 마우스를 올리면 도출 일시, 평균 결과, Lower/Upper Limit, Mean, M-A 결과 순번을 확인할 수 있어요.</td></tr>
+      <tr><td><strong>범례</strong></td><td>Data / Mean / Upper Limit / Lower Limit 범례가 차트 우측에 표시돼요.</td></tr>
+    </tbody>
+  </table>
+
+</div>
+</section>
+<section class="section" id="sec-xbar-settings">
+<div class="page">
+        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>X-Bar 설정</h1>
+    <p>STEP 03 — X-Bar 기준값 설정 및 등록</p>
+    <p class="intro-text">X-Bar 차트에 사용될 Mean / Limit 기준값을 검사항목별로 설정하는 화면이에요.</p>
+  </div>
+
+
+  <div class="menu-path">메뉴 > X-Bar > <span>X-Bar 설정</span></div>
+  <table class="manual-table">
+    <thead><tr><th>영역</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>검사실 / 장비</strong></td><td>좌측 트리에서 검사실과 장비를 선택해요. 장비를 선택하면 해당 장비의 검사항목 목록이 나타나요.</td></tr>
+      <tr><td><strong>검사항목 선택</strong></td><td>전체 선택 체크박스로 모든 항목을 선택하거나, 개별 항목(MCV, MCH, MCHC 등)을 선택할 수 있어요.<br>모든 검사 정보 보기를 체크하면 전체 항목을 확인할 수 있어요.</td></tr>
+      <tr><td><strong>기준값 설정 (XBAR 설정 탭)</strong></td><td>시작일자를 지정하고, 검사항목별로 평균 / Limit 하한 / Limit 상한 / 허용범위(%) / CV허용범위(%)를 입력해요.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="section-title" style="margin-top:22px;">기준값 등록 방법</h2>
+  <ol style="padding-left:20px; font-size:13px; color:var(--gray); line-height:2.4; margin-top:8px;">
+    <li>좌측 트리에서 검사실 > 장비를 선택해요.</li>
+    <li>검사항목을 선택해요. (전체 선택 또는 개별 선택)</li>
+    <li>시작일자를 입력해요.</li>
+    <li>XBAR 설정 탭의 테이블에서 각 항목의 <strong>평균 / Limit 하한 / Limit 상한 / 허용범위(%) / CV허용범위(%)</strong>를 입력해요.</li>
+    <li>① <strong>초기화</strong> 버튼으로 입력값을 초기화하거나, ② <strong>일괄 적용</strong>으로 동일한 값을 전 항목에 적용하거나, ③ <strong>등록</strong> 버튼으로 저장해요.</li>
+  </ol>
+
+  <h2 class="section-title" style="margin-top:22px;">등록된 리스트 확인 및 관리</h2>
+  <p style="font-size:13px; color:var(--gray); margin-bottom:10px;">
+    화면 하단의 <strong>등록된 리스트</strong> 영역에서 저장된 XBAR 설정 목록을 확인하고 관리할 수 있어요.
+  </p>
+  <table class="manual-table">
+    <thead><tr><th>항목</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>조회 옵션</strong></td><td>ALL: 전체 이력 조회 / LAST: 최신 설정만 조회</td></tr>
+      <tr><td><strong>장비코드 / 검사코드 / 검사명</strong></td><td>설정된 장비와 검사항목 정보예요.</td></tr>
+      <tr><td><strong>시작일자 / 종료일자</strong></td><td>해당 기준값이 적용되는 기간이에요. 종료일자가 없으면 사용 중임을 의미해요.</td></tr>
+      <tr><td><strong>MEAN / LIMIT LOW / LIMIT HIGH</strong></td><td>X-Bar 차트에 표시될 기준선 값이에요.</td></tr>
+      <tr><td><strong>허용범위(%) / CV허용범위(%)</strong></td><td>허용 가능한 편차 범위예요.</td></tr>
+      <tr><td><strong>사용여부</strong></td><td>Y: 현재 차트에 적용 중 / N: 미사용</td></tr>
+      <tr><td><strong>X-Bar Target 재설정</strong></td><td>실측 데이터 기반으로 Mean을 자동 계산해 기준값을 재설정할 수 있어요.</td></tr>
+    </tbody>
+  </table>
+</div>
+</section>
+<section class="section" id="sec-correlation">
+<div class="page">
+        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>장비간 상관성 평가</h1>
+    <p>STEP 04 — 장비간 상관성 평가</p>
+    <p class="intro-text">같은 검사를 진행하는 여러 장비가 서로 비슷한 결과를 내고 있는지 확인하는 기능이에요.</p>
+  </div>
+
+  
+  <div class="menu-path">메뉴 > <span>장비간 상관성 평가</span></div>
+  <p style="font-size:13px; color:var(--gray); margin-bottom:10px;">
+    같은 검사를 진행하는 여러 장비가 서로 비슷한 결과를 내고 있는지 확인하기 위한 화면이에요.<br>
+    기준 장비 1대와 최대 3대까지 한 번에 비교할 수 있어요.
+  </p>
+  <div class="two-col">
+    <div class="field-box">
+      <div class="field-title">비교 조건 (2가지)</div>
+      <div style="font-size:12.5px; line-height:1.9; color:var(--gray); padding-top:4px;">
+        <strong>A.</strong> [기준 장비]와 동일한 [결과일자 + 일련번호]로 매칭<br>
+        = 정확히 '같은 조건에서 한 번에 비교'<br><br>
+        <strong>B.</strong> [결과일자] 무시 후 결과일자로 정렬 후 매칭<br>
+        = 정확히 같은 시점은 아니지만, 측정된 순서 기준으로 매칭
+      </div>
+    </div>
+    <div>
+      <h3 class="sub-title">계산 검증</h3>
+      <p style="font-size:12.5px; color:var(--gray);">계산 검증 버튼을 누르면 통계 계산 검증창이 나오며, 검증을 화면에서 확인할 수 있어요.</p>
+    </div>
+  </div>
+</div>
+</section>
+<section class="section" id="sec-reports">
+<div class="page">
+        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>보고서</h1>
+    <p>STEP 05 — 허용범위 보고서 / CV Report / 정성 보고서 / 보고서 통합 조회</p>
+    <p class="intro-text">카이저랩은 검사실의 인증·사사를 위해 노력하고 있어요.</p>
+  </div>
+
+  <h2 class="section-title">QC Report</h2>
+  <div class="menu-path">메뉴 > 보고서 > <span>허용범위 보고서</span></div>
+  <p style="font-size:13px; color:var(--gray); margin-bottom:10px;">
+    QC 통합 마스터 관리에서 설정하는 BIAS(%)를 기준으로 <strong>적합율을 계산</strong>해요.<br>
+    다음은 기간별 정도관리 보고서를 출력하는 방법이에요.
+  </p>
+  <div class="two-col">
+    <div>
+      <h3 class="sub-title">사용 방법</h3>
+      <ol style="padding-left:20px; font-size:13px; color:var(--gray); line-height:2.2;">
+        <li>날짜, 장비, 물질, 검사항목, 레벨 선택 후 조회</li>
+        <li>출력 미리보기 버튼 클릭</li>
+      </ol>
+    </div>
+    <div>
+      <h3 class="sub-title">화면 구성</h3>
+      <ul style="padding-left:20px; font-size:13px; color:var(--gray); line-height:2;">
+        <li>데이터 테이블 영역</li>
+        <li>항목/레벨별 LJ 차트 영역</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="section-title" style="margin-top:22px;">CV Report</h2>
+  <div class="menu-path">메뉴 > 보고서 > <span>CV Report</span></div>
+  <p style="font-size:13px; color:var(--gray); margin-bottom:10px;">
+    정도관리가 얼마나 안정적으로 유지되고 있는지 보여주는 <strong>월별 CV Report</strong>에요.<br>
+    월별 CV 평균값을 조회하고, CV를 차트로 표시해요.
+  </p>
+
+  <h2 class="section-title" style="margin-top:22px;">Qualitative Report</h2>
+  <div class="menu-path">메뉴 > 보고서 > <span>정성 보고서</span></div>
+  <p style="font-size:13px; color:var(--gray);">
+    반응도, 정성결과 적용 보고서에요. 물론 수치(정량) 결과도 함께 지원하고 있어요.<br>
+    Range(하한치~상한치 사이)를 벗어나는 값은 <strong>N/A 표시</strong> / Range에 속하는 값은 <strong>Pass 표시</strong>
+  </p>
+
+</div>
+</section>
+<section class="section" id="sec-test-item">
+<div class="page">
+        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>마스터 코드 관리 — 검사항목</h1>
+    <p>STEP 06 — 새로운 검사항목 추가 방법</p>
+    <p class="intro-text">병원에서 관리하는 검사항목을 등록해주세요.<br>
+    <strong>새로운 검사항목이 추가</strong>될 경우, 아래 순서대로 진행해주세요!</p>
+  </div>
+
+  <div class="menu-path">메뉴 > 정도관리 설정 > <span>검사항목</span></div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>① 신규 버튼 클릭 → 데이터 입력 → 등록 클릭</strong>
+      <div class="two-col" style="margin-top:8px;">
+        <div class="field-box">
+          <div class="field-title">검사항목 입력/수정/삭제</div>
+          <div class="field-row"><span class="field-label">검사실</span><span class="field-desc">해당 검사를 사용하는 검사실</span></div>
+          <div class="field-row"><span class="field-label">검사항목코드*</span><span class="field-desc">QC 프로그램 내 코드</span></div>
+          <div class="field-row"><span class="field-label">검사항목명</span><span class="field-desc">사용할 검사항목 이름</span></div>
+          <div class="field-row"><span class="field-label">장비검사코드*</span><span class="field-desc">IF와 공유할 코드</span></div>
+          <div class="field-row"><span class="field-label">단위</span><span class="field-desc field-required">(필수 아님)</span></div>
+          <div class="field-row"><span class="field-label">소수 자리수</span><span class="field-desc">결과값 소수 자리수</span></div>
+          <div class="field-row"><span class="field-label">Urine 여부</span><span class="field-desc">기본값 N</span></div>
+          <div class="field-row"><span class="field-label">정렬값</span><span class="field-desc">숫자값 작을수록 먼저 보임</span></div>
+          <div class="field-row"><span class="field-label">Extended 사용</span><span class="field-desc">Y=환자 데이터 / N=QC전용</span></div>
+          <div class="field-row"><span class="field-label">X-Bar 여부</span><span class="field-desc">Y / N</span></div>
+        </div>
+        <div>
+          <div class="notice-box info" style="margin-bottom:10px;">
+            <strong>* 검사항목 코드</strong>는 QC 프로그램 내에서 사용하는 코드이며,<br>
+            <strong>장비검사 코드</strong>는 인터페이스(IF)와 원활하게 통신하기 위해 사용하는 코드입니다.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<section class="section" id="sec-qc-lot">
+<div class="page">
+        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>마스터 코드 관리 — QC LOT</h1>
+    <p>STEP 06 — 검사실·장비·검사항목을 하나의 LOT으로 묶어 타깃값을 설정</p>
+    <p class="intro-text">앞서 등록한 검사실·장비·검사항목을 하나의 LOT으로 묶어서 타깃값을 설정하는 작업이에요.<br>
+    복잡해 보이지만 아래의 순서대로 따라하면 쉽게 할 수 있을 거에요!</p>
+  </div>
+
+  <div class="menu-path">메뉴 > 정도관리 설정 > <span>QC LOT</span></div>
+
+  <h3 class="sub-title">QC LOT 등록 전체 흐름 요약 <span style="font-size:12px; color:var(--red);">※ 반드시 순서대로 진행해주세요!</span></h3>
+  <table class="manual-table flow-table">
+    <thead><tr><th>순서</th><th>작업</th><th>상세 내용</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>검사실, 장비 선택</td><td></td></tr>
+      <tr><td>2</td><td>물질, 레벨 선택</td><td></td></tr>
+      <tr><td>3</td><td>시작일자 선택</td><td>QC LOT 시작일자 선택</td></tr>
+      <tr><td>4</td><td>검사항목 선택</td><td></td></tr>
+      <tr><td>5</td><td>레벨별 Target 값 설정(입력)</td><td>Mean, SD만 입력하면 나머지는 자동 계산</td></tr>
+      <tr><td>6</td><td>적용 기준(2SD/3SD) 및 물질 종류 선택</td><td>검사실 Target: QC용 / 제조사 Target: 보기용</td></tr>
+      <tr><td>7</td><td>등록</td><td>등록하기 전 장비물질ID를 인터페이스 화면에서 보고 코드를 동일하게 입력 (FAQ 참조)</td></tr>
+      <tr><td>8</td><td>하단 등록 리스트 확인</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub-title" style="margin-top:20px;">제조사 타깃값 불러오기 (Mindray 물질 자동 입력)</h3>
+  <table class="manual-table flow-table">
+    <thead><tr><th>순서</th><th>작업</th><th>상세 내용</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>검사실, 장비 선택</td><td></td></tr>
+      <tr><td>2</td><td>물질, 레벨 선택</td><td></td></tr>
+      <tr><td>3</td><td>시작일자 선택</td><td>LOT 시작일자 선택</td></tr>
+      <tr><td>4</td><td>검사항목 선택</td><td></td></tr>
+      <tr><td>5</td><td>'제조사 타깃값 불러오기' 버튼 클릭</td><td>시작일자 기준으로 가장 최신 타깃값을 불러옴</td></tr>
+      <tr><td>6</td><td>적용 기준(2SD/3SD) 및 물질 종류 확인</td><td>검사실 Target: QC용 / 제조사 Target: 보기용</td></tr>
+      <tr><td>7</td><td>데이터 검토</td><td>아래의 주의사항 항목 반드시 확인</td></tr>
+      <tr><td>8</td><td>등록</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div class="notice-box danger" style="margin-top:14px;">
+    본 데이터는 카이저랩의 내부 검증 절차를 거쳐 제공되었으나, <strong>최종적인 검토 및 활용에 대한 책임은 사용자에게 있습니다.</strong><br>
+    카이저랩은 본 데이터의 사용으로 인해 발생하는 직·간접적인 결과에 대해 법적 책임을 지지 않습니다.
+  </div>
+</div>
+</section>
+<section class="section" id="sec-lot-faq">
+<div class="page">
+        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>LOT 관련 FAQ</h1>
+    <p>STEP 06 — 자주 묻는 질문 모음</p>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">물질 종류(검사실 Target, 허용범위용 Target, 제조사 Target)가 무엇인가요?</div>
+    <div class="faq-a">
+      <strong>검사실 Target:</strong> 일반 QC LOT로 사용 시 이 설정을 선택하면 돼요.<br>
+      <strong>허용범위용 Target:</strong> 허용범위 설정을 위해 임시로 사용하는 LOT 용도에요.<br>
+      <strong>제조사 Target:</strong> 물질 제조사에서 제공한 값으로, 일반적인 조회 용도로 사용해요.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">등록된 리스트를 조회할 때 조회 옵션 ALL, LAST는 무엇을 의미하나요?</div>
+    <div class="faq-a">
+      <strong>LAST:</strong> 현재 사용중인 LOT를 조회하고 싶을 때<br>
+      <strong>ALL:</strong> 기존에 사용하던 LOT까지 전체 조회하고 싶을 때
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">BIAS(%)와 허용치가 무엇인가요?</div>
+    <div class="faq-a">
+      <strong>BIAS(%):</strong> QC 결과값이 대상 평균 값에서 얼마나 치우쳐도 허용할 지를 선택 기준이에요.<br>
+      <strong>허용치:</strong> 타깃값(mean, SD, CV)과 달리 '이 범위까지는 정상이로 보겠다.'라고 정해둔 허용 기준이에요.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">장비를 선택했는데, 아무것도 나타나지 않아요</div>
+    <div class="faq-a">
+      마스터 통합관리는 기존에 등록된 LOT 기준으로 표시돼요!<br>
+      만약 첫 LOT 등록이라면 아무것도 보이지 않을 수 있어요.<br>
+      이런 경우에는 <strong>모든 정보 보기 체크박스</strong>를 체크해주세요!<br>
+      → 모든 물질 정보 보기 &nbsp; → 모든 시약 정보 보기 &nbsp; → 모든 검사 정보 보기
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">장비물질ID나 장비검사CD가 무엇인지 모르겠어요</div>
+    <div class="faq-a">
+      장비물질ID와 장비검사CD는 인터페이스와 통신하기 위한 <strong>약속 코드(필수값)</strong>에요.<br>
+      장비검사CD는 보통 자동으로 채워지지만, <strong>장비물질ID는 변경되는 값으로 직접 입력</strong>해야 해요.<br><br>
+      <strong>장비물질ID:</strong> 인터페이스 첫 화면에 보이는 <strong>검체번호</strong>가 장비물질ID에요. 레벨별로 값이 다르니 확인 후 입력해주세요.<br>
+      <strong>장비검사CD:</strong> 인터페이스 첫 화면 → 설정 → 검사 정보설정 → QC Match 탭에서 보이는 <strong>약속 코드</strong>에요.<br><br>
+      <span style="color:var(--blue);">입력하기 어려운 상황에는 카이저랩으로 연락해주세요</span>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">LOT NO나 장비물질ID 같은 코드는 중복이 많아서 복사 붙여넣기 하기 귀찮아요</div>
+    <div class="faq-a">
+      맨 위에 중심값을 하나 입력하고, <strong>'일괄 적용' 버튼</strong>을 눌러주세요.<br>
+      그러면 모든 검사항목에 동일한 값이 입력돼요.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">LOT 타깃값을 잘못 입력했어요. 이미 등록된 LOT의 값을 수정하고 싶은데 어떻게 하죠?</div>
+    <div class="faq-a">
+      수정하고 싶은 데이터를 조회 → 값을 수정하고 <strong>수정 버튼</strong>을 클릭하세요.<br>
+      수정된 데이터는 저장하기 전까지 빨간색으로 보여요.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">LOT 시작일자(적용기간)를 변경하고 싶어요</div>
+    <div class="faq-a">
+      조회 옵션을 ALL로 변경 후 조회 → <strong>수정/종료일자 수정 가능 모드</strong>로 변경하면 LOT 적용 기간을 변경할 수 있어요.<br>
+      <span style="color:var(--red); font-size:12px;">*LOT 적용 기간을 변경한다고 해서 적용되었던 Westgard MultiRule 위반 사항이 변경되지는 않아요. 해당 LOT의 변경된 기간 내의 모든 데이터에 대해 'Rule 새로고침'을 진행해야 해요.</span>
+    </div>
+  </div>
+</div>
+</section>
+<section class="section" id="sec-allowable">
+<div class="page">
+        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>허용범위 설정 관리</h1>
+    <p>STEP 06 — 우리 병원 검사 환경에 맞게 허용 기준을 다시 잡는 작업</p>
+    <p class="intro-text">허용범위 설정은 현재 우리 병원 검사 환경에 맞게 <strong>"이 정도까지는 정상으로 보겠다"는 기준을 다시 잡는 작업</strong>이에요.<br>
+    QC LOT를 일정 기간 사용한 뒤, 새 LOT로 변경하기 전에 이 작업을 진행해야 해요.</p>
+  </div>
+
+  <div class="notice-box info" style="margin-bottom:16px;">
+    사용자는 아래 화면에서<br>
+    • <strong>어떤 기간의 데이터를 쓸지</strong><br>
+    • <strong>제조사 타깃값을 사용할지 / 누적 데이터를 사용할지 / 별도 데이터(신물질)를 사용할지</strong><br>
+    • <strong>SD/CV 중 무엇을 기준으로 할지</strong><br>
+    를 선택해야 해요
+  </div>
+
+  <div class="menu-path">메뉴 > 정도관리 설정 > <span>Target/허용범위</span></div>
+
+  <h3 class="sub-title">허용범위 설정 관리 흐름 요약 <span style="font-size:12px; color:var(--red);">※ 반드시 순서대로 진행해주세요!</span></h3>
+  <table class="manual-table flow-table">
+    <thead><tr><th>순서</th><th>작업</th><th>상세 내용</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>조회할 데이터 선택</td><td>검사실, 장비, 기간, 물질, 레벨을 필터로 선택한 다음, 데이터 집계 버튼 클릭</td></tr>
+      <tr><td>2</td><td>데이터 조회</td><td>데이터 확인</td></tr>
+      <tr><td>3</td><td>기준값 선택(1)</td><td>최종 적용할 Mean 선택</td></tr>
+      <tr><td>4</td><td>기준값 선택(2)</td><td>산출 기준을 SD / CV 중에서 1 선택</td></tr>
+      <tr><td>5</td><td>기준값 선택(3)</td><td>최종 적용할 기준 선택 (SD 선택 → SD 기준 / CV 선택 → CV 기준)</td></tr>
+      <tr><td>6</td><td>시작일자 선택</td><td>시작일자를 기준으로 새로운 허용범위값이 적용된 QC LOT가 생성됨</td></tr>
+      <tr><td>7</td><td>새로운 QC LOT로 등록</td><td>QC 마스터 메뉴로 일괄 저장 버튼 클릭</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub-title" style="margin-top:20px;">허용범위 설정 FAQ</h3>
+
+  <div class="faq-item">
+    <div class="faq-q">제조사 타깃값, 누적 데이터, 허용범위설정용 데이터(별도 데이터)가 무엇인가요?</div>
+    <div class="faq-a">
+      <strong>제조사 타깃값:</strong> 물질 제조사에서 제공한 기준값이에요. 보통 참고용으로 사용돼요.<br>
+      <strong>누적 데이터:</strong> 우리 병원에서 실제로 쌓인 QC 결과값을 의미해요.<br>
+      <strong>별도 데이터(허용범위설정 데이터):</strong> 신물질을 사용해 별도로 얻은 결과값들을 의미해요.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">별도 결과값을 쓰는데, 한 개가 이상해 빼야 할 것 같아요</div>
+    <div class="faq-a">
+      허용범위설정용 데이터 부분을 <strong>우클릭 or 더블클릭</strong>하면 허용범위 상세 데이터를 확인할 수 있어요.<br>
+      여기서 빼고 싶은 값을 빼거나, 추가하고 싶은 값을 추가하면 돼요.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">기준을 모두 선택했어요. QC LOT 적용 전에 최종 데이터는 어디서 볼 수 있나요?</div>
+    <div class="faq-a">
+      데이터 조회창의 <strong>화면 우측으로 끝까지 스크롤</strong>하면 최종 적용할 데이터(Mean, SD, CV)가 나와요.<br>
+      최종 적용할 데이터를 확인한 후, ① 시작일자를 선택하고 ② 일괄 저장 버튼을 클릭하면<br>
+      새로운 QC LOT가 생성되며 허용범위 설정이 완료돼요!
+    </div>
+  </div>
+</div>
+</section>
+<section class="section" id="sec-reagent">
+<div class="page">
+        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>마스터 코드 관리 — 시약</h1>
+    <p>STEP 06 — 새로운 시약 등록 방법</p>
+    <p class="intro-text">병원에서 사용하는 시약을 등록해주세요.<br>
+    <strong>새로운 시약이 들어왔을 때</strong>, 아래의 순서대로 진행해주세요!</p>
+  </div>
+
+  <div class="menu-path">메뉴 > 정도관리 설정 > <span>Reagent LOT</span></div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>① 신규 버튼 클릭 → 데이터 입력 → 등록 클릭</strong>
+      <div class="two-col" style="margin-top:8px;">
+        <div class="field-box">
+          <div class="field-title">시약 입력/수정/삭제</div>
+          <div class="field-row"><span class="field-label">검사실</span><span class="field-desc">[HEMA] 혈액학 검사실</span></div>
+          <div class="field-row"><span class="field-label">시약코드</span><span class="field-desc">QC 프로그램 내 코드</span></div>
+          <div class="field-row"><span class="field-label">시약명</span><span class="field-desc">사용할 시약 이름</span></div>
+          <div class="field-row"><span class="field-label">정렬값</span><span class="field-desc">숫자값 작을수록 먼저 보임</span></div>
+          <div class="field-row"><span class="field-label">사용여부</span><span class="field-desc">사용중</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<section class="section" id="sec-reagent-lot">
+<div class="page">
+        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>마스터 코드 관리 — 시약 LOT</h1>
+    <p>STEP 06 — Pooled SD 산출을 위한 시약 LOT 등록</p>
+    <p class="intro-text">시약 LOT는 <strong>Pooled SD</strong>*를 산출하기 위해 사용하는 기준 LOT에요.<br>
+    QC LOT와는 달리, 타깃값을 입력하지 않고 <strong>LOT NO만 입력</strong>하면 돼요!</p>
+  </div>
+  <p style="font-size:12.5px; color:var(--gray); margin-bottom:16px;">
+    *Pooled SD는 같은 검사 조건에서 나온 QC 결과들을 모아 계산한 평균적인 SD에요.<br>
+    해당 시약, 해당 장비에서 QC 값이 얼마나 안정적으로 나오고 있는지 보여주는 값이에요.
+  </p>
+
+  <div class="menu-path">메뉴 > 정도관리 설정 > <span>Reagent LOT</span></div>
+
+  <h3 class="sub-title">시약 LOT 등록 전체 흐름 요약 <span style="font-size:12px; color:var(--red);">※ 반드시 순서대로 진행해주세요!</span></h3>
+  <table class="manual-table flow-table">
+    <thead><tr><th>순서</th><th>작업</th><th>상세 내용</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>검사실, 장비 선택</td><td></td></tr>
+      <tr><td>2</td><td>시약 선택</td><td>데이터가 보이지 않을 경우에는 모든 정보 보기 체크</td></tr>
+      <tr><td>3</td><td>시작일자 선택</td><td>시약 LOT 시작일자 선택</td></tr>
+      <tr><td>4</td><td>검사항목 선택</td><td>데이터가 보이지 않을 경우에는 모든 정보 보기 체크</td></tr>
+      <tr><td>5</td><td>LOT NO 입력</td><td>맨 위 중심에 LOT NO 입력 › 일괄적용 클릭</td></tr>
+      <tr><td>6</td><td>등록</td><td></td></tr>
+      <tr><td>7</td><td>하단 등록 리스트 확인</td><td></td></tr>
+    </tbody>
+  </table>
+</div>
+</section>
+<section class="section" id="sec-basic-master">
+<div class="page">
+        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>기본 마스터 관리</h1>
+    <p>STEP 07 — 정도관리용 환경 설정 (검사실 / MultiRule / Comment / 단위)</p>
+    <p class="intro-text">정도관리용 환경 설정을 기본 마스터 관리에서 진행해야 해요!<br>
+    검사실에서 기본적으로 사용하는 설정을 저장하고 관리할 수 있어요.</p>
+  </div>
+
+  <div class="notice-box info" style="margin-bottom:16px;">
+    <strong>설정 가능 항목:</strong> 검사실 / 사용자 / 장비 / MultiRule / Comment / 단위<br>
+    사용자와 장비는 다른 페이지에서 설명하고, 그 외 항목들을 설명할 거에요!
+  </div>
+
+  <div class="menu-path">메뉴 > 프로그램 설정 > <span>기본 마스터 관리</span></div>
+
+  <h3 class="sub-title">① 검사실 설정 — 마스터 구분 '검사실'로 변경</h3>
+  <div class="two-col">
+    <div class="field-box">
+      <div class="field-title">데이터 입력/수정/삭제</div>
+      <div class="field-row"><span class="field-label">코드</span><span class="field-desc">HEMA</span></div>
+      <div class="field-row"><span class="field-label">검사실명</span><span class="field-desc">혈액학 검사실</span></div>
+      <div class="field-row"><span class="field-label">파트장</span><span class="field-desc">한길동</span></div>
+      <div class="field-row"><span class="field-label">대표번호</span><span class="field-desc">044-1234-5678</span></div>
+      <div class="field-row"><span class="field-label">검사 항 갯수</span><span class="field-desc">20</span></div>
+    </div>
+    <div class="notice-box">
+      보통 '검사실'은 초기 설치 시 이외에 잘 사용하지 않아요.<br>
+      여기서 주의할 점은 <strong>검사 항 갯수</strong>예요.<br><br>
+      검사 항 갯수는 대시보드에서 검사항목 탭(Tab)을 몇 개까지 표시할 지 설정하는 거에요.
+    </div>
+  </div>
+
+  <h3 class="sub-title">② MultiRule 설정 — 마스터 구분 'Multi Rule'로 변경</h3>
+  <div class="notice-box info" style="margin:8px 0;">검사실별로 Westgard MultiRule의 적용기준을 변경할 수 있어요!</div>
+  <table class="manual-table">
+    <thead><tr><th>등록 검사실</th><th>1(2s)</th><th>1(3s)</th><th>2(2s)</th><th>R(4s)</th><th>4(1s)</th><th>10(x)</th><th>설명</th><th>사용여부</th></tr></thead>
+    <tbody>
+      <tr><td>HEMA</td><td class="rule-warning rule-cell">주의</td><td></td><td></td><td class="rule-warning rule-cell">주의</td><td class="rule-warning rule-cell">주의</td><td class="rule-warning rule-cell">주의</td><td></td><td>Y</td></tr>
+      <tr><td>HEMA</td><td class="rule-reject rule-cell">거부</td><td class="rule-reject rule-cell">거부</td><td class="rule-reject rule-cell">거부</td><td></td><td></td><td></td><td></td><td>Y</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:12px; color:var(--gray);">해당하는 칸을 클릭하여 적용하거나 Rule을 해제할 수 있어요. <strong>수정 후 등록 버튼을 꼭 눌러주세요.</strong></p>
+
+  <h3 class="sub-title">③ Comment 설정 — 마스터 구분 'Comment'로 변경</h3>
+  <p style="font-size:12.5px; color:var(--gray); margin:6px 0;">자주 사용하는 코멘트를 Comment 설정에서 저장하고 관리할 수 있어요.</p>
+
+  <h3 class="sub-title">④ 단위 설정 — 마스터 구분 '단위'로 변경</h3>
+  <p style="font-size:12.5px; color:var(--gray); margin:6px 0;">단위는 특수기호인 경우가 많죠? 기본 마스터 관리에서 단위를 저장하고 사용할 수 있어요!</p>
+</div>
+</section>
+<section class="section" id="sec-material">
+<div class="page">
+        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>마스터 코드 관리 — 물질</h1>
+    <p>STEP 07 — 새로운 물질(Control) 등록 방법</p>
+    <p class="intro-text">병원에서 사용하는 물질을 등록해주세요.<br>
+    <strong>새로운 물질이 들어왔을 때</strong>, 아래의 순서대로 진행해주세요!</p>
+  </div>
+
+  <div class="menu-path">메뉴 > 프로그램 설정 > <span>검사실별 물질 관리</span></div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>① 신규 버튼 클릭 → 데이터 입력 → 등록 클릭</strong>
+      <div class="two-col" style="margin-top:8px;">
+        <div class="field-box">
+          <div class="field-title">Control 입력/수정/삭제</div>
+          <div class="field-row"><span class="field-label">검사실</span><span class="field-desc">[CHEM] 생화학 검사실</span></div>
+          <div class="field-row"><span class="field-label">물질코드</span><span class="field-desc">HC001</span></div>
+          <div class="field-row"><span class="field-label">물질명*</span><span class="field-desc">ADA Control</span></div>
+          <div class="field-row"><span class="field-label">레벨</span><span class="field-desc">① Lv1 ② Lv2 ③ Lv3 ④ Lv4</span></div>
+          <div class="field-row"><span class="field-label">물질 유형</span><span class="field-desc">정도관리물질 (기본값)</span></div>
+          <div class="field-row"><span class="field-label">농도/단위</span><span class="field-desc field-required">(필수 아님)</span></div>
+          <div class="field-row"><span class="field-label">용량/단위</span><span class="field-desc field-required">(필수 아님)</span></div>
+          <div class="field-row"><span class="field-label">보관온도</span><span class="field-desc field-required">(필수 아님)</span></div>
+          <div class="field-row"><span class="field-label">정렬값</span><span class="field-desc">숫자값 작을수록 먼저 보임</span></div>
+          <div class="field-row"><span class="field-label">사용여부</span><span class="field-desc">사용중</span></div>
+        </div>
+        <div>
+          <div class="notice-box info" style="margin-bottom:10px;">
+            물질은 <strong>검사실을 기준으로 관리</strong>해요.
+          </div>
+          <div class="notice-box">
+            <strong>* 가능하면 물질명은 정확한 전체 명칭(Full Name)으로 입력해주세요.</strong><br><br>
+            실제 명칭: HEMATOLOGY CONTROLS<br>
+            ✓ HEMATOLOGY CONTROLS<br>
+            ✗ HEMA-CONTROL
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<section class="section" id="sec-equipment">
+<div class="page">
+        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>마스터 코드 관리 — 장비</h1>
+    <p>STEP 07 — 새로운 장비 등록 방법</p>
+    <p class="intro-text">초기 설치 시, 카이저랩에서 장비를 등록해서 배포하고 있어요.<br>
+    병원에 신규 장비가 들어왔다면 아래의 순서대로 진행해주세요!</p>
+  </div>
+
+  <div class="menu-path">메뉴 > 프로그램 설정 > <span>기본 마스터 관리</span> → 마스터 구분 '장비'로 변경</div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>① 신규 버튼 클릭 → 데이터 입력 → 등록 클릭</strong>
+      <div class="two-col" style="margin-top:8px;">
+        <div class="field-box">
+          <div class="field-title">데이터 입력/수정/삭제</div>
+          <div class="field-row"><span class="field-label">검사실</span><span class="field-desc">장비가 속한 검사실 선택</span></div>
+          <div class="field-row"><span class="field-label">코드</span><span class="field-desc">장비코드</span></div>
+          <div class="field-row"><span class="field-label">장비명</span><span class="field-desc">사용할 장비 이름</span></div>
+          <div class="field-row"><span class="field-label">제조회사</span><span class="field-desc field-required">(필수 아님)</span></div>
+          <div class="field-row"><span class="field-label">Extended 사용</span><span class="field-desc">Y=환자 데이터 / N=QC전용</span></div>
+          <div class="field-row"><span class="field-label">M-A 기준 표시</span><span class="field-desc">무버리지(M-A) 기준 표시</span></div>
+          <div class="field-row"><span class="field-label">사용여부</span><span class="field-desc">사용중</span></div>
+          <div class="field-row"><span class="field-label">이미지</span><span class="field-desc">장비 이미지</span></div>
+          <div class="field-row"><span class="field-label">정렬값</span><span class="field-desc">숫자값 작을수록 먼저 보임</span></div>
+        </div>
+       <div style="margin-top:10px;">
+      <strong style="display:inline;">* 피어그룹 관리를 위해 장비 신규 등록/수정 시</strong> 카이저랩에 연락 부탁드립니다.<br>
+    </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<section class="section" id="sec-user-create">
+<div class="page">
+        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>사용자 계정 만들기</h1>
+    <p>STEP 08 — 새로운 사용자 계정 등록 방법</p>
+    <p class="intro-text">초기 설치 시, 카이저랩에서 사용자 계정을 생성해서 배포하고 있어요.<br>
+    <strong>새로운 사용자 계정 등록</strong>이 필요하다면 아래의 순서대로 진행해주세요!</p>
+  </div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>① 바로가기 아이콘을 클릭해서 프로그램 실행</strong>
+    </div>
+  </div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>② 초기 사용자 ID/비밀번호로 로그인</strong>
+      <div class="two-col" style="margin-top:10px;">
+        <div class="screen-mock">
+          <div style="font-size:12px; line-height:2.2;">
+            사용자 ID: <span style="background:#ffe0e0; padding:1px 6px; border-radius:3px;">ID 입력</span><br>
+            비밀번호: <span style="background:#ffe0e0; padding:1px 6px; border-radius:3px;">비밀번호 입력</span><br>
+        
+          </div>
+        </div>
+        <div class="field-box">
+          <div class="field-title">초기 계정 안내</div>
+          <p style="font-size:12px; line-height:1.8; color:var(--gray);">
+            초기 ID/비밀번호는 카이저랩에서 생성하여 배포됩니다.<br>
+            <strong style="display:inline;">* 비밀번호를 잊어버리신 경우에는</strong> 카이저랩으로 연락 부탁드립니다.<br>
+            <span style="color:var(--blue);">070-7770-0018 (ARS 1번)</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>③ 기본 마스터 관리창 열기</strong>
+      <div class="menu-path">메뉴 > 프로그램 설정 > <span>기본 마스터 관리</span></div>
+      
+    </div>
+  </div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>④ 마스터 구분을 '사용자'로 변경 후, 신규 계정 작성</strong>
+      <strong>⑤ 우측 하단 신규버튼 틀릭 후, 검사실, 사용자 아이티, 사용자명 입력 후 등록버튼 클릭</strong>
+      <div class="two-col" style="margin-top:8px;">
+        <div class="screen-mock">
+        
+          <div style="font-size:12px; line-height:2.1;">
+            검사실: 소속 검사실 선택
+            코드: <span style="font-size:11px; color:var(--gray);">사용자 아이디</span><br>
+            사용자명: <span style="font-size:11px; color:var(--gray);">사용자 성함</span><br>
+            Extended 사용 여부: N<br>
+            정보 표시: 1 : Rule 설정 정보<br>
+            레벨: 0 : 일반<br>
+            사용여부: 사용중
+          </div>
+                  </div>
+        <div class="field-box">
+          <div class="field-title">정보 표시 단계</div>
+          <table class="manual-table" style="font-size:11px; margin:0;">
+            <tr><th>단계</th><th>표시 내용</th></tr>
+            <tr><td>1단계</td><td>Rule 설정 정보</td></tr>
+            <tr><td>2단계</td><td>Target 설정 정보</td></tr>
+            <tr><td>3단계</td><td>Period statistics</td></tr>
+            <tr><td>4단계</td><td>Cumulative</td></tr>
+          </table>
+          <p style="font-size:11px; color:var(--gray); margin-top:6px;">*정보 표시는 대시보드에 나타나는 정보를 몇 단계까지 표시할 지 선택하는 설정이에요.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>⑥ 등록 후 재로그인</strong>
+    </div>
+  </div>
+</div>
+</section>
+<section class="section" id="sec-password">
+<div class="page">
+        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>비밀번호 변경하기</h1>
+    <p>STEP 08 — 초기 비밀번호 '1'에서 변경하는 방법</p>
+    <p class="intro-text">사용자 계정 생성 시, 초기 비밀번호는 <strong>'1'</strong>이에요.<br>
+    보안을 위해 필수적으로 <strong>비밀번호를 변경</strong>해주세요.</p>
+  </div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>① 프로그램이 실행중이라면 창 닫고 다시 실행 혹은 재로그인</strong>
+    </div>
+  </div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>② ID 입력한 후, 비밀번호 변경 버튼 클릭</strong>
+      <div class="screen-mock" style="max-width:280px; margin-top:8px;">
+        <div class="mock-title">로그인 화면</div>
+        <div style="font-size:12px; line-height:2.2;">
+          사용자 ID: <span style="background:#ffe0e0; padding:1px 6px; border-radius:3px;">① 비밀번호 변경할 ID 입력</span><br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>③ 비밀번호 변경</strong>
+      <div class="two-col" style="margin-top:8px;">
+        <div class="screen-mock">
+          <div class="mock-title">비밀번호 변경 화면</div>
+          <div style="font-size:12px; line-height:2.4;">
+            현재 비밀번호: <span style="background:#ffe0e0; padding:1px 6px; border-radius:3px;">현재 비밀번호 입력(초기 비밀번호 :1)</span><br>
+            새 비밀번호: <span style="background:#ffe0e0; padding:1px 6px; border-radius:3px;">새로운 비밀번호 입력</span><br>
+            비밀번호 확인: <span style="background:#ffe0e0; padding:1px 6px; border-radius:3px;">새로운 비밀번호 확인(재입력)</span><br>
+          <div style="font-size:12px; line-height:1.9; color:var(--gray);">
+                     <strong style="display:inline;">  * 비밀번호를 잊어버린 경우에는</strong> 카이저랩으로 연락 부탁드립니다.<br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-instruction">
+    <div class="step-content">
+      <strong>④ 변경된 비밀번호로 재로그인</strong>
+    </div>
+  </div>
+</div>
+</section>
+
+</main>
+</div>
+
+<script>
+const items = Array.from(document.querySelectorAll('.nav-item'));
+const sections = Array.from(document.querySelectorAll('.section'));
+const main = document.getElementById('main');
+const searchInput = document.getElementById('nav-search-input');
+const searchButton = document.getElementById('nav-search-button');
+const searchPrevButton = document.getElementById('nav-search-prev');
+const searchNextButton = document.getElementById('nav-search-next');
+const searchStatus = document.getElementById('nav-search-status');
+const searchableSelectors = [
+  '.chapter-header h1',
+  '.chapter-header p',
+  'h2',
+  'h3',
+  'p',
+  'li',
+  'td',
+  'th',
+  'strong',
+  '.field-desc',
+  '.field-label',
+  '.menu-path',
+  '.notice-box',
+  '.faq-q',
+  '.faq-a'
+].join(', ');
+const sectionBlueprints = {
+  "sec-qc-result": {
+    screen: [
+      ["조회 조건", "기간, 검사실, 장비, 물질, 레벨 등 필터를 설정합니다."],
+      ["Levey-Jennings 차트", "LOT별 추이와 rule 발생 상태를 확인합니다."],
+      ["검사항목별 결과 테이블", "측정값, 상태, comment 여부를 함께 확인합니다."]
+    ],
+    functions: [
+      "조건별 QC 결과를 조회하고 차트와 테이블을 함께 확인합니다.",
+      "결과 선택 시 차트 위치를 연동해 이상 구간을 빠르게 찾습니다.",
+      "comment 등록, 결과 삭제, Excel 출력 같은 후속 작업을 진행합니다."
+    ],
+    steps: [
+      "조회 조건을 설정하고 결과를 조회합니다.",
+      "차트와 결과 테이블로 이상 결과를 확인합니다.",
+      "필요 시 comment, 삭제, 출력 작업을 진행합니다."
+    ]
+  },
+  "sec-dashboard": {
+    screen: [
+      ["상단 요약 영역", "정상, 주의, 거부 건수를 한눈에 확인합니다."],
+      ["LOT 분포 영역", "LOT별 상태 비율과 분포를 확인합니다."],
+      ["상세 결과 영역", "결과 테이블과 LJ 차트로 세부 내역을 확인합니다."]
+    ],
+    functions: [
+      "당일 정도관리 현황을 가장 빠르게 파악합니다.",
+      "레벨별/검사별 보기와 상태 필터를 활용해 대상을 좁혀 봅니다.",
+      "이상 결과를 상세 화면으로 이어서 확인합니다."
+    ],
+    steps: [
+      "요약 카드에서 전체 상태를 먼저 확인합니다.",
+      "LOT 분포와 상세 결과를 비교해 이상 항목을 찾습니다.",
+      "필요한 경우 상세 결과 화면으로 이동해 후속 조치를 진행합니다."
+    ]
+  },
+  "sec-dashboard-basic": {
+    screen: [
+      ["기본 보기", "레벨별 또는 검사별 보기 방식으로 전환합니다."],
+      ["상태별 확인 영역", "정상, 주의, 거부 결과를 중심으로 확인합니다."],
+      ["차트/테이블 제어", "LOT, 레벨, 정렬, 추가 정보 표시를 제어합니다."]
+    ],
+    functions: [
+      "상태 건수 확인, comment 등록, 상세 결과 이동을 빠르게 처리합니다.",
+      "차트 확대, 결과 필터링, Multi Sort 등 화면 활용 기능을 제공합니다.",
+      "추가 정보 표시를 통해 rule, target, 누적 통계를 함께 확인합니다."
+    ],
+    steps: [
+      "요약 건수와 상태를 먼저 확인합니다.",
+      "이상 항목을 클릭해 상세 결과와 comment를 확인합니다.",
+      "필요 시 보기 방식과 정렬, 추가 정보 표시를 조정합니다."
+    ]
+  },
+  "sec-barcode": {
+    screen: [
+      ["입력 영역", "검사실, 장비, 물질, 레벨 등 출력 조건을 선택합니다."],
+      ["접수 옵션", "접수 시 바코드 출력 여부를 함께 설정합니다."],
+      ["조회 영역", "바코드 번호만 별도로 조회할 수 있습니다."]
+    ],
+    functions: [
+      "QC 접수용 바코드를 생성하고 즉시 출력합니다.",
+      "접수 시점에 바코드 동시 출력 여부를 선택할 수 있습니다.",
+      "필요한 경우 바코드 번호만 기준으로 다시 조회합니다."
+    ],
+    steps: [
+      "출력 대상 조건을 선택합니다.",
+      "접수 여부와 바코드 출력 옵션을 지정합니다.",
+      "출력 후 필요 시 바코드 번호로 다시 조회합니다."
+    ]
+  },
+  "sec-data-query": {
+    screen: [
+      ["검색 조건 필터", "기간, 검사실, 장비, 물질, 상태, 규칙 등으로 검색합니다."],
+      ["조회 결과 영역", "필터 조건에 맞는 결과를 목록으로 확인합니다."],
+      ["후속 작업 영역", "comment, Excel, 결과 취소 같은 작업을 수행합니다."]
+    ],
+    functions: [
+      "대시보드보다 상세한 조건으로 QC 데이터를 조회합니다.",
+      "comment 등록, 중복 결과 체크, 결과 취소를 지원합니다.",
+      "조회 결과 전체를 Excel로 출력할 수 있습니다."
+    ],
+    steps: [
+      "검색 조건을 선택하고 조회합니다.",
+      "조회 결과에서 필요한 건을 선택합니다.",
+      "comment 등록, 출력, 취소 등 후속 작업을 진행합니다."
+    ]
+  },
+  "sec-rule-refresh": {
+    screen: [
+      ["안내 영역", "Rule Refresh가 필요한 상황을 설명합니다."],
+      ["작업 경로", "QC LOT과 QC 데이터 조회 메뉴 경로를 안내합니다."],
+      ["실행 안내", "작업 시간과 완료 후 확인 방법을 안내합니다."]
+    ],
+    functions: [
+      "LOT 타깃값 변경 후 기존 결과의 rule 판정을 다시 계산합니다.",
+      "이미 등록된 데이터의 상태를 최신 기준으로 맞춥니다.",
+      "작업 완료 후 결과 파일로 처리 여부를 확인할 수 있습니다."
+    ],
+    steps: [
+      "변경된 LOT의 타깃값을 먼저 수정합니다.",
+      "해당 LOT 기간으로 조회 조건을 맞춥니다.",
+      "Rule Refresh를 실행하고 완료 결과를 확인합니다."
+    ]
+  },
+  "sec-patient": {
+    screen: [
+      ["검색 영역", "환자 결과를 조건에 맞게 조회합니다."],
+      ["결과 목록", "좌측 리스트에서 환자 결과를 선택합니다."],
+      ["미리보기/다운로드", "선택한 결과를 보고 이미지로 저장합니다."]
+    ],
+    functions: [
+      "QC 외에도 환자 결과를 같은 프로그램에서 확인할 수 있습니다.",
+      "결과 검색, 선택, 미리보기, 이미지 다운로드를 지원합니다.",
+      "좌측 목록과 우측 상세 정보를 연동해 확인합니다."
+    ],
+    steps: [
+      "환자 결과를 검색합니다.",
+      "좌측 목록에서 결과를 선택합니다.",
+      "필요 시 상세 확인 후 이미지를 다운로드합니다."
+    ]
+  },
+  "sec-xbar": {
+    screen: [
+      ["조회 조건", "검사실, 장비, 기간을 선택해 차트를 조회합니다."],
+      ["좌측 정보 패널", "항목별 통계와 사용 구간 정보를 확인합니다."],
+      ["X-Bar 차트", "평균값 변화와 limit 기준선을 확인합니다."]
+    ],
+    functions: [
+      "환자 데이터를 일정 개수로 묶어 평균값 추이를 관찰합니다.",
+      "Upper Limit, Mean, Lower Limit 기준선을 함께 제공합니다.",
+      "툴팁과 범례를 통해 차트 세부 정보를 확인합니다."
+    ],
+    steps: [
+      "조회 대상 검사실, 장비, 기간을 선택합니다.",
+      "차트와 좌측 패널로 항목별 추이를 확인합니다.",
+      "이상 구간이 있으면 기준값 설정 화면과 함께 검토합니다."
+    ]
+  },
+  "sec-xbar-settings": {
+    screen: [
+      ["좌측 선택 영역", "검사실, 장비, 검사항목을 선택합니다."],
+      ["기준값 입력 영역", "Mean, limit, 허용범위를 입력합니다."],
+      ["등록 리스트", "저장된 설정 이력과 현재 사용 여부를 확인합니다."]
+    ],
+    functions: [
+      "X-Bar 차트에 사용할 기준값과 허용범위를 등록합니다.",
+      "전체 선택, 개별 선택, 일괄 적용 등 입력 편의 기능을 제공합니다.",
+      "등록된 이력을 조회하고 현재 적용 중인 설정을 관리합니다."
+    ],
+    steps: [
+      "검사실, 장비, 검사항목을 선택합니다.",
+      "시작일자와 기준값을 입력한 뒤 저장합니다.",
+      "하단 등록 리스트에서 적용 여부를 확인합니다."
+    ]
+  },
+  "sec-correlation": {
+    screen: [
+      ["비교 조건 영역", "기준 장비와 비교 장비, 매칭 기준을 설정합니다."],
+      ["비교 결과 영역", "장비 간 상관성 결과를 확인합니다."],
+      ["검증 영역", "계산 검증 화면으로 이어서 확인합니다."]
+    ],
+    functions: [
+      "같은 검사를 수행하는 여러 장비의 결과 일치성을 비교합니다.",
+      "동일 일자 기준 매칭과 결과일자 무시 매칭을 지원합니다.",
+      "계산 검증 기능으로 통계 계산 결과를 점검합니다."
+    ],
+    steps: [
+      "기준 장비와 비교 장비를 선택합니다.",
+      "매칭 기준을 정하고 비교를 실행합니다.",
+      "필요 시 계산 검증 화면에서 수치를 다시 확인합니다."
+    ]
+  },
+  "sec-reports": {
+    screen: [
+      ["조회 조건 영역", "보고서 종류별 기간, 장비, 물질, 항목을 선택합니다."],
+      ["미리보기 영역", "출력 전 보고서 구성을 확인합니다."],
+      ["보고서 종류", "QC Report, CV Report, Qualitative Report를 제공합니다."]
+    ],
+    functions: [
+      "정량, 정성, CV 중심의 보고서를 종류별로 출력합니다.",
+      "선택한 조건에 따라 차트와 표를 포함한 보고서를 생성합니다.",
+      "미리보기 후 출력 여부를 결정할 수 있습니다."
+    ],
+    steps: [
+      "필요한 보고서 종류와 조회 조건을 선택합니다.",
+      "미리보기로 내용을 확인합니다.",
+      "출력 또는 저장 작업을 진행합니다."
+    ]
+  },
+  "sec-test-item": {
+    screen: [
+      ["입력 영역", "검사항목 코드, 이름, IF 코드, 단위 등을 입력합니다."],
+      ["속성 영역", "Extended 사용, X-Bar 사용 여부 등을 설정합니다."],
+      ["안내 영역", "프로그램 코드와 장비 연동 코드 의미를 설명합니다."]
+    ],
+    functions: [
+      "새 검사항목을 등록하고 속성을 관리합니다.",
+      "프로그램용 코드와 인터페이스 연동 코드를 함께 관리합니다.",
+      "환자 결과 사용 여부, X-Bar 사용 여부를 항목별로 설정합니다."
+    ],
+    steps: [
+      "신규 버튼을 눌러 항목 정보를 입력합니다.",
+      "코드, 이름, 단위, 사용 옵션을 설정합니다.",
+      "등록 후 연동 코드와 속성을 다시 확인합니다."
+    ]
+  },
+  "sec-qc-lot": {
+    screen: [
+      ["기본 선택 영역", "검사실, 장비, 물질, 레벨, 시작일자를 선택합니다."],
+      ["타깃값 입력 영역", "Mean, SD 등 LOT 기준값을 입력합니다."],
+      ["등록 리스트", "등록된 QC LOT과 이력을 확인합니다."]
+    ],
+    functions: [
+      "검사실, 장비, 물질, 항목을 하나의 QC LOT으로 묶어 관리합니다.",
+      "제조사 타깃값 불러오기와 수동 입력을 모두 지원합니다.",
+      "허용 기준과 물질 종류를 함께 설정해 후속 QC 판정에 사용합니다."
+    ],
+    steps: [
+      "기본 선택값과 시작일자를 정합니다.",
+      "검사항목과 타깃값, 허용 기준을 입력합니다.",
+      "등록 후 하단 리스트에서 적용 내용을 확인합니다."
+    ]
+  },
+  "sec-lot-faq": {
+    screen: [
+      ["FAQ 목록", "LOT 관련 자주 묻는 질문을 한 화면에 모아 둡니다."],
+      ["질문 영역", "실무에서 자주 막히는 상황을 질문 형식으로 정리합니다."],
+      ["답변 영역", "코드 입력, 조회 옵션, target 의미를 설명합니다."]
+    ],
+    functions: [
+      "QC LOT 등록과 수정 과정에서 자주 생기는 질문을 빠르게 해결합니다.",
+      "Target 종류, ALL/LAST 조회, 장비물질ID 같은 용어를 정리합니다.",
+      "Rule Refresh가 필요한 상황도 함께 안내합니다."
+    ],
+    steps: [
+      "막히는 항목과 가장 가까운 질문을 찾습니다.",
+      "답변 내용을 기준으로 입력값이나 조회 옵션을 다시 확인합니다.",
+      "필요 시 QC LOT, Rule Refresh, 허용범위 설정 화면으로 돌아가 작업합니다."
+    ]
+  },
+  "sec-allowable": {
+    screen: [
+      ["조건 선택 영역", "검사실, 장비, 기간, 물질, 레벨을 선택합니다."],
+      ["기준값 선택 영역", "mean, SD/CV, 최종 허용 기준을 선택합니다."],
+      ["결과 검토 영역", "최종 선택값을 검토하고 QC LOT으로 반영합니다."]
+    ],
+    functions: [
+      "병원 환경에 맞는 허용범위를 재설정합니다.",
+      "제조사 타깃값, 누적 데이터, 별도 데이터를 비교 기준으로 사용할 수 있습니다.",
+      "최종 선택값을 새 QC LOT에 반영해 적용합니다."
+    ],
+    steps: [
+      "조회 조건을 선택하고 데이터를 집계합니다.",
+      "mean과 SD/CV 기준을 선택해 최종 허용범위를 정합니다.",
+      "시작일자를 정하고 QC LOT으로 등록합니다."
+    ]
+  },
+  "sec-reagent": {
+    screen: [
+      ["입력 영역", "시약 코드, 이름, 정렬값, 사용 여부를 입력합니다."],
+      ["검사실 선택", "시약이 속한 검사실 기준으로 관리합니다."],
+      ["저장 영역", "신규 등록과 수정, 삭제를 처리합니다."]
+    ],
+    functions: [
+      "검사실별 시약 마스터를 등록하고 관리합니다.",
+      "시약 코드와 이름을 표준화해 후속 LOT 관리에 연결합니다.",
+      "정렬값과 사용 여부를 함께 관리합니다."
+    ],
+    steps: [
+      "신규 버튼을 눌러 시약 정보를 입력합니다.",
+      "검사실, 시약 코드, 시약명, 정렬값을 설정합니다.",
+      "등록 후 시약 LOT 관리에 이어서 사용합니다."
+    ]
+  },
+  "sec-reagent-lot": {
+    screen: [
+      ["기본 선택 영역", "검사실, 장비, 시약, 시작일자를 선택합니다."],
+      ["LOT 입력 영역", "LOT 번호를 입력하고 일괄 적용합니다."],
+      ["등록 리스트", "시약 LOT 등록 내역을 확인합니다."]
+    ],
+    functions: [
+      "Pooled SD 산출을 위한 시약 LOT 기준을 등록합니다.",
+      "QC LOT과 달리 타깃값 없이 LOT 번호 중심으로 관리합니다.",
+      "모든 항목 보기와 일괄 적용으로 입력 편의성을 제공합니다."
+    ],
+    steps: [
+      "검사실, 장비, 시약, 시작일자를 선택합니다.",
+      "검사항목을 확인하고 LOT 번호를 입력합니다.",
+      "등록 후 하단 리스트에서 반영 여부를 확인합니다."
+    ]
+  },
+  "sec-basic-master": {
+    screen: [
+      ["마스터 구분 선택", "검사실, Multi Rule, Comment, 단위 등으로 전환합니다."],
+      ["입력/수정 영역", "선택한 마스터 구분의 상세 값을 입력합니다."],
+      ["설정 설명 영역", "각 마스터 구분의 역할과 주의사항을 안내합니다."]
+    ],
+    functions: [
+      "정도관리 환경에서 공통으로 사용하는 기본 마스터를 관리합니다.",
+      "검사실 정보, rule 기준, comment, 단위를 한 화면에서 다룹니다.",
+      "마스터 구분에 따라 입력 필드가 달라집니다."
+    ],
+    steps: [
+      "마스터 구분을 선택합니다.",
+      "해당 구분에 맞는 값을 입력하거나 수정합니다.",
+      "등록 후 실제 화면에 반영되는지 확인합니다."
+    ]
+  },
+  "sec-material": {
+    screen: [
+      ["기본 입력 영역", "검사실, 물질코드, 물질명, 레벨을 입력합니다."],
+      ["속성 영역", "물질 유형, 농도, 용량, 보관온도를 설정합니다."],
+      ["안내 영역", "물질명 표기 방식과 검사실별 관리 기준을 안내합니다."]
+    ],
+    functions: [
+      "검사실별 control 물질을 등록하고 관리합니다.",
+      "레벨, 물질 유형, 보관 정보 같은 부가 속성을 함께 저장합니다.",
+      "정확한 물질명 기준으로 표준화된 관리가 가능합니다."
+    ],
+    steps: [
+      "신규 버튼을 눌러 물질 기본 정보를 입력합니다.",
+      "레벨과 부가 속성을 설정합니다.",
+      "등록 후 QC LOT과 연결해 사용합니다."
+    ]
+  },
+  "sec-equipment": {
+    screen: [
+      ["기본 입력 영역", "검사실, 장비 코드, 장비명을 입력합니다."],
+      ["사용 옵션 영역", "Extended 사용, M-A 표시, 이미지 등을 설정합니다."],
+      ["안내 영역", "장비 신규 등록이나 수정 시 참고사항을 제공합니다."]
+    ],
+    functions: [
+      "정도관리 및 환자 결과에 사용할 장비 마스터를 관리합니다.",
+      "장비별 사용 범위와 표시 옵션을 세부적으로 설정합니다.",
+      "장비 이미지와 정렬값까지 함께 관리합니다."
+    ],
+    steps: [
+      "검사실을 선택한 뒤 장비 정보를 입력합니다.",
+      "사용 옵션과 정렬값을 설정합니다.",
+      "등록 후 관련 화면에서 장비가 정상 노출되는지 확인합니다."
+    ]
+  },
+  "sec-user-create": {
+    screen: [
+      ["로그인 영역", "초기 ID와 비밀번호로 프로그램에 접속합니다."],
+      ["계정 생성 영역", "기본 마스터 관리에서 신규 사용자 정보를 입력합니다."],
+      ["권한 설정 영역", "알림 표시 단계와 레벨 등을 함께 지정합니다."]
+    ],
+    functions: [
+      "신규 사용자 계정을 생성하고 프로그램 사용 권한을 부여합니다.",
+      "검사실, 아이디, 사용자명, 알림 표시 단계를 함께 설정합니다.",
+      "초기 계정 안내와 비밀번호 분실 시 연락처를 제공합니다."
+    ],
+    steps: [
+      "초기 계정으로 로그인합니다.",
+      "기본 마스터 관리에서 사용자 구분으로 전환합니다.",
+      "신규 계정 정보를 입력하고 등록합니다."
+    ]
+  },
+  "sec-password": {
+    screen: [
+      ["로그인 화면", "비밀번호를 바꿀 계정 ID를 입력합니다."],
+      ["비밀번호 변경 화면", "현재 비밀번호와 새 비밀번호를 입력합니다."],
+      ["재로그인 단계", "변경된 비밀번호로 다시 로그인합니다."]
+    ],
+    functions: [
+      "초기 비밀번호를 사용자 비밀번호로 변경합니다.",
+      "현재 비밀번호 확인과 새 비밀번호 재입력을 함께 처리합니다.",
+      "보안을 위해 최초 사용 시 즉시 변경하도록 안내합니다."
+    ],
+    steps: [
+      "변경할 계정 ID를 입력해 비밀번호 변경 화면으로 들어갑니다.",
+      "현재 비밀번호와 새 비밀번호를 입력합니다.",
+      "변경 후 새 비밀번호로 다시 로그인합니다."
+    ]
+  }
+};
+let searchResults = [];
+let currentSearchIndex = -1;
+
+function createOverviewTable(title, rows, headers = ['구성 항목', '설명']) {
+  const heading = document.createElement('h2');
+  heading.className = 'section-title';
+  heading.textContent = title;
+
+  const table = document.createElement('table');
+  table.className = 'manual-table';
+
+  const thead = document.createElement('thead');
+  const headRow = document.createElement('tr');
+  headers.forEach(text => {
+    const th = document.createElement('th');
+    th.textContent = text;
+    headRow.appendChild(th);
+  });
+  thead.appendChild(headRow);
+  table.appendChild(thead);
+
+  const tbody = document.createElement('tbody');
+  rows.forEach(([label, desc]) => {
+    const tr = document.createElement('tr');
+    const tdLabel = document.createElement('td');
+    const strong = document.createElement('strong');
+    strong.textContent = label;
+    tdLabel.appendChild(strong);
+    const tdDesc = document.createElement('td');
+    tdDesc.textContent = desc;
+    tr.appendChild(tdLabel);
+    tr.appendChild(tdDesc);
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+
+  return [heading, table];
+}
+
+function createOverviewList(title, items, ordered = false) {
+  const heading = document.createElement('h2');
+  heading.className = 'section-title';
+  heading.textContent = title;
+
+  const container = ordered ? document.createElement('ol') : document.createElement('div');
+  if (ordered) {
+    container.className = 'section-overview-order';
+  } else {
+    container.className = 'summary-box';
+    const ul = document.createElement('ul');
+    items.forEach(text => {
+      const li = document.createElement('li');
+      li.textContent = text;
+      ul.appendChild(li);
+    });
+    container.appendChild(ul);
+    return [heading, container];
+  }
+
+  items.forEach(text => {
+    const li = document.createElement('li');
+    li.textContent = text;
+    container.appendChild(li);
+  });
+  return [heading, container];
+}
+
+function createStepList(title, items) {
+  const heading = document.createElement('h2');
+  heading.className = 'section-title';
+  heading.textContent = title;
+
+  const list = document.createElement('ol');
+  list.className = 'section-overview-order';
+
+  items.forEach(text => {
+    const li = document.createElement('li');
+    li.textContent = text;
+    list.appendChild(li);
+  });
+
+  return [heading, list];
+}
+
+function renderSectionOverviews() {
+  Object.entries(sectionBlueprints).forEach(([sectionId, config]) => {
+    const section = document.getElementById(sectionId);
+    if (!section) {
+      return;
+    }
+
+    const page = section.querySelector('.page');
+    const chapterHeader = page ? page.querySelector('.chapter-header') : null;
+    if (!page || !chapterHeader) {
+      return;
+    }
+
+    const anchor = page.querySelector('.menu-path');
+    const insertAfter = anchor || chapterHeader;
+    const overview = document.createElement('div');
+    overview.className = 'section-overview';
+    const [screenTitle, screenTable] = createOverviewTable(
+      '화면구성',
+      config.screen,
+      ['화면 위치/영역', '구성 설명']
+    );
+    const [functionTitle, functionList] = createOverviewList('주요 기능 및 구성요소', config.functions);
+    const [stepTitle, stepList] = createStepList('작업순서', config.steps);
+
+    [screenTitle, screenTable, functionTitle, functionList, stepTitle, stepList].forEach(element => {
+      overview.appendChild(element);
+    });
+
+    insertAfter.insertAdjacentElement('afterend', overview);
+  });
+}
+
+renderSectionOverviews();
+
+function activateSection(target) {
+  const matchedItem = items.find(item => item.dataset.target === target);
+  const matchedSection = document.getElementById(target);
+
+  if (!matchedItem || !matchedSection) {
+    return false;
+  }
+
+  items.forEach(item => item.classList.remove('active'));
+  sections.forEach(section => section.classList.remove('active'));
+  matchedItem.classList.add('active');
+  matchedSection.classList.add('active');
+  main.scrollTop = 0;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  return true;
+}
+
+function clearSearchMatch() {
+  items.forEach(item => item.classList.remove('search-match'));
+  document.querySelectorAll('.content-search-token').forEach(element => {
+    const parent = element.parentNode;
+    if (!parent) {
+      return;
+    }
+    parent.replaceChild(document.createTextNode(element.textContent), element);
+    parent.normalize();
+  });
+}
+
+function resetSearchResults() {
+  searchResults = [];
+  currentSearchIndex = -1;
+  searchPrevButton.disabled = true;
+  searchNextButton.disabled = true;
+}
+
+function normalizeText(text) {
+  return text.replace(/\s+/g, ' ').trim().toLowerCase();
+}
+
+function collectContentMatches(keyword) {
+  const results = [];
+
+  for (const item of items) {
+    const section = document.getElementById(item.dataset.target);
+
+    if (!section) {
+      continue;
+    }
+
+    const navText = normalizeText(item.textContent);
+    if (navText.includes(keyword)) {
+      results.push({
+        item,
+        element: section.querySelector('.chapter-header h1, h2, h3, p, .page') || section
+      });
+    }
+
+    const elements = Array.from(section.querySelectorAll(searchableSelectors));
+    elements.forEach(element => {
+      if (normalizeText(element.textContent).includes(keyword)) {
+        results.push({ item, element });
+      }
+    });
+  }
+
+  return results.filter((result, index, array) => {
+    return array.findIndex(entry => entry.element === result.element) === index;
+  });
+}
+
+function highlightMatchedText(element, keyword) {
+  const walker = document.createTreeWalker(
+    element,
+    NodeFilter.SHOW_TEXT,
+    {
+      acceptNode(node) {
+        return node.textContent.toLowerCase().includes(keyword)
+          ? NodeFilter.FILTER_ACCEPT
+          : NodeFilter.FILTER_SKIP;
+      }
+    }
+  );
+
+  let textNode = walker.nextNode();
+
+  while (textNode) {
+    const originalText = textNode.textContent;
+    const startIndex = originalText.toLowerCase().indexOf(keyword);
+
+    if (startIndex !== -1) {
+      const range = document.createRange();
+      range.setStart(textNode, startIndex);
+      range.setEnd(textNode, startIndex + keyword.length);
+
+      const highlight = document.createElement('span');
+      highlight.className = 'content-search-token';
+      range.surroundContents(highlight);
+      return highlight;
+    }
+
+    textNode = walker.nextNode();
+  }
+
+  return null;
+}
+
+function focusMatchedContent(element, keyword) {
+  if (!element) {
+    return;
+  }
+
+  const highlightedToken = highlightMatchedText(element, keyword);
+  const scrollTarget = highlightedToken || element;
+  scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function updateSearchNavigation() {
+  const hasResults = searchResults.length > 0;
+  searchPrevButton.disabled = !hasResults;
+  searchNextButton.disabled = !hasResults;
+}
+
+function showSearchResult(index) {
+  if (!searchResults.length) {
+    return;
+  }
+
+  currentSearchIndex = (index + searchResults.length) % searchResults.length;
+  const currentResult = searchResults[currentSearchIndex];
+
+  clearSearchMatch();
+  currentResult.item.classList.add('search-match');
+  activateSection(currentResult.item.dataset.target);
+  requestAnimationFrame(() => {
+    focusMatchedContent(currentResult.element, normalizeText(searchInput.value));
+  });
+
+  const rawKeyword = searchInput.value.trim();
+  searchStatus.textContent = `"${rawKeyword}" 결과 ${currentSearchIndex + 1}/${searchResults.length}로 이동했습니다.`;
+  updateSearchNavigation();
+}
+
+function searchContent() {
+  const rawKeyword = searchInput.value.trim();
+  const keyword = rawKeyword.toLowerCase();
+  clearSearchMatch();
+  resetSearchResults();
+
+  if (!keyword) {
+    searchStatus.textContent = '검색어를 입력하면 해당 단어가 있는 위치로 이동합니다.';
+    return;
+  }
+
+  searchResults = collectContentMatches(keyword);
+
+  if (!searchResults.length) {
+    searchStatus.textContent = `"${rawKeyword}"에 해당하는 내용을 찾지 못했습니다.`;
+    return;
+  }
+
+  showSearchResult(0);
+}
+
+items.forEach(item => {
+  item.addEventListener('click', () => {
+    clearSearchMatch();
+    resetSearchResults();
+    searchStatus.textContent = '';
+    activateSection(item.dataset.target);
+  });
+});
+
+searchButton.addEventListener('click', searchContent);
+searchPrevButton.addEventListener('click', () => {
+  showSearchResult(currentSearchIndex - 1);
+});
+searchNextButton.addEventListener('click', () => {
+  showSearchResult(currentSearchIndex + 1);
+});
+searchInput.addEventListener('keydown', event => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    searchContent();
+  }
+});
+
+searchStatus.textContent = '검색어를 입력하면 해당 단어가 있는 위치로 이동합니다.';
+</script>
+</body>
+</html>
