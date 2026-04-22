@@ -143,13 +143,6 @@ body { font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif; font-size
 }
 .nav-item:hover { background: #253045; color: #d8e4f4; }
 .nav-item.active { background: #1a2840; color: #fff; border-left-color: var(--blue-mid); font-weight: 700; }
-.nav-item .nav-step {
-  font-size: 10px; font-weight: 700;
-  background: #2e3d55; color: #7a9abf;
-  padding: 1px 6px; border-radius: 2px;
-  flex-shrink: 0;
-}
-.nav-item.active .nav-step { background: var(--blue); color: #fff; }
 
 /* ── 본문 영역 ── */
 #main {
@@ -386,96 +379,71 @@ table.flow-table th { background: var(--dark); }
   </div>
   <div id="nav">
     <div class="nav-group-label">시작하기</div>
-    <div class="nav-item active" data-target="sec-intro">
-      <span class="nav-step">―</span> 사전 안내
+    <div class="nav-item active" data-target="sec-intro"> 사전 안내
     </div>
 
-    <div class="nav-group-label">STEP 01 홈</div>
-    <div class="nav-item" data-target="sec-qc-result">
-      <span class="nav-step">01</span> QC 결과 확인
+    <div class="nav-group-label">홈</div>
+    <div class="nav-item" data-target="sec-qc-result"> QC 결과 확인
     </div>
-    <div class="nav-item" data-target="sec-dashboard">
-      <span class="nav-step">01</span> 대시보드
+    <div class="nav-item" data-target="sec-dashboard"> 대시보드
     </div>
-    <div class="nav-item" data-target="sec-dashboard-basic">
-      <span class="nav-step">01</span> 대시보드 기본 사용법
+    <div class="nav-item" data-target="sec-dashboard-basic"> 대시보드 기본 사용법
     </div>
-    <div class="nav-item" data-target="sec-barcode">
-      <span class="nav-step">01</span> 바코드 출력
+    <div class="nav-item" data-target="sec-barcode"> 바코드 출력
     </div>
-    <div class="nav-item" data-target="sec-data-query">
-      <span class="nav-step">01</span> QC 데이터 조회
+    <div class="nav-item" data-target="sec-data-query"> QC 데이터 조회
     </div>
-    <div class="nav-item" data-target="sec-rule-refresh">
-      <span class="nav-step">01</span> Rule Refresh
+    <div class="nav-item" data-target="sec-rule-refresh"> Rule Refresh
     </div>
 
-    <div class="nav-group-label">STEP 02 환자 결과 확인</div>
-    <div class="nav-item" data-target="sec-patient">
-      <span class="nav-step">02</span> 환자 결과 확인
+    <div class="nav-group-label">환자 결과 확인</div>
+    <div class="nav-item" data-target="sec-patient"> 환자 결과 확인
     </div>
 
-    <div class="nav-group-label">STEP 03 X-Bar</div>
-    <div class="nav-item" data-target="sec-xbar">
-      <span class="nav-step">03</span> X-Bar 차트
+    <div class="nav-group-label">X-Bar</div>
+    <div class="nav-item" data-target="sec-xbar"> X-Bar 차트
     </div>
-    <div class="nav-item" data-target="sec-xbar-settings">
-      <span class="nav-step">03</span> X-Bar 설정
+    <div class="nav-item" data-target="sec-xbar-settings"> X-Bar 설정
     </div>
 
-    <div class="nav-group-label">STEP 04 장비간 상관성 평가</div>
-    <div class="nav-item" data-target="sec-correlation">
-      <span class="nav-step">04</span> 장비간 상관성 평가
+    <div class="nav-group-label">장비간 상관성 평가</div>
+    <div class="nav-item" data-target="sec-correlation"> 장비간 상관성 평가
     </div>
 
-    <div class="nav-group-label">STEP 05 보고서</div>
-    <div class="nav-item" data-target="sec-reports">
-      <span class="nav-step">05</span> 허용범위 보고서
+    <div class="nav-group-label">보고서</div>
+    <div class="nav-item" data-target="sec-reports"> 허용범위 보고서
     </div>
-    <div class="nav-item" data-target="sec-reports">
-      <span class="nav-step">05</span> CV Report
+    <div class="nav-item" data-target="sec-reports"> CV Report
     </div>
-    <div class="nav-item" data-target="sec-reports">
-      <span class="nav-step">05</span> 정성 보고서
+    <div class="nav-item" data-target="sec-reports"> 정성 보고서
     </div>
-    <div class="nav-item" data-target="sec-reports">
-      <span class="nav-step">05</span> 보고서 통합 조회
+    <div class="nav-item" data-target="sec-reports"> 보고서 통합 조회
     </div>
 
-    <div class="nav-group-label">STEP 06 정도관리 설정</div>
-    <div class="nav-item" data-target="sec-test-item">
-      <span class="nav-step">06</span> 검사항목
+    <div class="nav-group-label">정도관리 설정</div>
+    <div class="nav-item" data-target="sec-test-item"> 검사항목
     </div>
-    <div class="nav-item" data-target="sec-qc-lot">
-      <span class="nav-step">06</span> QC LOT
+    <div class="nav-item" data-target="sec-qc-lot"> QC LOT
     </div>
-    <div class="nav-item" data-target="sec-allowable">
-      <span class="nav-step">06</span> Target/허용범위
+    <div class="nav-item" data-target="sec-allowable"> Target/허용범위
     </div>
-    <div class="nav-item" data-target="sec-reagent">
-      <span class="nav-step">06</span> Reagent
+    <div class="nav-item" data-target="sec-reagent"> Reagent
     </div>
-    <div class="nav-item" data-target="sec-reagent-lot">
-      <span class="nav-step">06</span> Reagent LOT
+    <div class="nav-item" data-target="sec-reagent-lot"> Reagent LOT
     </div>
 
-    <div class="nav-group-label">STEP 07 프로그램 설정</div>
-    <div class="nav-item" data-target="sec-basic-master">
-      <span class="nav-step">07</span> 기본 마스터 관리
+    <div class="nav-group-label">프로그램 설정</div>
+    <div class="nav-item" data-target="sec-basic-master"> 기본 마스터 관리
     </div>
-    <div class="nav-item" data-target="sec-material">
-      <span class="nav-step">07</span> 검사실별 물질 관리
+    <div class="nav-item" data-target="sec-material"> 검사실별 물질 관리
     </div>
-    <div class="nav-item" data-target="sec-equipment">
-      <span class="nav-step">07</span> 장비 마스터
+    <div class="nav-item" data-target="sec-equipment"> 장비 마스터
     </div>
 
-    <div class="nav-group-label">STEP 08 로그인</div>
-    <div class="nav-item" data-target="sec-user-create">
-      <span class="nav-step">08</span> 사용자 계정 만들기
+    <div class="nav-group-label">로그인</div>
+    <div class="nav-item" data-target="sec-user-create"> 사용자 계정 만들기
     </div>
-    <div class="nav-item" data-target="sec-password">
-      <span class="nav-step">08</span> 비밀번호 변경하기
+    <div class="nav-item" data-target="sec-password"> 비밀번호 변경하기
     </div>
   </div>
 </nav>
@@ -547,15 +515,13 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
       <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>QC 결과 확인</h1>
-    <p>STEP 01 — Levey-Jennings 차트와 검사항목별 결과를 한 화면에서 확인</p>
+    <h1>QC 결과 확인 (메뉴 > 홈 > QC 결과 확인)</h1>
     <p class="intro-text">
       대시보드가 전체 현황을 한눈에 보는 화면이라면, <strong>QC 결과 확인</strong>은 특정 장비·물질의 상세 결과를
       Levey-Jennings 차트와 함께 확인하는 화면이에요.
     </p>
   </div>
 
-  <div class="menu-path">메뉴 > 홈 > <span>QC 결과 확인</span></div>
 
   <h2 class="section-title">화면 구성</h2>
 
@@ -632,13 +598,11 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
         <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>대시보드</h1>
-    <p>STEP 01 — 화면 구성 및 핵심 기능</p>
+    <h1>대시보드 (메뉴 > 홈 > 대시보드)</h1>
     <p class="intro-text">카이저랩 AgentQC의 핵심이에요, 가장 먼저 보이는 화면이에요.<br>
     정도관리 검사 후, 가장 먼저 확인하는 <strong>정도관리 현황판</strong>이에요.</p>
   </div>
 
-  <div class="menu-path">메뉴 > 홈 > <span>대시보드</span></div>
 
   <h3 class="sub-title">대시보드 [ 화면 구성 ]</h3>
   <div style="background:var(--gray-light); border:1px solid var(--border); border-radius:8px; padding:12px 14px; margin-bottom:14px; font-size:12px;">
@@ -680,7 +644,6 @@ table.flow-table th { background: var(--dark); }
       <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
     <h1>대시보드 사용법</h1>
-    <p>STEP 01 — 기본 및 고급 사용법</p>
   </div>
 
   <div class="step-instruction">
@@ -758,12 +721,10 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
         <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>Barcode 기능</h1>
-    <p>STEP 01 — 바코드를 생성하여 QC를 접수하거나 임시 검체를 접수</p>
+    <h1>Barcode 기능 (메뉴 > 홈 > 바코드 출력)</h1>
     <p class="intro-text">바코드를 생성하여 QC를 접수하거나, 임시의 검체를 접수할 수 있어요.</p>
   </div>
 
-  <div class="menu-path">메뉴 > 홈 > <span>바코드 출력</span></div>
 
   <div class="two-col">
     <div>
@@ -795,13 +756,11 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
         <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>QC 데이터 조회</h1>
-    <p>STEP 01 — 원하는 조회 조건이 더 상세할 때</p>
+    <h1>QC 데이터 조회 (메뉴 > 홈 > QC 데이터 조회)</h1>
     <p class="intro-text">원하는 조회 조건이 더 있나요?<br>
     그런 상황에서는 대시보드가 아닌, <strong>QC 데이터 조회</strong>를 사용해주세요!</p>
   </div>
 
-  <div class="menu-path">메뉴 > 홈 > <span>QC 데이터 조회</span></div>
 
   <div class="two-col">
     <div>
@@ -848,8 +807,7 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
         <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>Rule Refresh</h1>
-    <p>STEP 01 — LOT 타깃값 변경 후 반드시 진행해야 하는 재계산</p>
+    <h1>Rule Refresh (메뉴 > 정도관리 설정 > QC LOT → LOT 타깃값을 수정 / 메뉴 > 홈 > QC 데이터 조회 → 데이터 조회 구간을 LOT의 시작일자, 종료일자로 변경)</h1>
     <p class="intro-text">기존에 사용하던 LOT의 타깃값이 잘못되어 있는 것을 늦게 알았어요.<br>
     LOT 타깃값을 수정했는데, 결과의 상태(주의, 거부)는 정상으로 변하지 않았죠?<br>
     이런 상황에서 사용하는 게 <strong>Rule Refresh</strong>에요.</p>
@@ -862,14 +820,12 @@ table.flow-table th { background: var(--dark); }
   <div class="step-instruction">
     <div class="step-content">
       <strong>① 등록된 결과가 있는 LOT의 타깃값 변경</strong>
-      <div class="menu-path">메뉴 > 정도관리 설정 > <span>QC LOT</span> → LOT 타깃값을 수정</div>
     </div>
   </div>
 
   <div class="step-instruction">
     <div class="step-content">
       <strong>② 해당 LOT의 시작일자, 종료일자를 데이터 조회 구간으로 설정</strong>
-      <div class="menu-path">메뉴 > 홈 > <span>QC 데이터 조회</span> → 데이터 조회 구간을 LOT의 시작일자, 종료일자로 변경</div>
     </div>
   </div>
 
@@ -891,14 +847,12 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
         <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>환자 결과 확인</h1>
-    <p>STEP 02 — 환자 결과 조회</p>
+    <h1>환자 결과 확인 (메뉴 > 환자 결과 확인)</h1>
     <p class="intro-text">AgentQC 프로그램에서 정도관리 데이터만 확인하는 것이 아니라<br>
     <strong>환자 데이터도 가져와서 확인</strong>할 수 있도록 구현했어요.</p>
   </div>
 
 
-  <div class="menu-path">메뉴 > <span>환자 결과 확인</span></div>
   <table class="manual-table">
     <thead><tr><th>기능</th><th>설명</th></tr></thead>
     <tbody>
@@ -914,12 +868,10 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
         <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>X-Bar</h1>
-    <p>STEP 03 — X-Bar 차트 / X-Bar 설정</p>
+    <h1>X-Bar (메뉴 > X-Bar > X-Bar 차트)</h1>
     <p class="intro-text">환자 데이터를 일정한 갯수로 묶어 평균을 내고 변화를 관찰하는 <strong>X-Bar 차트</strong> 기능이에요.</p>
   </div>
 
-  <div class="menu-path">메뉴 > X-Bar > <span>X-Bar 차트</span></div>
   <p style="font-size:13px; color:var(--gray); margin-bottom:10px;">
     환자 데이터를 일정한 갯수(기본값 20개)로 묶어 평균을 내고, 그 변화 추이를 시각적으로 확인하는 차트예요.<br>
     Upper Limit / Mean / Lower Limit 기준선이 표시되며, Limit을 벗어난 점은 <strong>빨간 점</strong>으로 강조돼요.
@@ -953,13 +905,11 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
         <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>X-Bar 설정</h1>
-    <p>STEP 03 — X-Bar 기준값 설정 및 등록</p>
+    <h1>X-Bar 설정 (메뉴 > X-Bar > X-Bar 설정)</h1>
     <p class="intro-text">X-Bar 차트에 사용될 Mean / Limit 기준값을 검사항목별로 설정하는 화면이에요.</p>
   </div>
 
 
-  <div class="menu-path">메뉴 > X-Bar > <span>X-Bar 설정</span></div>
   <table class="manual-table">
     <thead><tr><th>영역</th><th>설명</th></tr></thead>
     <tbody>
@@ -1000,13 +950,11 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
         <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>장비간 상관성 평가</h1>
-    <p>STEP 04 — 장비간 상관성 평가</p>
+    <h1>장비간 상관성 평가 (메뉴 > 장비간 상관성 평가)</h1>
     <p class="intro-text">같은 검사를 진행하는 여러 장비가 서로 비슷한 결과를 내고 있는지 확인하는 기능이에요.</p>
   </div>
 
   
-  <div class="menu-path">메뉴 > <span>장비간 상관성 평가</span></div>
   <p style="font-size:13px; color:var(--gray); margin-bottom:10px;">
     같은 검사를 진행하는 여러 장비가 서로 비슷한 결과를 내고 있는지 확인하기 위한 화면이에요.<br>
     기준 장비 1대와 최대 3대까지 한 번에 비교할 수 있어요.
@@ -1032,13 +980,11 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
         <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>보고서</h1>
-    <p>STEP 05 — 허용범위 보고서 / CV Report / 정성 보고서 / 보고서 통합 조회</p>
+    <h1>보고서 (메뉴 > 보고서 > 허용범위 보고서 / 메뉴 > 보고서 > CV Report / 메뉴 > 보고서 > 정성 보고서)</h1>
     <p class="intro-text">카이저랩은 검사실의 인증·사사를 위해 노력하고 있어요.</p>
   </div>
 
   <h2 class="section-title">QC Report</h2>
-  <div class="menu-path">메뉴 > 보고서 > <span>허용범위 보고서</span></div>
   <p style="font-size:13px; color:var(--gray); margin-bottom:10px;">
     QC 통합 마스터 관리에서 설정하는 BIAS(%)를 기준으로 <strong>적합율을 계산</strong>해요.<br>
     다음은 기간별 정도관리 보고서를 출력하는 방법이에요.
@@ -1061,14 +1007,12 @@ table.flow-table th { background: var(--dark); }
   </div>
 
   <h2 class="section-title" style="margin-top:22px;">CV Report</h2>
-  <div class="menu-path">메뉴 > 보고서 > <span>CV Report</span></div>
   <p style="font-size:13px; color:var(--gray); margin-bottom:10px;">
     정도관리가 얼마나 안정적으로 유지되고 있는지 보여주는 <strong>월별 CV Report</strong>에요.<br>
     월별 CV 평균값을 조회하고, CV를 차트로 표시해요.
   </p>
 
   <h2 class="section-title" style="margin-top:22px;">Qualitative Report</h2>
-  <div class="menu-path">메뉴 > 보고서 > <span>정성 보고서</span></div>
   <p style="font-size:13px; color:var(--gray);">
     반응도, 정성결과 적용 보고서에요. 물론 수치(정량) 결과도 함께 지원하고 있어요.<br>
     Range(하한치~상한치 사이)를 벗어나는 값은 <strong>N/A 표시</strong> / Range에 속하는 값은 <strong>Pass 표시</strong>
@@ -1080,13 +1024,11 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
         <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>마스터 코드 관리 — 검사항목</h1>
-    <p>STEP 06 — 새로운 검사항목 추가 방법</p>
+    <h1>마스터 코드 관리 — 검사항목 (메뉴 > 정도관리 설정 > 검사항목)</h1>
     <p class="intro-text">병원에서 관리하는 검사항목을 등록해주세요.<br>
     <strong>새로운 검사항목이 추가</strong>될 경우, 아래 순서대로 진행해주세요!</p>
   </div>
 
-  <div class="menu-path">메뉴 > 정도관리 설정 > <span>검사항목</span></div>
 
   <div class="step-instruction">
     <div class="step-content">
@@ -1120,13 +1062,11 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
         <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>마스터 코드 관리 — QC LOT</h1>
-    <p>STEP 06 — 검사실·장비·검사항목을 하나의 LOT으로 묶어 타깃값을 설정</p>
+    <h1>마스터 코드 관리 — QC LOT (메뉴 > 정도관리 설정 > QC LOT)</h1>
     <p class="intro-text">앞서 등록한 검사실·장비·검사항목을 하나의 LOT으로 묶어서 타깃값을 설정하는 작업이에요.<br>
     복잡해 보이지만 아래의 순서대로 따라하면 쉽게 할 수 있을 거에요!</p>
   </div>
 
-  <div class="menu-path">메뉴 > 정도관리 설정 > <span>QC LOT</span></div>
 
   <h3 class="sub-title">QC LOT 등록 전체 흐름 요약 <span style="font-size:12px; color:var(--red);">※ 반드시 순서대로 진행해주세요!</span></h3>
   <table class="manual-table flow-table">
@@ -1162,15 +1102,9 @@ table.flow-table th { background: var(--dark); }
     본 데이터는 카이저랩의 내부 검증 절차를 거쳐 제공되었으나, <strong>최종적인 검토 및 활용에 대한 책임은 사용자에게 있습니다.</strong><br>
     카이저랩은 본 데이터의 사용으로 인해 발생하는 직·간접적인 결과에 대해 법적 책임을 지지 않습니다.
   </div>
-</div>
-</section>
-<section class="section" id="sec-lot-faq">
-<div class="page">
-        <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
-  <div class="chapter-header">
-    <h1>LOT 관련 FAQ</h1>
-    <p>STEP 06 — 자주 묻는 질문 모음</p>
-  </div>
+
+
+  <h2 class="sub-title">LOT FAQ</h2>
 
   <div class="faq-item">
     <div class="faq-q">물질 종류(검사실 Target, 허용범위용 Target, 제조사 Target)가 무엇인가요?</div>
@@ -1241,14 +1175,14 @@ table.flow-table th { background: var(--dark); }
       <span style="color:var(--red); font-size:12px;">*LOT 적용 기간을 변경한다고 해서 적용되었던 Westgard MultiRule 위반 사항이 변경되지는 않아요. 해당 LOT의 변경된 기간 내의 모든 데이터에 대해 'Rule 새로고침'을 진행해야 해요.</span>
     </div>
   </div>
+
 </div>
 </section>
 <section class="section" id="sec-allowable">
 <div class="page">
         <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>허용범위 설정 관리</h1>
-    <p>STEP 06 — 우리 병원 검사 환경에 맞게 허용 기준을 다시 잡는 작업</p>
+    <h1>허용범위 설정 관리 (메뉴 > 정도관리 설정 > Target/허용범위)</h1>
     <p class="intro-text">허용범위 설정은 현재 우리 병원 검사 환경에 맞게 <strong>"이 정도까지는 정상으로 보겠다"는 기준을 다시 잡는 작업</strong>이에요.<br>
     QC LOT를 일정 기간 사용한 뒤, 새 LOT로 변경하기 전에 이 작업을 진행해야 해요.</p>
   </div>
@@ -1261,7 +1195,6 @@ table.flow-table th { background: var(--dark); }
     를 선택해야 해요
   </div>
 
-  <div class="menu-path">메뉴 > 정도관리 설정 > <span>Target/허용범위</span></div>
 
   <h3 class="sub-title">허용범위 설정 관리 흐름 요약 <span style="font-size:12px; color:var(--red);">※ 반드시 순서대로 진행해주세요!</span></h3>
   <table class="manual-table flow-table">
@@ -1310,13 +1243,11 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
         <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>마스터 코드 관리 — 시약</h1>
-    <p>STEP 06 — 새로운 시약 등록 방법</p>
+    <h1>마스터 코드 관리 — 시약 (메뉴 > 정도관리 설정 > Reagent LOT)</h1>
     <p class="intro-text">병원에서 사용하는 시약을 등록해주세요.<br>
     <strong>새로운 시약이 들어왔을 때</strong>, 아래의 순서대로 진행해주세요!</p>
   </div>
 
-  <div class="menu-path">메뉴 > 정도관리 설정 > <span>Reagent LOT</span></div>
 
   <div class="step-instruction">
     <div class="step-content">
@@ -1339,8 +1270,7 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
         <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>마스터 코드 관리 — 시약 LOT</h1>
-    <p>STEP 06 — Pooled SD 산출을 위한 시약 LOT 등록</p>
+    <h1>마스터 코드 관리 — 시약 LOT (메뉴 > 정도관리 설정 > Reagent LOT)</h1>
     <p class="intro-text">시약 LOT는 <strong>Pooled SD</strong>*를 산출하기 위해 사용하는 기준 LOT에요.<br>
     QC LOT와는 달리, 타깃값을 입력하지 않고 <strong>LOT NO만 입력</strong>하면 돼요!</p>
   </div>
@@ -1349,7 +1279,6 @@ table.flow-table th { background: var(--dark); }
     해당 시약, 해당 장비에서 QC 값이 얼마나 안정적으로 나오고 있는지 보여주는 값이에요.
   </p>
 
-  <div class="menu-path">메뉴 > 정도관리 설정 > <span>Reagent LOT</span></div>
 
   <h3 class="sub-title">시약 LOT 등록 전체 흐름 요약 <span style="font-size:12px; color:var(--red);">※ 반드시 순서대로 진행해주세요!</span></h3>
   <table class="manual-table flow-table">
@@ -1370,8 +1299,7 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
         <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>기본 마스터 관리</h1>
-    <p>STEP 07 — 정도관리용 환경 설정 (검사실 / MultiRule / Comment / 단위)</p>
+    <h1>기본 마스터 관리 (메뉴 > 프로그램 설정 > 기본 마스터 관리)</h1>
     <p class="intro-text">정도관리용 환경 설정을 기본 마스터 관리에서 진행해야 해요!<br>
     검사실에서 기본적으로 사용하는 설정을 저장하고 관리할 수 있어요.</p>
   </div>
@@ -1381,7 +1309,6 @@ table.flow-table th { background: var(--dark); }
     사용자와 장비는 다른 페이지에서 설명하고, 그 외 항목들을 설명할 거에요!
   </div>
 
-  <div class="menu-path">메뉴 > 프로그램 설정 > <span>기본 마스터 관리</span></div>
 
   <h3 class="sub-title">① 검사실 설정 — 마스터 구분 '검사실'로 변경</h3>
   <div class="two-col">
@@ -1422,13 +1349,11 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
         <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>마스터 코드 관리 — 물질</h1>
-    <p>STEP 07 — 새로운 물질(Control) 등록 방법</p>
+    <h1>마스터 코드 관리 — 물질 (메뉴 > 프로그램 설정 > 검사실별 물질 관리)</h1>
     <p class="intro-text">병원에서 사용하는 물질을 등록해주세요.<br>
     <strong>새로운 물질이 들어왔을 때</strong>, 아래의 순서대로 진행해주세요!</p>
   </div>
 
-  <div class="menu-path">메뉴 > 프로그램 설정 > <span>검사실별 물질 관리</span></div>
 
   <div class="step-instruction">
     <div class="step-content">
@@ -1467,13 +1392,11 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
         <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>마스터 코드 관리 — 장비</h1>
-    <p>STEP 07 — 새로운 장비 등록 방법</p>
+    <h1>마스터 코드 관리 — 장비 (메뉴 > 프로그램 설정 > 기본 마스터 관리 → 마스터 구분 '장비'로 변경)</h1>
     <p class="intro-text">초기 설치 시, 카이저랩에서 장비를 등록해서 배포하고 있어요.<br>
     병원에 신규 장비가 들어왔다면 아래의 순서대로 진행해주세요!</p>
   </div>
 
-  <div class="menu-path">메뉴 > 프로그램 설정 > <span>기본 마스터 관리</span> → 마스터 구분 '장비'로 변경</div>
 
   <div class="step-instruction">
     <div class="step-content">
@@ -1502,8 +1425,7 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
         <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>사용자 계정 만들기</h1>
-    <p>STEP 08 — 새로운 사용자 계정 등록 방법</p>
+    <h1>사용자 계정 만들기 (메뉴 > 프로그램 설정 > 기본 마스터 관리)</h1>
     <p class="intro-text">초기 설치 시, 카이저랩에서 사용자 계정을 생성해서 배포하고 있어요.<br>
     <strong>새로운 사용자 계정 등록</strong>이 필요하다면 아래의 순서대로 진행해주세요!</p>
   </div>
@@ -1540,7 +1462,6 @@ table.flow-table th { background: var(--dark); }
   <div class="step-instruction">
     <div class="step-content">
       <strong>③ 기본 마스터 관리창 열기</strong>
-      <div class="menu-path">메뉴 > 프로그램 설정 > <span>기본 마스터 관리</span></div>
       
     </div>
   </div>
@@ -1590,7 +1511,6 @@ table.flow-table th { background: var(--dark); }
         <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
     <h1>비밀번호 변경하기</h1>
-    <p>STEP 08 — 초기 비밀번호 '1'에서 변경하는 방법</p>
     <p class="intro-text">사용자 계정 생성 시, 초기 비밀번호는 <strong>'1'</strong>이에요.<br>
     보안을 위해 필수적으로 <strong>비밀번호를 변경</strong>해주세요.</p>
   </div>
@@ -1668,501 +1588,6 @@ const searchableSelectors = [
   '.faq-q',
   '.faq-a'
 ].join(', ');
-const sectionBlueprints = {
-  "sec-qc-result": {
-    screen: [
-      ["조회 조건", "기간, 검사실, 장비, 물질, 레벨 등 필터를 설정합니다."],
-      ["Levey-Jennings 차트", "LOT별 추이와 rule 발생 상태를 확인합니다."],
-      ["검사항목별 결과 테이블", "측정값, 상태, comment 여부를 함께 확인합니다."]
-    ],
-    functions: [
-      "조건별 QC 결과를 조회하고 차트와 테이블을 함께 확인합니다.",
-      "결과 선택 시 차트 위치를 연동해 이상 구간을 빠르게 찾습니다.",
-      "comment 등록, 결과 삭제, Excel 출력 같은 후속 작업을 진행합니다."
-    ],
-    steps: [
-      "조회 조건을 설정하고 결과를 조회합니다.",
-      "차트와 결과 테이블로 이상 결과를 확인합니다.",
-      "필요 시 comment, 삭제, 출력 작업을 진행합니다."
-    ]
-  },
-  "sec-dashboard": {
-    screen: [
-      ["상단 요약 영역", "정상, 주의, 거부 건수를 한눈에 확인합니다."],
-      ["LOT 분포 영역", "LOT별 상태 비율과 분포를 확인합니다."],
-      ["상세 결과 영역", "결과 테이블과 LJ 차트로 세부 내역을 확인합니다."]
-    ],
-    functions: [
-      "당일 정도관리 현황을 가장 빠르게 파악합니다.",
-      "레벨별/검사별 보기와 상태 필터를 활용해 대상을 좁혀 봅니다.",
-      "이상 결과를 상세 화면으로 이어서 확인합니다."
-    ],
-    steps: [
-      "요약 카드에서 전체 상태를 먼저 확인합니다.",
-      "LOT 분포와 상세 결과를 비교해 이상 항목을 찾습니다.",
-      "필요한 경우 상세 결과 화면으로 이동해 후속 조치를 진행합니다."
-    ]
-  },
-  "sec-dashboard-basic": {
-    screen: [
-      ["기본 보기", "레벨별 또는 검사별 보기 방식으로 전환합니다."],
-      ["상태별 확인 영역", "정상, 주의, 거부 결과를 중심으로 확인합니다."],
-      ["차트/테이블 제어", "LOT, 레벨, 정렬, 추가 정보 표시를 제어합니다."]
-    ],
-    functions: [
-      "상태 건수 확인, comment 등록, 상세 결과 이동을 빠르게 처리합니다.",
-      "차트 확대, 결과 필터링, Multi Sort 등 화면 활용 기능을 제공합니다.",
-      "추가 정보 표시를 통해 rule, target, 누적 통계를 함께 확인합니다."
-    ],
-    steps: [
-      "요약 건수와 상태를 먼저 확인합니다.",
-      "이상 항목을 클릭해 상세 결과와 comment를 확인합니다.",
-      "필요 시 보기 방식과 정렬, 추가 정보 표시를 조정합니다."
-    ]
-  },
-  "sec-barcode": {
-    screen: [
-      ["입력 영역", "검사실, 장비, 물질, 레벨 등 출력 조건을 선택합니다."],
-      ["접수 옵션", "접수 시 바코드 출력 여부를 함께 설정합니다."],
-      ["조회 영역", "바코드 번호만 별도로 조회할 수 있습니다."]
-    ],
-    functions: [
-      "QC 접수용 바코드를 생성하고 즉시 출력합니다.",
-      "접수 시점에 바코드 동시 출력 여부를 선택할 수 있습니다.",
-      "필요한 경우 바코드 번호만 기준으로 다시 조회합니다."
-    ],
-    steps: [
-      "출력 대상 조건을 선택합니다.",
-      "접수 여부와 바코드 출력 옵션을 지정합니다.",
-      "출력 후 필요 시 바코드 번호로 다시 조회합니다."
-    ]
-  },
-  "sec-data-query": {
-    screen: [
-      ["검색 조건 필터", "기간, 검사실, 장비, 물질, 상태, 규칙 등으로 검색합니다."],
-      ["조회 결과 영역", "필터 조건에 맞는 결과를 목록으로 확인합니다."],
-      ["후속 작업 영역", "comment, Excel, 결과 취소 같은 작업을 수행합니다."]
-    ],
-    functions: [
-      "대시보드보다 상세한 조건으로 QC 데이터를 조회합니다.",
-      "comment 등록, 중복 결과 체크, 결과 취소를 지원합니다.",
-      "조회 결과 전체를 Excel로 출력할 수 있습니다."
-    ],
-    steps: [
-      "검색 조건을 선택하고 조회합니다.",
-      "조회 결과에서 필요한 건을 선택합니다.",
-      "comment 등록, 출력, 취소 등 후속 작업을 진행합니다."
-    ]
-  },
-  "sec-rule-refresh": {
-    screen: [
-      ["안내 영역", "Rule Refresh가 필요한 상황을 설명합니다."],
-      ["작업 경로", "QC LOT과 QC 데이터 조회 메뉴 경로를 안내합니다."],
-      ["실행 안내", "작업 시간과 완료 후 확인 방법을 안내합니다."]
-    ],
-    functions: [
-      "LOT 타깃값 변경 후 기존 결과의 rule 판정을 다시 계산합니다.",
-      "이미 등록된 데이터의 상태를 최신 기준으로 맞춥니다.",
-      "작업 완료 후 결과 파일로 처리 여부를 확인할 수 있습니다."
-    ],
-    steps: [
-      "변경된 LOT의 타깃값을 먼저 수정합니다.",
-      "해당 LOT 기간으로 조회 조건을 맞춥니다.",
-      "Rule Refresh를 실행하고 완료 결과를 확인합니다."
-    ]
-  },
-  "sec-patient": {
-    screen: [
-      ["검색 영역", "환자 결과를 조건에 맞게 조회합니다."],
-      ["결과 목록", "좌측 리스트에서 환자 결과를 선택합니다."],
-      ["미리보기/다운로드", "선택한 결과를 보고 이미지로 저장합니다."]
-    ],
-    functions: [
-      "QC 외에도 환자 결과를 같은 프로그램에서 확인할 수 있습니다.",
-      "결과 검색, 선택, 미리보기, 이미지 다운로드를 지원합니다.",
-      "좌측 목록과 우측 상세 정보를 연동해 확인합니다."
-    ],
-    steps: [
-      "환자 결과를 검색합니다.",
-      "좌측 목록에서 결과를 선택합니다.",
-      "필요 시 상세 확인 후 이미지를 다운로드합니다."
-    ]
-  },
-  "sec-xbar": {
-    screen: [
-      ["조회 조건", "검사실, 장비, 기간을 선택해 차트를 조회합니다."],
-      ["좌측 정보 패널", "항목별 통계와 사용 구간 정보를 확인합니다."],
-      ["X-Bar 차트", "평균값 변화와 limit 기준선을 확인합니다."]
-    ],
-    functions: [
-      "환자 데이터를 일정 개수로 묶어 평균값 추이를 관찰합니다.",
-      "Upper Limit, Mean, Lower Limit 기준선을 함께 제공합니다.",
-      "툴팁과 범례를 통해 차트 세부 정보를 확인합니다."
-    ],
-    steps: [
-      "조회 대상 검사실, 장비, 기간을 선택합니다.",
-      "차트와 좌측 패널로 항목별 추이를 확인합니다.",
-      "이상 구간이 있으면 기준값 설정 화면과 함께 검토합니다."
-    ]
-  },
-  "sec-xbar-settings": {
-    screen: [
-      ["좌측 선택 영역", "검사실, 장비, 검사항목을 선택합니다."],
-      ["기준값 입력 영역", "Mean, limit, 허용범위를 입력합니다."],
-      ["등록 리스트", "저장된 설정 이력과 현재 사용 여부를 확인합니다."]
-    ],
-    functions: [
-      "X-Bar 차트에 사용할 기준값과 허용범위를 등록합니다.",
-      "전체 선택, 개별 선택, 일괄 적용 등 입력 편의 기능을 제공합니다.",
-      "등록된 이력을 조회하고 현재 적용 중인 설정을 관리합니다."
-    ],
-    steps: [
-      "검사실, 장비, 검사항목을 선택합니다.",
-      "시작일자와 기준값을 입력한 뒤 저장합니다.",
-      "하단 등록 리스트에서 적용 여부를 확인합니다."
-    ]
-  },
-  "sec-correlation": {
-    screen: [
-      ["비교 조건 영역", "기준 장비와 비교 장비, 매칭 기준을 설정합니다."],
-      ["비교 결과 영역", "장비 간 상관성 결과를 확인합니다."],
-      ["검증 영역", "계산 검증 화면으로 이어서 확인합니다."]
-    ],
-    functions: [
-      "같은 검사를 수행하는 여러 장비의 결과 일치성을 비교합니다.",
-      "동일 일자 기준 매칭과 결과일자 무시 매칭을 지원합니다.",
-      "계산 검증 기능으로 통계 계산 결과를 점검합니다."
-    ],
-    steps: [
-      "기준 장비와 비교 장비를 선택합니다.",
-      "매칭 기준을 정하고 비교를 실행합니다.",
-      "필요 시 계산 검증 화면에서 수치를 다시 확인합니다."
-    ]
-  },
-  "sec-reports": {
-    screen: [
-      ["조회 조건 영역", "보고서 종류별 기간, 장비, 물질, 항목을 선택합니다."],
-      ["미리보기 영역", "출력 전 보고서 구성을 확인합니다."],
-      ["보고서 종류", "QC Report, CV Report, Qualitative Report를 제공합니다."]
-    ],
-    functions: [
-      "정량, 정성, CV 중심의 보고서를 종류별로 출력합니다.",
-      "선택한 조건에 따라 차트와 표를 포함한 보고서를 생성합니다.",
-      "미리보기 후 출력 여부를 결정할 수 있습니다."
-    ],
-    steps: [
-      "필요한 보고서 종류와 조회 조건을 선택합니다.",
-      "미리보기로 내용을 확인합니다.",
-      "출력 또는 저장 작업을 진행합니다."
-    ]
-  },
-  "sec-test-item": {
-    screen: [
-      ["입력 영역", "검사항목 코드, 이름, IF 코드, 단위 등을 입력합니다."],
-      ["속성 영역", "Extended 사용, X-Bar 사용 여부 등을 설정합니다."],
-      ["안내 영역", "프로그램 코드와 장비 연동 코드 의미를 설명합니다."]
-    ],
-    functions: [
-      "새 검사항목을 등록하고 속성을 관리합니다.",
-      "프로그램용 코드와 인터페이스 연동 코드를 함께 관리합니다.",
-      "환자 결과 사용 여부, X-Bar 사용 여부를 항목별로 설정합니다."
-    ],
-    steps: [
-      "신규 버튼을 눌러 항목 정보를 입력합니다.",
-      "코드, 이름, 단위, 사용 옵션을 설정합니다.",
-      "등록 후 연동 코드와 속성을 다시 확인합니다."
-    ]
-  },
-  "sec-qc-lot": {
-    screen: [
-      ["기본 선택 영역", "검사실, 장비, 물질, 레벨, 시작일자를 선택합니다."],
-      ["타깃값 입력 영역", "Mean, SD 등 LOT 기준값을 입력합니다."],
-      ["등록 리스트", "등록된 QC LOT과 이력을 확인합니다."]
-    ],
-    functions: [
-      "검사실, 장비, 물질, 항목을 하나의 QC LOT으로 묶어 관리합니다.",
-      "제조사 타깃값 불러오기와 수동 입력을 모두 지원합니다.",
-      "허용 기준과 물질 종류를 함께 설정해 후속 QC 판정에 사용합니다."
-    ],
-    steps: [
-      "기본 선택값과 시작일자를 정합니다.",
-      "검사항목과 타깃값, 허용 기준을 입력합니다.",
-      "등록 후 하단 리스트에서 적용 내용을 확인합니다."
-    ]
-  },
-  "sec-lot-faq": {
-    screen: [
-      ["FAQ 목록", "LOT 관련 자주 묻는 질문을 한 화면에 모아 둡니다."],
-      ["질문 영역", "실무에서 자주 막히는 상황을 질문 형식으로 정리합니다."],
-      ["답변 영역", "코드 입력, 조회 옵션, target 의미를 설명합니다."]
-    ],
-    functions: [
-      "QC LOT 등록과 수정 과정에서 자주 생기는 질문을 빠르게 해결합니다.",
-      "Target 종류, ALL/LAST 조회, 장비물질ID 같은 용어를 정리합니다.",
-      "Rule Refresh가 필요한 상황도 함께 안내합니다."
-    ],
-    steps: [
-      "막히는 항목과 가장 가까운 질문을 찾습니다.",
-      "답변 내용을 기준으로 입력값이나 조회 옵션을 다시 확인합니다.",
-      "필요 시 QC LOT, Rule Refresh, 허용범위 설정 화면으로 돌아가 작업합니다."
-    ]
-  },
-  "sec-allowable": {
-    screen: [
-      ["조건 선택 영역", "검사실, 장비, 기간, 물질, 레벨을 선택합니다."],
-      ["기준값 선택 영역", "mean, SD/CV, 최종 허용 기준을 선택합니다."],
-      ["결과 검토 영역", "최종 선택값을 검토하고 QC LOT으로 반영합니다."]
-    ],
-    functions: [
-      "병원 환경에 맞는 허용범위를 재설정합니다.",
-      "제조사 타깃값, 누적 데이터, 별도 데이터를 비교 기준으로 사용할 수 있습니다.",
-      "최종 선택값을 새 QC LOT에 반영해 적용합니다."
-    ],
-    steps: [
-      "조회 조건을 선택하고 데이터를 집계합니다.",
-      "mean과 SD/CV 기준을 선택해 최종 허용범위를 정합니다.",
-      "시작일자를 정하고 QC LOT으로 등록합니다."
-    ]
-  },
-  "sec-reagent": {
-    screen: [
-      ["입력 영역", "시약 코드, 이름, 정렬값, 사용 여부를 입력합니다."],
-      ["검사실 선택", "시약이 속한 검사실 기준으로 관리합니다."],
-      ["저장 영역", "신규 등록과 수정, 삭제를 처리합니다."]
-    ],
-    functions: [
-      "검사실별 시약 마스터를 등록하고 관리합니다.",
-      "시약 코드와 이름을 표준화해 후속 LOT 관리에 연결합니다.",
-      "정렬값과 사용 여부를 함께 관리합니다."
-    ],
-    steps: [
-      "신규 버튼을 눌러 시약 정보를 입력합니다.",
-      "검사실, 시약 코드, 시약명, 정렬값을 설정합니다.",
-      "등록 후 시약 LOT 관리에 이어서 사용합니다."
-    ]
-  },
-  "sec-reagent-lot": {
-    screen: [
-      ["기본 선택 영역", "검사실, 장비, 시약, 시작일자를 선택합니다."],
-      ["LOT 입력 영역", "LOT 번호를 입력하고 일괄 적용합니다."],
-      ["등록 리스트", "시약 LOT 등록 내역을 확인합니다."]
-    ],
-    functions: [
-      "Pooled SD 산출을 위한 시약 LOT 기준을 등록합니다.",
-      "QC LOT과 달리 타깃값 없이 LOT 번호 중심으로 관리합니다.",
-      "모든 항목 보기와 일괄 적용으로 입력 편의성을 제공합니다."
-    ],
-    steps: [
-      "검사실, 장비, 시약, 시작일자를 선택합니다.",
-      "검사항목을 확인하고 LOT 번호를 입력합니다.",
-      "등록 후 하단 리스트에서 반영 여부를 확인합니다."
-    ]
-  },
-  "sec-basic-master": {
-    screen: [
-      ["마스터 구분 선택", "검사실, Multi Rule, Comment, 단위 등으로 전환합니다."],
-      ["입력/수정 영역", "선택한 마스터 구분의 상세 값을 입력합니다."],
-      ["설정 설명 영역", "각 마스터 구분의 역할과 주의사항을 안내합니다."]
-    ],
-    functions: [
-      "정도관리 환경에서 공통으로 사용하는 기본 마스터를 관리합니다.",
-      "검사실 정보, rule 기준, comment, 단위를 한 화면에서 다룹니다.",
-      "마스터 구분에 따라 입력 필드가 달라집니다."
-    ],
-    steps: [
-      "마스터 구분을 선택합니다.",
-      "해당 구분에 맞는 값을 입력하거나 수정합니다.",
-      "등록 후 실제 화면에 반영되는지 확인합니다."
-    ]
-  },
-  "sec-material": {
-    screen: [
-      ["기본 입력 영역", "검사실, 물질코드, 물질명, 레벨을 입력합니다."],
-      ["속성 영역", "물질 유형, 농도, 용량, 보관온도를 설정합니다."],
-      ["안내 영역", "물질명 표기 방식과 검사실별 관리 기준을 안내합니다."]
-    ],
-    functions: [
-      "검사실별 control 물질을 등록하고 관리합니다.",
-      "레벨, 물질 유형, 보관 정보 같은 부가 속성을 함께 저장합니다.",
-      "정확한 물질명 기준으로 표준화된 관리가 가능합니다."
-    ],
-    steps: [
-      "신규 버튼을 눌러 물질 기본 정보를 입력합니다.",
-      "레벨과 부가 속성을 설정합니다.",
-      "등록 후 QC LOT과 연결해 사용합니다."
-    ]
-  },
-  "sec-equipment": {
-    screen: [
-      ["기본 입력 영역", "검사실, 장비 코드, 장비명을 입력합니다."],
-      ["사용 옵션 영역", "Extended 사용, M-A 표시, 이미지 등을 설정합니다."],
-      ["안내 영역", "장비 신규 등록이나 수정 시 참고사항을 제공합니다."]
-    ],
-    functions: [
-      "정도관리 및 환자 결과에 사용할 장비 마스터를 관리합니다.",
-      "장비별 사용 범위와 표시 옵션을 세부적으로 설정합니다.",
-      "장비 이미지와 정렬값까지 함께 관리합니다."
-    ],
-    steps: [
-      "검사실을 선택한 뒤 장비 정보를 입력합니다.",
-      "사용 옵션과 정렬값을 설정합니다.",
-      "등록 후 관련 화면에서 장비가 정상 노출되는지 확인합니다."
-    ]
-  },
-  "sec-user-create": {
-    screen: [
-      ["로그인 영역", "초기 ID와 비밀번호로 프로그램에 접속합니다."],
-      ["계정 생성 영역", "기본 마스터 관리에서 신규 사용자 정보를 입력합니다."],
-      ["권한 설정 영역", "알림 표시 단계와 레벨 등을 함께 지정합니다."]
-    ],
-    functions: [
-      "신규 사용자 계정을 생성하고 프로그램 사용 권한을 부여합니다.",
-      "검사실, 아이디, 사용자명, 알림 표시 단계를 함께 설정합니다.",
-      "초기 계정 안내와 비밀번호 분실 시 연락처를 제공합니다."
-    ],
-    steps: [
-      "초기 계정으로 로그인합니다.",
-      "기본 마스터 관리에서 사용자 구분으로 전환합니다.",
-      "신규 계정 정보를 입력하고 등록합니다."
-    ]
-  },
-  "sec-password": {
-    screen: [
-      ["로그인 화면", "비밀번호를 바꿀 계정 ID를 입력합니다."],
-      ["비밀번호 변경 화면", "현재 비밀번호와 새 비밀번호를 입력합니다."],
-      ["재로그인 단계", "변경된 비밀번호로 다시 로그인합니다."]
-    ],
-    functions: [
-      "초기 비밀번호를 사용자 비밀번호로 변경합니다.",
-      "현재 비밀번호 확인과 새 비밀번호 재입력을 함께 처리합니다.",
-      "보안을 위해 최초 사용 시 즉시 변경하도록 안내합니다."
-    ],
-    steps: [
-      "변경할 계정 ID를 입력해 비밀번호 변경 화면으로 들어갑니다.",
-      "현재 비밀번호와 새 비밀번호를 입력합니다.",
-      "변경 후 새 비밀번호로 다시 로그인합니다."
-    ]
-  }
-};
-let searchResults = [];
-let currentSearchIndex = -1;
-
-function createOverviewTable(title, rows, headers = ['구성 항목', '설명']) {
-  const heading = document.createElement('h2');
-  heading.className = 'section-title';
-  heading.textContent = title;
-
-  const table = document.createElement('table');
-  table.className = 'manual-table';
-
-  const thead = document.createElement('thead');
-  const headRow = document.createElement('tr');
-  headers.forEach(text => {
-    const th = document.createElement('th');
-    th.textContent = text;
-    headRow.appendChild(th);
-  });
-  thead.appendChild(headRow);
-  table.appendChild(thead);
-
-  const tbody = document.createElement('tbody');
-  rows.forEach(([label, desc]) => {
-    const tr = document.createElement('tr');
-    const tdLabel = document.createElement('td');
-    const strong = document.createElement('strong');
-    strong.textContent = label;
-    tdLabel.appendChild(strong);
-    const tdDesc = document.createElement('td');
-    tdDesc.textContent = desc;
-    tr.appendChild(tdLabel);
-    tr.appendChild(tdDesc);
-    tbody.appendChild(tr);
-  });
-  table.appendChild(tbody);
-
-  return [heading, table];
-}
-
-function createOverviewList(title, items, ordered = false) {
-  const heading = document.createElement('h2');
-  heading.className = 'section-title';
-  heading.textContent = title;
-
-  const container = ordered ? document.createElement('ol') : document.createElement('div');
-  if (ordered) {
-    container.className = 'section-overview-order';
-  } else {
-    container.className = 'summary-box';
-    const ul = document.createElement('ul');
-    items.forEach(text => {
-      const li = document.createElement('li');
-      li.textContent = text;
-      ul.appendChild(li);
-    });
-    container.appendChild(ul);
-    return [heading, container];
-  }
-
-  items.forEach(text => {
-    const li = document.createElement('li');
-    li.textContent = text;
-    container.appendChild(li);
-  });
-  return [heading, container];
-}
-
-function createStepList(title, items) {
-  const heading = document.createElement('h2');
-  heading.className = 'section-title';
-  heading.textContent = title;
-
-  const list = document.createElement('ol');
-  list.className = 'section-overview-order';
-
-  items.forEach(text => {
-    const li = document.createElement('li');
-    li.textContent = text;
-    list.appendChild(li);
-  });
-
-  return [heading, list];
-}
-
-function renderSectionOverviews() {
-  Object.entries(sectionBlueprints).forEach(([sectionId, config]) => {
-    const section = document.getElementById(sectionId);
-    if (!section) {
-      return;
-    }
-
-    const page = section.querySelector('.page');
-    const chapterHeader = page ? page.querySelector('.chapter-header') : null;
-    if (!page || !chapterHeader) {
-      return;
-    }
-
-    const anchor = page.querySelector('.menu-path');
-    const insertAfter = anchor || chapterHeader;
-    const overview = document.createElement('div');
-    overview.className = 'section-overview';
-    const [screenTitle, screenTable] = createOverviewTable(
-      '화면구성',
-      config.screen,
-      ['화면 위치/영역', '구성 설명']
-    );
-    const [functionTitle, functionList] = createOverviewList('주요 기능 및 구성요소', config.functions);
-    const [stepTitle, stepList] = createStepList('작업순서', config.steps);
-
-    [screenTitle, screenTable, functionTitle, functionList, stepTitle, stepList].forEach(element => {
-      overview.appendChild(element);
-    });
-
-    insertAfter.insertAdjacentElement('afterend', overview);
-  });
-}
-
-renderSectionOverviews();
-
 function activateSection(target) {
   const matchedItem = items.find(item => item.dataset.target === target);
   const matchedSection = document.getElementById(target);
