@@ -730,42 +730,79 @@ table.flow-table th { background: var(--dark); }
 
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
-    QC 접수용 바코드를 생성하고 출력하는 화면이에요.<br>
-    인터페이스 없이 수동으로 QC를 접수하거나, 임시 검체를 접수할 때 사용해요.
+    QC 물질을 선택해 접수용 바코드를 생성하고 출력하는 화면이에요.<br>
+    검사실, 장비, 물질, 레벨, 검사항목을 선택한 뒤 바코드를 접수하고, 생성된 이력을 다시 조회하거나 재출력할 때 사용해요.
   </p>
 
   <h2 class="section-title">화면 구성</h2>
   <h3 class="sub-title">위 — 접수 조건 입력</h3>
   <div class="field-box">
     <div class="field-title">바코드 생성 조건</div>
-    <div class="field-row"><span class="field-label">검사실 · 장비</span><span class="field-desc">접수할 장비 선택</span></div>
-    <div class="field-row"><span class="field-label">물질 · 레벨</span><span class="field-desc">QC 물질 및 레벨 선택</span></div>
-    <div class="field-row"><span class="field-label">접수 일자</span><span class="field-desc">QC 접수 날짜</span></div>
-    <div class="field-row"><span class="field-label">접수시 Barcode 출력</span><span class="field-desc">체크 시 접수와 동시에 프린터 출력</span></div>
+    <div class="field-row"><span class="field-label">검사실 / 장비</span><span class="field-desc">좌측 트리에서 검사실과 장비를 선택</span></div>
+    <div class="field-row"><span class="field-label">물질 / 물질 종류</span><span class="field-desc">예: BC-6D, QC 등 접수 대상 물질 정보 선택</span></div>
+    <div class="field-row"><span class="field-label">레벨</span><span class="field-desc">Lv1, Lv2, Lv3, Lv4 중 필요한 레벨 체크</span></div>
+    <div class="field-row"><span class="field-label">접수일자</span><span class="field-desc">접수 기준 날짜 지정</span></div>
+    <div class="field-row"><span class="field-label">접수시 Barcode 출력</span><span class="field-desc">체크 시 접수와 동시에 바코드 인쇄</span></div>
+    <div class="field-row"><span class="field-label">프린터 / 접수 버튼</span><span class="field-desc">출력 프린터를 선택하고 접수 버튼으로 바코드 생성</span></div>
   </div>
 
   <h3 class="sub-title">하단 — 바코드 조회</h3>
   <p style="font-size:13px; color:var(--gray);">생성된 바코드 목록을 조회해요. <strong>Barcode 번호만</strong> 체크 시 이 화면에서 생성한 바코드만 필터링해요.</p>
 
+  <h3 class="sub-title">중앙 - 접수 대상, 라벨 미리보기, 출력 위치 설정</h3>
+  <table class="manual-table">
+    <thead><tr><th>영역</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>검사항목 선택</strong></td><td>선택한 물질에 해당하는 검사 항목 목록에서 접수할 항목을 선택</td></tr>
+      <tr><td><strong>접수 대상</strong></td><td>선택된 물질명, 레벨, 검사코드, 검사명이 접수 대상 표에 표시됨</td></tr>
+      <tr><td><strong>라벨 미리보기</strong></td><td>출력될 바코드 형태를 화면에서 미리 확인</td></tr>
+      <tr><td><strong>바코드 출력 설정</strong></td><td>X/Y 시작 위치, 여백, 폰트 크기, 비율, 높이 등 라벨 인쇄 좌표를 조정</td></tr>
+      <tr><td><strong>바코드 설정 저장</strong></td><td>조정한 라벨 출력 설정값을 저장</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub-title">하단 - 접수 정보 조회 리스트</h3>
+  <p style="font-size:13px; color:var(--gray);">
+    생성된 바코드 접수 이력을 목록으로 조회해요.<br>
+    물질 종류와 접수 정보 기간으로 조회할 수 있고, <strong>Barcode 번호만</strong> 체크 시 바코드 번호 기준으로 빠르게 확인할 수 있어요.
+  </p>
+  <table class="manual-table">
+    <thead><tr><th>컬럼</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>바코드번호</strong></td><td>접수 시 생성된 고유 바코드 번호</td></tr>
+      <tr><td><strong>물질 종류 / 물질명</strong></td><td>예: QC / BC-6D</td></tr>
+      <tr><td><strong>레벨</strong></td><td>접수된 레벨 정보</td></tr>
+      <tr><td><strong>검사코드 / 검사명</strong></td><td>접수 대상 검사 항목 정보</td></tr>
+      <tr><td><strong>결과일자</strong></td><td>접수 또는 결과 기준 일자</td></tr>
+      <tr><td><strong>상태</strong></td><td>예: 접수 상태 확인</td></tr>
+    </tbody>
+  </table>
+
   <h2 class="section-title">주요 기능</h2>
   <table class="manual-table">
     <thead><tr><th>기능</th><th>설명</th></tr></thead>
     <tbody>
-      <tr><td><strong>접수</strong></td><td>조건 설정 후 접수 버튼 클릭으로 바코드 생성</td></tr>
-      <tr><td><strong>Barcode 재출력</strong></td><td>접수 정보창에서 재출력 버튼으로 다시 인쇄</td></tr>
-      <tr><td><strong>Barcode 번호만 조회</strong></td><td>이 화면에서 생성한 바코드만 조회 (인터페이스 수신 후에는 목록에서 사라짐)</td></tr>
+      <tr><td><strong>접수</strong></td><td>선택한 물질, 레벨, 검사항목 기준으로 바코드 생성</td></tr>
+      <tr><td><strong>즉시 출력</strong></td><td>접수시 Barcode 출력 체크 시 접수와 동시에 인쇄</td></tr>
+      <tr><td><strong>Barcode 재출력</strong></td><td>하단 목록에서 선택 후 Barcode 재출력 가능</td></tr>
+      <tr><td><strong>접수 취소</strong></td><td>선택한 접수 건을 취소 처리</td></tr>
+      <tr><td><strong>출력 설정 저장</strong></td><td>라벨 좌표와 폰트 크기 등 바코드 출력 위치 설정 저장</td></tr>
+      <tr><td><strong>접수 이력 조회</strong></td><td>기간과 조건으로 생성된 바코드 접수 내역 확인</td></tr>
     </tbody>
   </table>
 
   <h2 class="section-title">작업 순서</h2>
   <div class="step-instruction">
-    <div class="step-content"><strong>① 검사실·장비·물질·레벨·접수 일자 선택</strong></div>
+    <div class="step-content"><strong>① 좌측에서 검사실과 장비를 선택하고, 상단에서 물질·물질 종류·레벨·접수일자를 지정</strong></div>
   </div>
   <div class="step-instruction">
-    <div class="step-content"><strong>② 즉시 출력이 필요하면 '접수시 Barcode 출력' 체크</strong></div>
+    <div class="step-content"><strong>② 검사항목을 선택해 접수 대상 목록에 포함할 항목을 확인</strong></div>
   </div>
   <div class="step-instruction">
-    <div class="step-content"><strong>③ 접수 버튼 클릭 → 바코드 생성 완료</strong></div>
+    <div class="step-content"><strong>③ 필요 시 '접수시 Barcode 출력' 체크와 프린터 선택, 라벨 미리보기 및 출력 설정 확인</strong></div>
+  </div>
+  <div class="step-instruction">
+    <div class="step-content"><strong>④ 접수 버튼을 눌러 바코드를 생성하고, 하단 접수 정보 목록에서 조회·재출력·접수 취소 진행</strong></div>
   </div>
 
   <h2 class="section-title">주의사항</h2>
@@ -773,6 +810,9 @@ table.flow-table th { background: var(--dark); }
     바코드 <strong>접수</strong>와 <strong>출력</strong>은 별개의 기능이에요.<br>
     접수 시 바로 출력하려면 반드시 <strong>'접수시 Barcode 출력'을 체크</strong>해야 해요.<br>
     체크 없이 접수한 경우 접수 정보창의 Barcode 재출력 버튼으로 다시 출력할 수 있어요.
+  </div>
+  <div class="notice-box info" style="margin-top:10px;">
+    라벨 위치가 프린터와 맞지 않으면 중앙의 <strong>바코드 출력 설정</strong> 값과 <strong>바코드 설정 저장</strong> 기능을 사용해 출력 위치를 먼저 조정해 주세요.
   </div>
 </div>
 </section>
