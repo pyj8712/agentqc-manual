@@ -1205,6 +1205,72 @@ table.flow-table th { background: var(--dark); }
   </div>
 </div>
 </section>
+<section class="section" id="sec-reports-3">
+<div class="page">
+  <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>정성 Report (메뉴 &gt; 보고서 &gt; 정성 보고서)</h1>
+  </div>
+
+  <h2 class="section-title">기능 개요</h2>
+  <p class="intro-text">
+    기간 내 QC 결과를 기준 Range와 비교해 <strong>Pass / N/A</strong> 여부를 확인하는 정성 보고서예요.<br>
+    검사실, 장비, 물질, 검사 항목, 레벨 조건에 따라 개별 결과의 적합 여부를 빠르게 검토할 때 사용해요.
+  </p>
+
+  <h2 class="section-title">화면 구성</h2>
+  <h3 class="sub-title">위 - 조회 조건 및 실행 버튼</h3>
+  <div class="field-box">
+    <div class="field-title">조회 조건</div>
+    <div class="field-row"><span class="field-label">날짜 구간</span><span class="field-desc">시작일자 ~ 종료일자 선택</span></div>
+    <div class="field-row"><span class="field-label">검사실 · 장비</span><span class="field-desc">조회할 검사실과 장비 선택</span></div>
+    <div class="field-row"><span class="field-label">물질 · 검사 항목</span><span class="field-desc">대상 물질과 검사 항목 선택</span></div>
+    <div class="field-row"><span class="field-label">레벨</span><span class="field-desc">ALL 또는 특정 레벨 선택</span></div>
+    <div class="field-row"><span class="field-label">물질 종류</span><span class="field-desc">ALL 또는 QC 등 종류 선택</span></div>
+    <div class="field-row"><span class="field-label">조회 / Excel / 인쇄</span><span class="field-desc">돋보기 버튼으로 조회하고, 결과를 엑셀 저장 또는 출력</span></div>
+    <div class="field-row"><span class="field-label">총 건수</span><span class="field-desc">조회 조건에 맞는 전체 결과 건수 표시</span></div>
+  </div>
+
+  <h3 class="sub-title">하단 - 정성 Report 결과 테이블</h3>
+  <table class="manual-table">
+    <thead><tr><th>컬럼</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>결과일시</strong></td><td>QC 결과가 수신된 날짜와 시간</td></tr>
+      <tr><td><strong>물질명 / 물질종류</strong></td><td>예: BC-6D / QC</td></tr>
+      <tr><td><strong>검사항목명</strong></td><td>예: WBC</td></tr>
+      <tr><td><strong>레벨</strong></td><td>Level1, Level2, Level3 등</td></tr>
+      <tr><td><strong>결과</strong></td><td>해당 시점의 실제 측정 결과값</td></tr>
+      <tr><td><strong>Range</strong></td><td>적용 중인 허용 범위(예: 3.45 ~ 4.35)</td></tr>
+      <tr><td><strong>판정</strong></td><td>Range 안이면 Pass, 벗어나면 N/A 로 표시</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="section-title">주요 기능</h2>
+  <table class="manual-table">
+    <thead><tr><th>기능</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>정성 Report 조회</strong></td><td>조건에 맞는 결과 목록과 판정 상태 확인</td></tr>
+      <tr><td><strong>총 건수 확인</strong></td><td>조회된 전체 결과 개수를 화면 상단에서 바로 확인</td></tr>
+      <tr><td><strong>Range 기반 판정</strong></td><td>결과값이 Range 안이면 Pass, 벗어나면 N/A 표시</td></tr>
+      <tr><td><strong>Excel / 인쇄</strong></td><td>조회 결과를 엑셀로 저장하거나 바로 출력</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="section-title">작업 순서</h2>
+  <div class="step-instruction">
+    <div class="step-content"><strong>① 날짜 구간과 검사실, 장비, 물질, 검사 항목, 레벨, 물질 종류 선택</strong></div>
+  </div>
+  <div class="step-instruction">
+    <div class="step-content"><strong>② 조회 버튼 클릭 후 상단 총 건수 확인</strong></div>
+  </div>
+  <div class="step-instruction">
+    <div class="step-content"><strong>③ 결과 테이블에서 결과값, Range, 판정(Pass / N/A) 확인</strong></div>
+  </div>
+  <div class="step-instruction">
+    <div class="step-content"><strong>④ 필요 시 Excel 저장 또는 인쇄</strong></div>
+  </div>
+</div>
+</section>
 <section class="section" id="sec-test-item">
 <div class="page">
   <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
