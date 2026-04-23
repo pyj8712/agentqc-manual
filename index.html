@@ -914,31 +914,58 @@ table.flow-table th { background: var(--dark); }
   </p>
 
   <h2 class="section-title">화면 구성</h2>
-  <h3 class="sub-title">위 — 환자 리스트</h3>
-  <p style="font-size:13px; color:var(--gray);">수신된 환자 결과 목록이에요. 검체번호로 검색할 수 있어요.</p>
+  <h3 class="sub-title">위 — 조회 조건 및 실행 버튼</h3>
+  <div class="field-box">
+    <div class="field-title">조회 조건</div>
+    <div class="field-row"><span class="field-label">검사실</span><span class="field-desc">조회할 검사실 선택</span></div>
+    <div class="field-row"><span class="field-label">검사장비</span><span class="field-desc">대상 장비 선택</span></div>
+    <div class="field-row"><span class="field-label">검사일자</span><span class="field-desc">시작일자 ~ 종료일자 지정(또는 일별/주별/월별)</span></div>
+    <div class="field-row"><span class="field-label">검체번호</span><span class="field-desc">특정 검체번호 입력 시 원하는 결과를 바로 조회</span></div>
+    <div class="field-row"><span class="field-label">조회 / 삭제 / 저장 / 인쇄</span><span class="field-desc">검색 버튼으로 조회하고, 필요 시 리스트 삭제·리스트 저장·인쇄</span></div>
+  </div>
 
-  <h3 class="sub-title">하단 — 상세 결과 &amp; 스캐터그램</h3>
-  <p style="font-size:13px; color:var(--gray);">선택한 환자의 상세 결과값과 스캐터그램 이미지를 확인해요.</p>
+  <h3 class="sub-title">중앙 — 환자 결과 리스트 &amp; 상세 결과</h3>
+  <table class="manual-table">
+    <thead><tr><th>구성 요소</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>좌측 환자 결과 리스트</strong></td><td>장비명, 결과일시, 차트번호, 검사개수, 검체번호, 순번, 환자명, 성별/나이를 목록으로 표시</td></tr>
+      <tr><td><strong>리스트 선택 행</strong></td><td>선택한 환자 행이 강조 표시되며 우측 상세 결과와 연동</td></tr>
+      <tr><td><strong>우측 상세 결과 테이블</strong></td><td>검사코드, 검사항목명, 결과, 결과일시, 단위, N/C/P, FLAG, 검사자를 표시</td></tr>
+      <tr><td><strong>우클릭 기능</strong></td><td>좌측 리스트에서 결과 복사 또는 삭제 기능 사용 가능</td></tr>
+      <tr><td><strong>상태 메시지</strong></td><td>화면 상단에서 FTP 전송 실패 같은 처리 상태를 함께 확인</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub-title">하단 — 스캐터그램 패널</h3>
+  <table class="manual-table">
+    <thead><tr><th>구성 요소</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>RBC / PLT / WBC</strong></td><td>선택한 환자의 기본 스캐터그램 이미지를 항목별로 표시</td></tr>
+      <tr><td><strong>WNB / RET / RBC-VHF</strong></td><td>추가 스캐터그램을 하단 패널에서 함께 확인</td></tr>
+      <tr><td><strong>항목별 패널 제목</strong></td><td>각 스캐터그램 상단에 검사 항목명이 표시되어 구분이 쉬움</td></tr>
+    </tbody>
+  </table>
 
   <h2 class="section-title">주요 기능</h2>
   <table class="manual-table">
     <thead><tr><th>기능</th><th>설명</th></tr></thead>
     <tbody>
-      <tr><td><strong>데이터 검색</strong></td><td>검체번호로 특정 환자 결과 검색</td></tr>
-      <tr><td><strong>데이터 삭제</strong></td><td>좌측 리스트에서 우클릭 → 삭제 화살표 선택</td></tr>
-      <tr><td><strong>이미지 다운로드</strong></td><td>스캐터그램 이미지 우클릭 → 이미지 다운로드</td></tr>
+      <tr><td><strong>데이터 검색</strong></td><td>검사실, 장비, 날짜, 검체번호 조건으로 특정 환자 결과 검색</td></tr>
+      <tr><td><strong>결과 확인</strong></td><td>우측 상세 결과 테이블에서 검사코드, 결과값, 결과일시, 검사자를 확인</td></tr>
+      <tr><td><strong>스캐터그램 확인</strong></td><td>하단 패널에서 RBC, PLT, WBC, WNB, RET, RBC-VHF 이미지를 확인</td></tr>
+      <tr><td><strong>출력 및 상태 확인</strong></td><td>다운로드, 인쇄, FTP 전송 상태를 화면 상단에서 함께 확인</td></tr>
     </tbody>
   </table>
 
   <h2 class="section-title">작업 순서</h2>
   <div class="step-instruction">
-    <div class="step-content"><strong>① 검체번호 입력 또는 목록에서 환자 선택</strong></div>
+    <div class="step-content"><strong>① 검사실, 장비, 조회 날짜를 선택한 뒤 검색</strong></div>
   </div>
   <div class="step-instruction">
-    <div class="step-content"><strong>② 하단에서 상세 결과 및 스캐터그램 확인</strong></div>
+    <div class="step-content"><strong>② 좌측 환자 리스트에서 대상 검체를 선택하거나 검체번호로 바로 조회</strong></div>
   </div>
   <div class="step-instruction">
-    <div class="step-content"><strong>③ 필요 시 이미지 다운로드 또는 데이터 삭제</strong></div>
+    <div class="step-content"><strong>③ 우측 상세 결과와 하단 스캐터그램을 확인하고 필요 시 출력 또는 저장</strong></div>
   </div>
 </div>
 </section>
