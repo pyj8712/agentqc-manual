@@ -409,13 +409,13 @@ table.flow-table th { background: var(--dark); }
     </div>
 
     <div class="nav-group-label">보고서</div>
-    <div class="nav-item" data-target="sec-reports"> 허용범위 보고서
+    <div class="nav-item" data-target="sec-reports-1"> 허용범위 보고서
     </div>
-    <div class="nav-item" data-target="sec-reports"> CV Report
+    <div class="nav-item" data-target="sec-reports-2"> CV Report
     </div>
-    <div class="nav-item" data-target="sec-reports"> 정성 보고서
+    <div class="nav-item" data-target="sec-reports-3"> 정성 보고서
     </div>
-    <div class="nav-item" data-target="sec-reports"> 보고서 통합 조회
+    <div class="nav-item" data-target="sec-reports-4"> 보고서 통합 조회
     </div>
 
     <div class="nav-group-label">정도관리 설정</div>
@@ -1068,7 +1068,7 @@ table.flow-table th { background: var(--dark); }
   </div>
 </div>
 </section>
-<section class="section" id="sec-reports">
+<section class="section" id="sec-reports-1">
 <div class="page">
   <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
@@ -1077,36 +1077,131 @@ table.flow-table th { background: var(--dark); }
 
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
-    검사실 인증·평가를 위한 정도관리 보고서를 출력하는 화면이에요.<br>
-    허용범위 보고서, CV Report, Qualitative Report 3가지를 제공해요.
+    검사실 인증·평가에 필요한 정도관리 보고서를 조회하고 출력하는 화면이에요.<br>
+    이 중 <strong>허용범위 보고서</strong>는 기간 내 QC 결과를 바탕으로 제조사 기준과 실측 통계를 비교해 적합 여부를 확인할 때 사용해요.
   </p>
 
   <h2 class="section-title">화면 구성</h2>
-  <h3 class="sub-title">위 — 조회 조건</h3>
-  <p style="font-size:13px; color:var(--gray);">날짜·장비·물질·검사항목·레벨을 선택해 조회 범위를 설정해요.</p>
+  <h3 class="sub-title">위 - 조회 조건 및 실행 버튼</h3>
+  <div class="field-box">
+    <div class="field-title">조회 조건</div>
+    <div class="field-row"><span class="field-label">날짜 구간</span><span class="field-desc">시작일자 ~ 종료일자 선택, LastMonth / ThisMonth 단축 버튼 제공</span></div>
+    <div class="field-row"><span class="field-label">검사실 · 장비</span><span class="field-desc">조회 대상 검사실과 장비 선택</span></div>
+    <div class="field-row"><span class="field-label">물질</span><span class="field-desc">허용범위 Report를 조회할 물질 선택</span></div>
+    <div class="field-row"><span class="field-label">검사 항목</span><span class="field-desc">ALL 또는 특정 검사 항목 선택</span></div>
+    <div class="field-row"><span class="field-label">레벨</span><span class="field-desc">ALL 또는 특정 레벨(Lv1, Lv2 등) 선택</span></div>
+    <div class="field-row"><span class="field-label">조회 / 계산 검증</span><span class="field-desc">돋보기 버튼으로 조회하고, 필요 시 계산 검증으로 수치 확인</span></div>
+    <div class="field-row"><span class="field-label">Excel / 인쇄</span><span class="field-desc">조회 결과를 엑셀로 저장하거나 바로 출력</span></div>
+    <div class="field-row"><span class="field-label">Reject 데이터 제외</span><span class="field-desc">체크 시 Reject 판정 데이터는 통계 계산에서 제외</span></div>
+  </div>
 
-  <h3 class="sub-title">하단 — 데이터 테이블 &amp; LJ 차트</h3>
-  <p style="font-size:13px; color:var(--gray);">조회 결과가 데이터 테이블과 항목/레벨별 LJ 차트로 표시돼요.</p>
+  <h3 class="sub-title">중앙 - 허용범위 Report 결과 테이블</h3>
+  <table class="manual-table">
+    <thead><tr><th>컬럼</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>검사 항목</strong></td><td>예: WBC, RBC, HGB 등 보고서 대상 항목</td></tr>
+      <tr><td><strong>시작일~종료일</strong></td><td>해당 허용범위 산출에 사용된 QC LOT의 적용 기간</td></tr>
+      <tr><td><strong>제조사 Target / 제조사 Limit</strong></td><td>제조사 기준 중심값과 허용 편차</td></tr>
+      <tr><td><strong>Lab Target / High / Low / Lab CV</strong></td><td>검사실 실측값으로 계산된 중심값, 상한, 하한, 검사실 CV</td></tr>
+      <tr><td><strong>N / Actual Mean / Actual SD / Actual CV</strong></td><td>집계 건수와 실제 측정 통계값</td></tr>
+      <tr><td><strong>허용 CV</strong></td><td>해당 항목에 적용되는 허용 기준 CV</td></tr>
+      <tr><td><strong>판단</strong></td><td>Accept / Unaccept 로 허용 여부 표시</td></tr>
+    </tbody>
+  </table>
 
   <h2 class="section-title">주요 기능</h2>
-  <h3 class="sub-title">허용범위 보고서 (메뉴 > 보고서 > 허용범위 보고서)</h3>
-  <p style="font-size:13px; color:var(--gray);">BIAS(%)를 기준으로 적합율을 계산하는 기간별 정도관리 보고서예요.</p>
-
-  <h3 class="sub-title">CV Report (메뉴 > 보고서 > CV Report)</h3>
-  <p style="font-size:13px; color:var(--gray);">월별 CV 평균값을 조회하고 차트로 표시해요. 정도관리 안정성을 월별로 추적해요.</p>
-
-  <h3 class="sub-title">Qualitative Report (메뉴 > 보고서 > 정성 보고서)</h3>
-  <p style="font-size:13px; color:var(--gray);">반응도·정성 결과 보고서예요. Range를 벗어나면 <strong>N/A</strong>, Range 안이면 <strong>Pass</strong>로 표시해요.</p>
+  <table class="manual-table">
+    <thead><tr><th>기능</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>허용범위 Report 조회</strong></td><td>선택한 기간과 조건으로 제조사 기준 대비 검사실 통계 결과 확인</td></tr>
+      <tr><td><strong>계산 검증</strong></td><td>표에 표시된 Mean, SD, CV 계산값을 별도로 검토</td></tr>
+      <tr><td><strong>Reject 데이터 제외</strong></td><td>Reject 결과를 제외한 상태로 통계 다시 확인</td></tr>
+      <tr><td><strong>Excel / 인쇄</strong></td><td>조회 결과를 엑셀로 저장하거나 바로 출력</td></tr>
+    </tbody>
+  </table>
 
   <h2 class="section-title">작업 순서</h2>
   <div class="step-instruction">
-    <div class="step-content"><strong>① 출력할 보고서 종류에 맞는 메뉴 진입</strong></div>
+    <div class="step-content"><strong>① 날짜 구간과 검사실, 장비, 물질, 검사 항목, 레벨 선택</strong></div>
   </div>
   <div class="step-instruction">
-    <div class="step-content"><strong>② 날짜·장비·물질·검사항목·레벨 선택 후 조회</strong></div>
+    <div class="step-content"><strong>② 필요 시 Reject 데이터 제외 체크 후 조회 버튼 클릭</strong></div>
   </div>
   <div class="step-instruction">
-    <div class="step-content"><strong>③ 출력 미리보기 버튼 클릭 후 인쇄</strong></div>
+    <div class="step-content"><strong>③ 결과 테이블에서 제조사 기준값, 실측 통계값, 허용 CV, 판단(Accept / Unaccept) 확인</strong></div>
+  </div>
+  <div class="step-instruction">
+    <div class="step-content"><strong>④ Excel 저장 또는 PDF 인쇄</strong></div>
+  </div>
+</div>
+</section>
+<section class="section" id="sec-reports-2">
+<div class="page">
+  <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
+  <div class="chapter-header">
+    <h1>CV Report (메뉴 &gt; 보고서 &gt; CV Report)</h1>
+  </div>
+
+  <h2 class="section-title">기능 개요</h2>
+  <p class="intro-text">
+    기간별 QC 결과를 바탕으로 <strong>월별 CV(%) 추이와 평균 CV</strong>를 확인하는 보고서예요.<br>
+    장비, 물질, 검사 항목, 레벨별 변동성을 비교하고 월별 안정성을 점검할 때 사용해요.
+  </p>
+
+  <h2 class="section-title">화면 구성</h2>
+  <h3 class="sub-title">위 - 조회 조건 및 실행 버튼</h3>
+  <div class="field-box">
+    <div class="field-title">조회 조건</div>
+    <div class="field-row"><span class="field-label">날짜 구간</span><span class="field-desc">시작일자 ~ 종료일자 선택</span></div>
+    <div class="field-row"><span class="field-label">검사실 · 장비</span><span class="field-desc">CV를 확인할 검사실과 장비 선택</span></div>
+    <div class="field-row"><span class="field-label">물질 · 검사 항목</span><span class="field-desc">대상 물질과 검사 항목 선택</span></div>
+    <div class="field-row"><span class="field-label">레벨</span><span class="field-desc">ALL 또는 특정 레벨 선택</span></div>
+    <div class="field-row"><span class="field-label">물질 종류</span><span class="field-desc">예: QC</span></div>
+    <div class="field-row"><span class="field-label">Reject 데이터 제외</span><span class="field-desc">체크 시 Reject 판정 데이터는 CV 계산에서 제외</span></div>
+    <div class="field-row"><span class="field-label">조회 / Excel / 인쇄</span><span class="field-desc">돋보기 버튼으로 조회하고, 결과를 엑셀 저장 또는 출력</span></div>
+  </div>
+
+  <h3 class="sub-title">중앙 - 월별 CV 결과 테이블</h3>
+  <table class="manual-table">
+    <thead><tr><th>컬럼</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>물질명 / 물질종류</strong></td><td>예: BC-6D / QC</td></tr>
+      <tr><td><strong>검사항목</strong></td><td>예: WBC</td></tr>
+      <tr><td><strong>레벨</strong></td><td>Level1, Level2, Level3 등</td></tr>
+      <tr><td><strong>월별 컬럼</strong></td><td>2026-01, 2026-02, 2026-03, 2026-04처럼 월별 CV(%) 표시</td></tr>
+      <tr><td><strong>평균</strong></td><td>조회 기간 동안의 평균 CV(%)</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub-title">하단 - CV 추이 그래프</h3>
+  <p style="font-size:13px; color:var(--gray);">
+    선택한 검사 항목의 월별 CV 변화를 레벨별 선 그래프로 확인해요.<br>
+    X축은 기간, Y축은 CV(%)이며, 범례에서 Level1 / Level2 / Level3 추이를 구분할 수 있어요.
+  </p>
+
+  <h2 class="section-title">주요 기능</h2>
+  <table class="manual-table">
+    <thead><tr><th>기능</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>월별 CV 조회</strong></td><td>조회 기간 내 월별 CV와 평균 CV를 레벨별로 확인</td></tr>
+      <tr><td><strong>Reject 데이터 제외</strong></td><td>Reject 결과를 제외한 상태로 CV 다시 계산</td></tr>
+      <tr><td><strong>테이블 + 그래프 동시 확인</strong></td><td>숫자 테이블과 추이 그래프를 함께 보며 월별 변화 비교</td></tr>
+      <tr><td><strong>Excel / 인쇄</strong></td><td>조회 결과를 엑셀로 저장하거나 바로 출력</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="section-title">작업 순서</h2>
+  <div class="step-instruction">
+    <div class="step-content"><strong>① 날짜 구간과 검사실, 장비, 물질, 검사 항목, 레벨, 물질 종류 선택</strong></div>
+  </div>
+  <div class="step-instruction">
+    <div class="step-content"><strong>② 필요 시 Reject 데이터 제외 체크 후 조회 버튼 클릭</strong></div>
+  </div>
+  <div class="step-instruction">
+    <div class="step-content"><strong>③ 월별 CV 결과 테이블에서 레벨별 월별 값과 평균 확인</strong></div>
+  </div>
+  <div class="step-instruction">
+    <div class="step-content"><strong>④ 하단 그래프에서 Level별 CV 추이 비교 후 Excel 저장 또는 인쇄</strong></div>
   </div>
 </div>
 </section>
@@ -1244,16 +1339,12 @@ table.flow-table th { background: var(--dark); }
   <div class="step-instruction">
     <div class="step-content"><strong>⑥ 등록</strong></div>
   </div>
-
-  <h2 class="section-title">주의사항</h2>
   <div class="notice-box danger">
-    제조사 타깃값은 카이저랩의 내부 검증을 거쳐 제공되지만, <strong>최종 검토 및 활용의 책임은 사용자에게 있습니다.</strong><br>
+    * 제조사 타깃값은 카이저랩의 내부 검증을 거쳐 제공되지만, <strong>최종 검토 및 활용의 책임은 사용자에게 있습니다.</strong><br>
     카이저랩은 이 데이터 사용으로 발생하는 결과에 대해 법적 책임을 지지 않습니다.
   </div>
 
-
-  <h2 class="sub-title">LOT FAQ</h2>
-
+  <h2 class="section-title">LOT FAQ</h2>
   <div class="faq-item">
     <div class="faq-q">물질 종류(검사실 Target, 허용범위용 Target, 제조사 Target)가 무엇인가요?</div>
     <div class="faq-a">
