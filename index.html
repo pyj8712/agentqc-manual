@@ -396,8 +396,6 @@ table.flow-table th { background: var(--dark); }
     </div>
     <div class="nav-item" data-target="sec-dashboard"> 대시보드
     </div>
-    <div class="nav-item" data-target="sec-dashboard-basic"> 대시보드 기본 사용법
-    </div>
     <div class="nav-item" data-target="sec-barcode"> 바코드 출력
     </div>
     <div class="nav-item" data-target="sec-data-query"> QC 데이터 조회
@@ -442,11 +440,9 @@ table.flow-table th { background: var(--dark); }
     </div>
     <div class="nav-item" data-target="sec-material"> 검사실별 물질 관리
     </div>
-    <div class="nav-item" data-target="sec-equipment"> 장비 마스터
-    </div>
 
     <div class="nav-group-label">로그인</div>
-    <div class="nav-item" data-target="sec-user-create"> 사용자 계정 만들기
+    <div class="nav-item" data-target="sec-user-create"> 계정 생성/비밀번호 변경
     </div>
   </div>
 </nav>
@@ -617,113 +613,101 @@ table.flow-table th { background: var(--dark); }
 
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
-    정도관리 검사 후 <strong>가장 먼저 확인하는 현황판</strong>이에요.<br>
-    전체 검사실의 정상·주의·거부 건수와 LOT별 상태를 한눈에 파악할 때 사용해요.
+    정도관리 결과를 <strong>상단 요약 지표 + 레벨별 현황 + 상세 테이블 + LJ 차트</strong>로 한 번에 확인하는 메인 화면이에요.<br>
+    어떤 레벨에서 거부가 발생했는지, 최근 추세가 흔들리는지, 통계값이 안정적인지 빠르게 판단할 때 사용해요.
   </p>
 
   <h2 class="section-title">화면 구성</h2>
-  <h3 class="sub-title">위 — 검색 필터</h3>
-  <p style="font-size:13px; color:var(--gray);">기간·검사실·장비·레벨 조건을 설정해 조회 범위를 좁혀요.</p>
+  <div class="field-box">
+    <div class="field-title">Dashboard Layout</div>
+    <div class="field-row"><span class="field-label">좌측 장비 목록</span><span class="field-desc">장비 썸네일과 장비명을 보고 확인할 장비를 선택해요.</span></div>
+    <div class="field-row"><span class="field-label">상단 옵션 바</span><span class="field-desc">레벨별 보기 / 검사별 보기, 일별·주별·월별, 날짜 구간, 새로고침, 물질 종류를 설정해요.</span></div>
+    <div class="field-row"><span class="field-label">상단 요약 카드</span><span class="field-desc">총 검사건수, 정상, 주의, 거부 건수를 큰 숫자로 보여줘요.</span></div>
+    <div class="field-row"><span class="field-label">보조 통계 영역</span><span class="field-desc">Rule 설정 정보, Target 설정 정보, Period statistics, Cumulative를 함께 확인해요.</span></div>
+    <div class="field-row"><span class="field-label">레벨 탭 / 카드</span><span class="field-desc">ALL, 1, 2, 3 탭으로 레벨을 고르고 각 Level 카드에서 LOT 번호와 상태 건수를 봐요.</span></div>
+    <div class="field-row"><span class="field-label">하단 분할 영역</span><span class="field-desc">왼쪽은 결과 테이블, 오른쪽은 Levey-Jennings 차트로 구성돼요.</span></div>
+  </div>
 
-  <h3 class="sub-title">중앙 — 탭 &amp; LOT 도넛 차트</h3>
+  <h3 class="sub-title">1. 상단 옵션 및 요약 영역</h3>
+  <div class="screen-mock">
+    <div class="mock-title">상단에서 바로 보는 핵심 정보</div>
+    <div class="mock-menu">
+      대시보드 보기 옵션: <span class="mock-highlight">레벨별 보기</span> / 검사별 보기<br>
+      검사별 보기로 전환하면 화면 기준이 레벨 탭에서 검사항목 탭 중심으로 바뀜<br>
+      기간 단위: 일별 / 주별 / 월별, 날짜 구간 직접 지정<br>
+      요약 카드: 총 검사건수, 정상, 주의, 거부<br>
+      통계 박스: Rule 설정 정보, Target 설정 정보, Period statistics, Cumulative
+    </div>
+  </div>
+
+  <h3 class="sub-title">2. 레벨 탭과 도넛 요약 카드</h3>
   <table class="manual-table">
     <thead><tr><th>구성 요소</th><th>설명</th></tr></thead>
     <tbody>
-      <tr><td><strong>장비 탭 / 검사실 탭 / 레벨 탭</strong></td><td>원하는 단위로 보기 전환</td></tr>
-      <tr><td><strong>LOT별 도넛 차트</strong></td><td>LOT별 정상·주의·거부 비율 표시</td></tr>
-      <tr><td><strong>상태 포인트</strong></td><td><span class="status-point"><span class="dot-green"></span>정상</span> <span class="status-point"><span class="dot-yellow"></span>주의</span> <span class="status-point"><span class="dot-red"></span>거부</span></td></tr>
+      <tr><td><strong>ALL / 1 / 2 / 3 탭</strong></td><td>전체 레벨 또는 특정 레벨만 골라 집중해서 볼 수 있어요.</td></tr>
+      <tr><td><strong>Level 카드</strong></td><td>Level 1, Level 2, Level 3 별로 LOT 번호와 총 건수를 따로 표시해요.</td></tr>
+      <tr><td><strong>도넛 차트</strong></td><td>각 레벨의 정상·주의·거부 비율을 시각적으로 보여주고, 범례 클릭으로 특정 LOT·레벨 표시를 켜고 끌 수 있어요.</td></tr>
+      <tr><td><strong>상태 건수</strong></td><td><span class="status-point"><span class="dot-green"></span>정상</span> <span class="status-point"><span class="dot-yellow"></span>주의</span> <span class="status-point"><span class="dot-red"></span>거부</span> 건수를 카드 안에서 바로 확인해요.</td></tr>
     </tbody>
   </table>
 
-  <h3 class="sub-title">하단 — 데이터 테이블 &amp; LJ 차트</h3>
-  <p style="font-size:13px; color:var(--gray);">검사항목별 상세 결과 테이블과 연동된 Levey-Jennings 차트를 함께 확인해요.</p>
+  <h3 class="sub-title">3. 하단 결과 테이블과 LJ 차트</h3>
+  <div class="two-col">
+    <div class="field-box">
+      <div class="field-title">결과 테이블</div>
+      <div class="field-row"><span class="field-label">주요 열</span><span class="field-desc">결과일시, 검사명, 레벨, Seq, 상태, 결과, Rule, Range, Comment, 물질종류</span></div>
+      <div class="field-row"><span class="field-label">부가 기능</span><span class="field-desc">Multi Sort, 삭제, Comment, 출력 버튼으로 후속 작업을 진행해요.</span></div>
+      <div class="field-row"><span class="field-label">정렬 방식</span><span class="field-desc">Multi Sort를 체크한 뒤 열 제목을 클릭하면 1회 오름차순, 2회 내림차순, 3회 초기화로 동작해요.</span></div>
+      <div class="field-row"><span class="field-label">Comment 등록</span><span class="field-desc">데이터를 선택한 뒤 코멘트 등록 버튼으로 바로 입력하거나, 상세 화면으로 이동해 등록할 수도 있어요.</span></div>
+      <div class="field-row"><span class="field-label">활용 포인트</span><span class="field-desc">거부 행을 먼저 찾고 Comment와 Rule 정보를 같이 보면서 원인을 추적해요.</span></div>
+    </div>
+    <div class="field-box">
+      <div class="field-title">Levey-Jennings Chart</div>
+      <div class="field-row"><span class="field-label">차트 내용</span><span class="field-desc">선택한 검사 항목의 레벨별 추세를 같은 화면에서 비교해요.</span></div>
+      <div class="field-row"><span class="field-label">표시 방식</span><span class="field-desc">Lv1, Lv2, Lv3가 서로 다른 색으로 표시되고 Mean, SD, ±1SD~±4SD 기준선을 함께 보여줘요.</span></div>
+      <div class="field-row"><span class="field-label">범례 제어</span><span class="field-desc">차트 범례를 클릭해 특정 레벨만 남기거나 숨기면서 비교할 수 있어요.</span></div>
+      <div class="field-row"><span class="field-label">이상 신호</span><span class="field-desc">1(3s) 같은 Rule 위반 지점이 차트에 표시되어 테이블과 함께 확인하기 쉬워요.</span></div>
+    </div>
+  </div>
 
   <h2 class="section-title">주요 기능</h2>
   <table class="manual-table">
     <thead><tr><th>기능</th><th>설명</th></tr></thead>
     <tbody>
-      <tr><td><strong>레벨별 / 검사별 View</strong></td><td>상단 탭으로 두 가지 보기 방식 전환</td></tr>
-      <tr><td><strong>이상치 클릭 → 상세 이동</strong></td><td>거부·주의 건수 클릭 시 상세 데이터창으로 바로 이동</td></tr>
-      <tr><td><strong>Comment 등록</strong></td><td>데이터 선택 후 코멘트 등록 버튼으로 즉시 등록</td></tr>
-      <tr><td><strong>추가 정보 표기</strong></td><td>Rule 설정 정보 / Target 설정 정보 / Period Statistics / Cumulative</td></tr>
-      <tr><td><strong>가름선 드래그</strong></td><td>차트 영역과 테이블 영역 크기를 자유롭게 조절</td></tr>
+      <tr><td><strong>보기 방식 전환</strong></td><td>레벨별 보기와 검사별 보기를 전환해 상황에 맞게 화면을 해석할 수 있고,<br> 검사별 보기에서는 검사항목 탭 중심으로 화면이 바뀌어요.</td></tr>
+      <tr><td><strong>기간 단위 변경</strong></td><td>일별, 주별, 월별 단위로 바꿔서 단기 이상과 장기 추세를 모두 볼 수 있어요.</td></tr>
+      <tr><td><strong>최근 결과만 보기</strong></td><td>조회 기간을 당일로 좁히고 시간 조건을 조절하면 가장 최근 결과만 빠르게 확인할 수 있어요.</td></tr>
+      <tr><td><strong>레벨별 현황 비교</strong></td><td>각 레벨 카드의 총 건수와 상태 비율을 나란히 비교할 수 있어요.</td></tr>
+      <tr><td><strong>상세 결과 추적</strong></td><td>하단 테이블에서 이상 결과의 시간, Rule, Comment, Range를 함께 확인해요.</td></tr>
+      <tr><td><strong>LOT/레벨 표시 전환</strong></td><td>도넛 차트 또는 LJ 차트 범례를 눌러 특정 LOT·레벨만 남겨서 볼 수 있어요.</td></tr>
+      <tr><td><strong>추세 분석</strong></td><td>오른쪽 LJ 차트에서 레벨별 추세와 Rule 위반 시점을 시각적으로 확인해요.</td></tr>
+      <tr><td><strong>통계 정보 확인</strong></td><td>Target 평균, 표준편차, CV와 기간 통계를 대시보드 상단에서 바로 참고할 수 있어요.</td></tr>
+      <tr><td><strong>Multi Sort</strong></td><td>여러 열 기준으로 정렬 순서를 조합해 이상 결과를 더 빠르게 찾을 수 있어요.</td></tr>
     </tbody>
   </table>
 
   <h2 class="section-title">작업 순서</h2>
   <div class="step-instruction">
-    <div class="step-content"><strong>① 기간·검사실·레벨 설정 후 조회</strong></div>
+    <div class="step-content"><strong>① 장비를 선택하고 보기 옵션, 기간 단위, 날짜 구간을 먼저 설정해요.</strong></div>
   </div>
   <div class="step-instruction">
-    <div class="step-content"><strong>② 상태 건수(정상/주의/거부) 확인</strong></div>
+    <div class="step-content"><strong>② 총 검사건수와 정상·주의·거부 요약 카드에서 전체 상태를 먼저 확인하고, 당일 조회로 두면 최근 결과 확인에 유리해요.</strong></div>
   </div>
   <div class="step-instruction">
-    <div class="step-content"><strong>③ 거부·주의 클릭 → 상세 데이터창에서 장비·항목·LOT 확인</strong></div>
+    <div class="step-content"><strong>③ ALL 또는 각 레벨 탭을 눌러 Level 카드의 LOT 번호와 상태 건수를 비교하고, 필요하면 검사별 보기로 바꿔 검사항목 중심으로 봐요.</strong></div>
   </div>
   <div class="step-instruction">
-    <div class="step-content"><strong>④ Comment 등록 또는 QC 결과 확인 화면으로 이동해 후속 처리</strong></div>
-  </div>
-</div>
-</section>
-<section class="section" id="sec-dashboard-basic">
-<div class="page">
-  <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
-  <div class="chapter-header">
-    <h1>대시보드 사용법</h1>
-  </div>
-
-  <h2 class="section-title">기능 개요</h2>
-  <p class="intro-text">
-    대시보드의 기본·고급 사용 방법을 안내해요.<br>
-    건수 확인부터 이상치 처리, 보기 방식 전환, Multi Sort까지 실무에서 자주 쓰는 기능을 다뤄요.
-  </p>
-
-  <h2 class="section-title">주요 기능</h2>
-  <table class="manual-table">
-    <thead><tr><th>기능</th><th>설명</th></tr></thead>
-    <tbody>
-      <tr><td><strong>레벨별 / 검사별 보기 전환</strong></td><td>검사별 보기로 바꾸면 검사항목 탭으로 변경돼요</td></tr>
-      <tr><td><strong>최근 결과만 보기</strong></td><td>조회 기간을 '당일'로 지정 후 시간 조절 → 가장 최근 결과만 표시</td></tr>
-      <tr><td><strong>LOT/레벨 on/off</strong></td><td>도넛 차트 또는 LJ 차트 범례 클릭으로 특정 LOT·레벨 표시 전환</td></tr>
-      <tr><td><strong>추가 정보 표기</strong></td><td>Rule 설정 정보 / Target 설정 정보 / Period Statistics / Cumulative</td></tr>
-      <tr><td><strong>Multi Sort</strong></td><td>체크 후 항목 클릭 — 1회: 오름차순 / 2회: 내림차순 / 3회: 초기화</td></tr>
-    </tbody>
-  </table>
-
-  <h2 class="section-title">작업 순서</h2>
-  <div class="step-instruction">
-    <div class="step-content">
-      <strong>① 당일 정상/주의/거부 건수 확인</strong>
-      <div class="screen-mock" style="margin-top:8px;">
-        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:8px; text-align:center;">
-          <div><div style="font-size:22px; font-weight:900; color:var(--dark);">60</div><div style="font-size:11px; color:var(--gray);">총 검사건수</div></div>
-          <div><div style="font-size:22px; font-weight:900; color:var(--green);">51</div><div style="font-size:11px; color:var(--gray);">정상</div></div>
-          <div><div style="font-size:22px; font-weight:900; color:var(--yellow);">3</div><div style="font-size:11px; color:var(--gray);">주의</div></div>
-          <div><div style="font-size:22px; font-weight:900; color:var(--red);">6</div><div style="font-size:11px; color:var(--gray);">거부</div></div>
-        </div>
-      </div>
-    </div>
+    <div class="step-content"><strong>④ 거부 박스나 이상 결과 행을 기준으로 하단 결과 테이블에서 Rule, Range, Comment를 확인해요.</strong></div>
   </div>
   <div class="step-instruction">
-    <div class="step-content">
-      <strong>② 거부 박스 클릭 → 상세 데이터창에서 장비·항목·LOT 확인</strong>
-    </div>
-  </div>
-  <div class="step-instruction">
-    <div class="step-content">
-      <strong>③ Comment 등록</strong>
-      <p style="font-size:12.5px; color:var(--gray); margin:4px 0;">
-        <strong>바로 등록:</strong> 데이터 선택 → 코멘트 등록 버튼 → 코멘트 선택 → 등록<br>
-        <strong>화면 이동 후 등록:</strong> 상세 데이터창에서 클릭 → 해당 QC 결과 확인 화면으로 이동
-      </p>
-    </div>
-  </div>
-  <div class="step-instruction">
-    <div class="step-content"><strong>④ 가름선 드래그로 차트/테이블 영역 크기 조절</strong></div>
+    <div class="step-content"><strong>⑤ 필요하면 Comment를 바로 등록하거나 상세 화면으로 이동해 등록하고, 오른쪽 LJ 차트에서는 범례 on/off로 비교 대상을 좁혀서 판단해요.</strong></div>
   </div>
 
   <h2 class="section-title">주의사항</h2>
   <div class="notice-box">
+    상단의 <strong>레벨별 보기 / 검사별 보기</strong>는 화면 해석 방식이 달라지므로, 현재 어떤 보기인지 먼저 확인해주세요.<br>
+    <strong>거부 건수</strong>만 보지 말고 Period statistics, Cumulative, LJ 차트를 같이 봐야 일시적 이상인지 지속적 이동인지 판단하기 쉬워요.<br>
+    Comment에 <strong>Target 재조정</strong> 같은 이력이 있으면 차트 변동을 해석할 때 반드시 함께 고려해주세요.<br>
     데이터 삭제 기능은 QC 신뢰성을 위해 병원 요청이 있을 경우에만 해당 사용자에게 권한을 부여해요.
   </div>
 </div>
@@ -1051,7 +1035,7 @@ table.flow-table th { background: var(--dark); }
     <div class="field-row"><span class="field-label">검사항목 목록</span><span class="field-desc">예: MCV, MCH, MCHC 같은 항목을 개별 체크해서 선택</span></div>
   </div>
 
-  <h3 class="sub-title">중앙 — 기준값 설정 영역 (XBAR 설정)</h3>
+  <h3 class="sub-title">중앙 — 기준값 설정 영역 (X-BAR 설정)</h3>
   <table class="manual-table">
     <thead><tr><th>구성 요소</th><th>설명</th></tr></thead>
     <tbody>
@@ -1066,7 +1050,7 @@ table.flow-table th { background: var(--dark); }
     <thead><tr><th>구성 요소</th><th>설명</th></tr></thead>
     <tbody>
       <tr><td><strong>조회 옵션</strong></td><td>ALL은 전체 이력, LAST는 최신 설정만 조회</td></tr>
-      <tr><td><strong>등록된 리스트</strong></td><td>장비코드, 검사코드, 검사명, 시작일자, 종료일자, Mean, LIMIT LOW/HIGH, 허용범위(%), CV허용범위(%), 사용여부를 표시</td></tr>
+      <tr><td><strong>등록된 리스트</strong></td><td>장비코드, 검사코드, 검사명, 시작일자, 종료일자, Mean, LIMIT LOW/HIGH, <br> 허용범위(%), CV허용범위(%), 사용여부를 표시</td></tr>
       <tr><td><strong>수정 / 삭제 / 일괄 적용</strong></td><td>등록된 기준값을 선택해 수정하거나 삭제하고 동일 기준을 다시 적용</td></tr>
       <tr><td><strong>Excel</strong></td><td>등록된 X-BAR 설정 목록을 엑셀로 저장</td></tr>
       <tr><td><strong>X-Bar Target 재설정</strong></td><td>지정된 기간의 데이터를 기반으로 Mean을 다시 계산해 재설정</td></tr>
@@ -1452,7 +1436,7 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
   <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>마스터 코드 관리 — 검사항목 (메뉴 > 정도관리 설정 > 검사항목)</h1>
+    <h1>검사항목 (메뉴 > 정도관리 설정 > 검사항목)</h1>
   </div>
 
   <h2 class="section-title">기능 개요</h2>
@@ -1506,7 +1490,7 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
   <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>마스터 코드 관리 — QC LOT (메뉴 > 정도관리 설정 > QC LOT)</h1>
+    <h1>QC LOT (메뉴 > 정도관리 설정 > QC LOT)</h1>
   </div>
 
   <h2 class="section-title">기능 개요</h2>
@@ -1654,7 +1638,7 @@ table.flow-table th { background: var(--dark); }
     <div class="faq-q">LOT 시작일자(적용기간)를 변경하고 싶어요</div>
     <div class="faq-a">
       조회 옵션을 ALL로 변경 후 조회 → <strong>수정/종료일자 수정 가능 모드</strong>로 변경하면 LOT 적용 기간을 변경할 수 있어요.<br>
-      <span style="color:var(--red); font-size:12px;">*LOT 적용 기간을 변경한다고 해서 적용되었던 Westgard MultiRule 위반 사항이 변경되지는 않아요. 해당 LOT의 변경된 기간 내의 모든 데이터에 대해 'Rule 새로고침'을 진행해야 해요.</span>
+      <span style="color:var(--red); font-size:12px;">*LOT 적용 기간을 변경한다고 해서 적용되었던 Westgard Multi Rule 위반 사항이 변경되지는 않아요. 해당 LOT의 변경된 기간 내의 모든 데이터에 대해 'Rule 새로고침'을 진행해야 해요.</span>
     </div>
   </div>
 
@@ -1664,7 +1648,7 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
   <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>허용범위 설정 관리 (메뉴 > 정도관리 설정 > Target/허용범위)</h1>
+    <h1>Target/허용범위(메뉴 > 정도관리 설정 > Target/허용범위)</h1>
   </div>
 
   <h2 class="section-title">기능 개요</h2>
@@ -1829,18 +1813,18 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
   <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>기본 마스터 관리 (메뉴 > 프로그램 설정 > 기본 마스터 관리)</h1>
+    <h1>기본 마스터 관리 <br> (메뉴 > 프로그램 설정 > 기본 마스터 관리)</h1>
   </div>
 
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
-    검사실·MultiRule·Comment·단위 등 정도관리 기본 환경을 설정하는 화면이에요.<br>
-    사용자와 장비 설정은 각각의 섹션에서 별도로 설명해요.
+    검사실·장비·MultiRule·Comment·단위 등 정도관리 기본 환경을 설정하는 화면이에요.<br>
+    사용자 설정은 별도 섹션에서 설명하고, 여기서는 기본 마스터에서 공통으로 다루는 핵심 항목을 먼저 정리해요.
   </p>
 
   <h2 class="section-title">화면 구성</h2>
   <h3 class="sub-title">위 — 마스터 구분 선택</h3>
-  <p style="font-size:13px; color:var(--gray);">마스터 구분 드롭다운으로 설정 항목(검사실 / MultiRule / Comment / 단위)을 전환해요.</p>
+  <p style="font-size:13px; color:var(--gray);">마스터 구분 드롭다운으로 설정 항목(검사실 / 장비 / Multi Rule / Comment / 단위)을 전환해요.</p>
 
   <h3 class="sub-title">하단 — 해당 설정 입력 영역</h3>
   <p style="font-size:13px; color:var(--gray);">선택한 마스터 구분에 맞는 입력 필드와 목록이 표시돼요.</p>
@@ -1855,8 +1839,8 @@ table.flow-table th { background: var(--dark); }
     <div class="field-row"><span class="field-label">검사 항 갯수</span><span class="field-desc">대시보드 검사항목 탭 표시 개수</span></div>
   </div>
 
-  <h3 class="sub-title" style="margin-top:14px;">MultiRule 설정 — 마스터 구분 'Multi Rule'</h3>
-  <p style="font-size:13px; color:var(--gray); margin-bottom:8px;">검사실별 Westgard MultiRule 적용 기준을 설정해요. 칸 클릭으로 Rule을 적용·해제할 수 있어요.</p>
+  <h3 class="sub-title" style="margin-top:14px;">Multi Rule 설정 — 마스터 구분 'Multi Rule'</h3>
+  <p style="font-size:13px; color:var(--gray); margin-bottom:8px;">검사실별 Westgard Multi Rule 적용 기준을 설정해요. 칸 클릭으로 Rule을 적용·해제할 수 있어요.</p>
   <table class="manual-table">
     <thead><tr><th>등록 검사실</th><th>1(2s)</th><th>1(3s)</th><th>2(2s)</th><th>R(4s)</th><th>4(1s)</th><th>10(x)</th><th>사용여부</th></tr></thead>
     <tbody>
@@ -1864,6 +1848,17 @@ table.flow-table th { background: var(--dark); }
       <tr><td>HEMA</td><td class="rule-reject rule-cell">거부</td><td class="rule-reject rule-cell">거부</td><td class="rule-reject rule-cell">거부</td><td></td><td></td><td></td><td>Y</td></tr>
     </tbody>
   </table>
+
+  <h3 class="sub-title" style="margin-top:14px;">장비 설정 — 마스터 구분 '장비'</h3>
+  <div class="field-box">
+    <div class="field-title">입력 항목</div>
+    <div class="field-row"><span class="field-label">검사실</span><span class="field-desc">장비가 속한 검사실 선택</span></div>
+    <div class="field-row"><span class="field-label">코드 · 장비명</span><span class="field-desc">장비코드와 화면에 표시할 장비명 입력</span></div>
+    <div class="field-row"><span class="field-label">제조회사</span><span class="field-desc field-required">(필수 아님)</span></div>
+    <div class="field-row"><span class="field-label">Extended 사용</span><span class="field-desc">Y = 환자 데이터 사용, N = QC 전용 장비</span></div>
+    <div class="field-row"><span class="field-label">M-A 기준 표시</span><span class="field-desc">무버리지(M-A) 기준 표시 여부</span></div>
+    <div class="field-row"><span class="field-label">사용여부 · 이미지 · 정렬값</span><span class="field-desc">장비 사용 상태와 대시보드 표시 이미지, 순서를 설정</span></div>
+  </div>
 
   <h3 class="sub-title" style="margin-top:14px;">Comment 설정 — 마스터 구분 'Comment'</h3>
   <p style="font-size:13px; color:var(--gray);">자주 사용하는 코멘트를 저장해두면 QC 결과 확인에서 빠르게 선택할 수 있어요.</p>
@@ -1879,16 +1874,17 @@ table.flow-table th { background: var(--dark); }
     <div class="step-content"><strong>② 신규 버튼 클릭 → 필드 입력</strong></div>
   </div>
   <div class="step-instruction">
-    <div class="step-content"><strong>③ 등록 버튼 클릭 (MultiRule은 칸 클릭 후 등록)</strong></div>
+    <div class="step-content"><strong>③ 등록 버튼 클릭 (Multi Rule은 칸 클릭 후 등록)</strong></div>
   </div>
+
 
   <h2 class="section-title">주의사항</h2>
   <div class="notice-box">
     <strong>검사 항 갯수</strong>는 대시보드에서 검사항목 탭(Tab)을 몇 개까지 표시할지 결정해요.<br>
-    검사항목이 많은 경우 이 값을 올려야 대시보드에서 모든 항목이 보여요.
-  </div>
-  <div class="notice-box" style="margin-top:10px;">
-    MultiRule 수정 후에는 반드시 <strong>등록 버튼을 클릭</strong>해야 저장돼요.
+    검사항목이 많은 경우 이 값을 올려야 대시보드에서 모든 항목이 보여요.<br>
+    <strong>장비 신규 등록 또는 수정</strong> 시에는 피어그룹 관리가 연결될 수 있으므로 반드시 카이저랩에 연락해주세요.<br>
+    MultiRule 수정 후에는 반드시 <strong>등록 버튼을 클릭</strong>해야 저장돼요.<br>
+    장비 신규 등록 또는 수정 시 피어그룹 관리를 위해 반드시 카이저랩에 연락해주세요.
   </div>
 </div>
 </section>
@@ -1896,7 +1892,7 @@ table.flow-table th { background: var(--dark); }
 <div class="page">
   <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
   <div class="chapter-header">
-    <h1>마스터 코드 관리 — 물질 (메뉴 > 프로그램 설정 > 검사실별 물질 관리)</h1>
+    <h1>검사실별 물질 관리 (메뉴 > 프로그램 설정 > 검사실별 물질 관리)</h1>
   </div>
 
   <h2 class="section-title">기능 개요</h2>
@@ -1940,71 +1936,18 @@ table.flow-table th { background: var(--dark); }
 
   <h2 class="section-title">주의사항</h2>
   <div class="notice-box">
-    <strong>물질명은 정확한 전체 명칭(Full Name)으로 입력해주세요.</strong><br><br>
-    ✓ HEMATOLOGY CONTROLS<br>
-    ✗ HEMA-CONTROL
+    <strong>물질명은 정확한 전체 명칭(Full Name)으로 입력해주세요.</strong><br>
+    예) HEMATOLOGY CONTROLS(O), HEMA-CONTROL(X) <br>
+
   </div>
 </div>
 </section>
-<section class="section" id="sec-equipment">
-<div class="page">
-  <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
-  <div class="chapter-header">
-    <h1>마스터 코드 관리 — 장비 (메뉴 > 프로그램 설정 > 기본 마스터 관리 → 마스터 구분 '장비')</h1>
-  </div>
-
-  <h2 class="section-title">기능 개요</h2>
-  <p class="intro-text">
-    병원의 검사 장비를 등록·관리하는 화면이에요.<br>
-    초기 설치 시 카이저랩에서 등록해 배포하지만, 신규 장비가 들어오면 이 화면에서 직접 추가해요.
-  </p>
-
-  <h2 class="section-title">화면 구성</h2>
-  <h3 class="sub-title">위 — 장비 입력 필드</h3>
-  <div class="field-box">
-    <div class="field-title">장비 입력/수정/삭제</div>
-    <div class="field-row"><span class="field-label">검사실</span><span class="field-desc">장비가 속한 검사실 선택</span></div>
-    <div class="field-row"><span class="field-label">코드</span><span class="field-desc">장비코드</span></div>
-    <div class="field-row"><span class="field-label">장비명</span><span class="field-desc">사용할 장비 이름</span></div>
-    <div class="field-row"><span class="field-label">제조회사</span><span class="field-desc field-required">(필수 아님)</span></div>
-    <div class="field-row"><span class="field-label">Extended 사용</span><span class="field-desc">Y = 환자 데이터 / N = QC 전용</span></div>
-    <div class="field-row"><span class="field-label">M-A 기준 표시</span><span class="field-desc">무버리지(M-A) 기준 표시 여부</span></div>
-    <div class="field-row"><span class="field-label">사용여부</span><span class="field-desc">사용중 / 미사용</span></div>
-    <div class="field-row"><span class="field-label">이미지 · 정렬값</span><span class="field-desc">장비 이미지 및 표시 순서</span></div>
-  </div>
-
-  <h2 class="section-title">주요 기능</h2>
-  <table class="manual-table">
-    <thead><tr><th>기능</th><th>설명</th></tr></thead>
-    <tbody>
-      <tr><td><strong>신규 / 수정 / 삭제</strong></td><td>장비 마스터 등록·편집</td></tr>
-    </tbody>
-  </table>
-
-  <h2 class="section-title">작업 순서</h2>
-  <div class="step-instruction">
-    <div class="step-content"><strong>① 마스터 구분을 '장비'로 변경</strong></div>
-  </div>
-  <div class="step-instruction">
-    <div class="step-content"><strong>② 신규 버튼 클릭 → 검사실·코드·장비명 등 입력</strong></div>
-  </div>
-  <div class="step-instruction">
-    <div class="step-content"><strong>③ 등록 버튼 클릭</strong></div>
-  </div>
-
-  <h2 class="section-title">주의사항</h2>
-  <div class="notice-box danger">
-    장비 신규 등록 또는 수정 시 <strong>피어그룹 관리</strong>를 위해 반드시 카이저랩에 연락해주세요.
-  </div>
-</div>
-</section>
-
 <section class="section" id="sec-user-create">
   <div class="page">
     <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
 
     <div class="chapter-header">
-      <h1>사용자 계정 만들기 (메뉴 &gt; 프로그램 설정 &gt; 기본 마스터 관리)</h1>
+      <h1>사용자 계정 생성 (메뉴 &gt; 프로그램 설정 &gt; 기본 마스터 관리)</h1>
       <p class="intro-text">
         초기 설치 시, 카이저랩에서 사용자 계정을 생성해서 배포하고 있어요.<br>
         <strong>새로운 사용자 계정 등록</strong>이 필요하다면 아래의 순서대로 진행해주세요!
