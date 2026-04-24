@@ -633,54 +633,67 @@ table.flow-table th { background: var(--dark); }
   </p>
 
   <h2 class="section-title">화면 구성</h2>
+
+  <h3 class="sub-title">좌측 — 장비 목록</h3>
   <div class="field-box">
-    <div class="field-title">Dashboard Layout</div>
-    <div class="field-row"><span class="field-label">좌측 장비 목록</span><span class="field-desc">장비 썸네일과 장비명을 보고 확인할 장비를 선택해요.</span></div>
-    <div class="field-row"><span class="field-label">상단 옵션 바</span><span class="field-desc">레벨별 보기 / 검사별 보기, 일별·주별·월별, 날짜 구간, 새로고침, 물질 종류를 설정해요.</span></div>
-    <div class="field-row"><span class="field-label">상단 요약 카드</span><span class="field-desc">총 검사건수, 정상, 주의, 거부 건수를 큰 숫자로 보여줘요.</span></div>
-    <div class="field-row"><span class="field-label">보조 통계 영역</span><span class="field-desc">Rule 설정 정보, Target 설정 정보, Period statistics, Cumulative를 함께 확인해요.</span></div>
-    <div class="field-row"><span class="field-label">레벨 탭 / 카드</span><span class="field-desc">ALL, 1, 2, 3 탭으로 레벨을 고르고 각 Level 카드에서 LOT 번호와 상태 건수를 봐요.</span></div>
-    <div class="field-row"><span class="field-label">하단 분할 영역</span><span class="field-desc">왼쪽은 결과 테이블, 오른쪽은 Levey-Jennings 차트로 구성돼요.</span></div>
+    <div class="field-title">장비 선택 패널</div>
+    <div class="field-row"><span class="field-label">장비 썸네일</span><span class="field-desc">이미지와 장비명으로 나열. 클릭 시 해당 장비 데이터로 전환</span></div>
+    <div class="field-row"><span class="field-label">상단 탭</span><span class="field-desc">검사실 단위 탭 구성 (예: 혈액학). 해당 검사실 소속 장비만 표시</span></div>
   </div>
 
-  <h3 class="sub-title">1. 상단 옵션 및 요약 영역</h3>
-  <div class="screen-mock">
-    <div class="mock-title">상단에서 바로 보는 핵심 정보</div>
-    <div class="mock-menu">
-      대시보드 보기 옵션: 레벨별 보기 / 검사별 보기<br>
-      검사별 보기로 전환하면 화면 기준이 레벨 탭에서 검사항목 탭 중심으로 바뀜<br>
-      기간 단위: 일별 / 주별 / 월별, 날짜 구간 직접 지정<br>
-      요약 카드: 총 검사건수, 정상, 주의, 거부<br>
-      통계 박스: Rule 설정 정보, Target 설정 정보, Period statistics, Cumulative
-    </div>
-  </div>
-
-  <h3 class="sub-title">2. 레벨 탭과 도넛 요약 카드</h3>
+  <h3 class="sub-title">상단 — 옵션 바</h3>
   <div class="field-box">
-    <div class="field-title">구성 요소</div>
-    <div class="field-row"><span class="field-label">ALL / 1 / 2 / 3 탭</span><span class="field-desc">전체 레벨 또는 특정 레벨만 골라 집중해서 볼 수 있어요.</span></div>
-    <div class="field-row"><span class="field-label">Level 카드</span><span class="field-desc">Level 1, Level 2, Level 3 별로 LOT 번호와 총 건수를 따로 표시해요.</span></div>
-    <div class="field-row"><span class="field-label">도넛 차트</span><span class="field-desc">각 레벨의 정상·주의·거부 비율을 시각적으로 보여주고, 범례 클릭으로 특정 LOT·레벨 표시를 켜고 끌 수 있어요.</span></div>
-    <div class="field-row"><span class="field-label">상태 건수</span><span class="field-desc"><span class="status-point"><span class="dot-green"></span>정상</span> <span class="status-point"><span class="dot-yellow"></span>주의</span> <span class="status-point"><span class="dot-red"></span>거부</span> 건수를 카드 안에서 바로 확인해요.</span></div>
+    <div class="field-title">조회 조건 설정</div>
+    <div class="field-row"><span class="field-label">보기 옵션</span><span class="field-desc">레벨별 보기 / 검사별 보기 선택. 검사별 보기 전환 시 검사항목 탭 중심으로 변경</span></div>
+    <div class="field-row"><span class="field-label">기간 단위</span><span class="field-desc">일별 / 주별 / 월별 집계 단위 선택</span></div>
+    <div class="field-row"><span class="field-label">날짜 구간</span><span class="field-desc">시작일 ~ 종료일 직접 지정</span></div>
+    <div class="field-row"><span class="field-label">새로고침</span><span class="field-desc">조건 변경 후 클릭 시 최신 데이터 재조회</span></div>
+    <div class="field-row"><span class="field-label">물질 종류</span><span class="field-desc">ALL 또는 특정 물질 종류 선택으로 결과 필터링</span></div>
   </div>
 
-  <h3 class="sub-title">3. 하단 결과 테이블과 LJ 차트</h3>
-  <div class="two-col">
-    <div class="field-box">
-      <div class="field-title">결과 테이블</div>
-      <div class="field-row"><span class="field-label">주요 열</span><span class="field-desc">결과일시, 검사명, 레벨, Seq, 상태, 결과, Rule, Range, Comment, 물질종류</span></div>
-      <div class="field-row"><span class="field-label">부가 기능</span><span class="field-desc">Multi Sort, 삭제, Comment, 출력 버튼으로 후속 작업을 진행해요.</span></div>
-      <div class="field-row"><span class="field-label">정렬 방식</span><span class="field-desc">Multi Sort를 체크한 뒤 열 제목을 클릭하면 1회 오름차순, 2회 내림차순, 3회 초기화로 동작해요.</span></div>
-      <div class="field-row"><span class="field-label">Comment 등록</span><span class="field-desc">데이터를 선택한 뒤 코멘트 등록 버튼으로 바로 입력하거나, 상세 화면으로 이동해 등록할 수도 있어요.</span></div>
-      <div class="field-row"><span class="field-label">활용 포인트</span><span class="field-desc">거부 행을 먼저 찾고 Comment와 Rule 정보를 같이 보면서 원인을 추적해요.</span></div>
-    </div>
-    <div class="field-box">
-      <div class="field-title">Levey-Jennings Chart</div>
-      <div class="field-row"><span class="field-label">차트 내용</span><span class="field-desc">선택한 검사 항목의 레벨별 추세를 같은 화면에서 비교해요.</span></div>
-      <div class="field-row"><span class="field-label">표시 방식</span><span class="field-desc">Lv1, Lv2, Lv3가 서로 다른 색으로 표시되고 Mean, SD, ±1SD~±4SD 기준선을 함께 보여줘요.</span></div>
-      <div class="field-row"><span class="field-label">범례 제어</span><span class="field-desc">차트 범례를 클릭해 특정 레벨만 남기거나 숨기면서 비교할 수 있어요.</span></div>
-      <div class="field-row"><span class="field-label">이상 신호</span><span class="field-desc">1(3s) 같은 Rule 위반 지점이 차트에 표시되어 테이블과 함께 확인하기 쉬워요.</span></div>
-    </div>
+  <h3 class="sub-title">상단 중앙 — 요약 카드</h3>
+  <div class="field-box">
+    <div class="field-title">건수 요약 (4개 카드)</div>
+    <div class="field-row"><span class="field-label">총 검사건수</span><span class="field-desc">조회 기간 내 전체 QC 결과 건수</span></div>
+    <div class="field-row"><span class="field-label">정상</span><span class="field-desc">Rule 위반 없이 허용범위 내 결과 건수 (청록색)</span></div>
+    <div class="field-row"><span class="field-label">주의</span><span class="field-desc">경고 수준 Rule 해당 결과 건수</span></div>
+    <div class="field-row"><span class="field-label">거부</span><span class="field-desc">즉시 조치가 필요한 Rule 위반 건수 (붉은색 강조)</span></div>
+  </div>
+
+  <h3 class="sub-title">상단 우측 — 통계 정보 박스</h3>
+  <div class="field-box">
+    <div class="field-title">4개 통계 정보 영역</div>
+    <div class="field-row"><span class="field-label">Rule 설정 정보</span><span class="field-desc">적용 중인 Westgard Rule 목록과 각 Rule 판정 결과(정상/거부) 표시</span></div>
+    <div class="field-row"><span class="field-label">Target 설정 정보</span><span class="field-desc">선택 LOT의 타깃 Mean, Sd, Cv 값</span></div>
+    <div class="field-row"><span class="field-label">Period statistics</span><span class="field-desc">조회 기간 내 실측 통계 — LOT No, 결과개수, Mean, Sd, Cv</span></div>
+    <div class="field-row"><span class="field-label">Cumulative</span><span class="field-desc">LOT 전체 사용기간 누적 통계 — LOT No, 결과개수, Mean, Sd, Cv</span></div>
+  </div>
+
+  <h3 class="sub-title">중앙 — 레벨 탭 &amp; Level 카드</h3>
+  <div class="field-box">
+    <div class="field-title">레벨별 현황</div>
+    <div class="field-row"><span class="field-label">ALL / 1 / 2 / 3 탭</span><span class="field-desc">전체 또는 특정 레벨 선택 — 해당 레벨 카드만 표시</span></div>
+    <div class="field-row"><span class="field-label">Level 카드</span><span class="field-desc">LOT 번호, 유효기간, 장비명, 총 건수 표시. 사용 중 LOT는 별도 카드로 구분</span></div>
+    <div class="field-row"><span class="field-label">도넛 차트</span><span class="field-desc">정상·주의·거부 비율 시각화. 거부 발생 시 빨간 조각 표시</span></div>
+    <div class="field-row"><span class="field-label">상태 건수</span><span class="field-desc">카드 내 <span class="status-point"><span class="dot-green"></span>정상</span> <span class="status-point"><span class="dot-yellow"></span>주의</span> <span class="status-point"><span class="dot-red"></span>거부</span> 건수 직접 확인</span></div>
+  </div>
+
+  <h3 class="sub-title">하단 좌측 — 결과 테이블</h3>
+  <div class="field-box">
+    <div class="field-title">결과 테이블</div>
+    <div class="field-row"><span class="field-label">표시 컬럼</span><span class="field-desc">결과일시, 검사명, 레벨, Seq, 상태, 결과, Rule, Range, Comment, 물질종류</span></div>
+    <div class="field-row"><span class="field-label">상단 버튼</span><span class="field-desc">Multi Sort, 삭제, Comment 등록, 출력, 설정 버튼</span></div>
+    <div class="field-row"><span class="field-label">Multi Sort</span><span class="field-desc">체크 후 열 제목 클릭 — 오름차순 → 내림차순 → 초기화</span></div>
+    <div class="field-row"><span class="field-label">행 선택</span><span class="field-desc">행 클릭 시 우측 LJ 차트에서 해당 포인트 위치 강조 표시</span></div>
+  </div>
+
+  <h3 class="sub-title">하단 우측 — Levey-Jennings Chart</h3>
+  <div class="field-box">
+    <div class="field-title">LJ 차트</div>
+    <div class="field-row"><span class="field-label">차트 제목</span><span class="field-desc">장비명 · 검사항목명 표시 (예: BC-6D - WBC - Levey-Jennings Chart)</span></div>
+    <div class="field-row"><span class="field-label">범례</span><span class="field-desc">LOT별 Lv1·Lv2·Lv3 색상 구분. 사용 중 LOT와 종료 LOT는 별도 색</span></div>
+    <div class="field-row"><span class="field-label">기준선</span><span class="field-desc">Mean, ±1SD~±4SD 수평선 표시 — 포인트 위치 판단 기준</span></div>
+    <div class="field-row"><span class="field-label">범례 on/off</span><span class="field-desc">범례 클릭으로 특정 LOT·레벨 표시/숨김</span></div>
   </div>
 
   <h2 class="section-title">주요 기능</h2>
