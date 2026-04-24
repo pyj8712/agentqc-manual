@@ -541,16 +541,9 @@ table.flow-table th { background: var(--dark); }
   <p class="intro-text">
     대시보드가 전체 현황을 한눈에 보는 화면이라면, <strong>QC 결과 확인</strong>은 특정 장비·물질의 상세 결과를
     Levey-Jennings 차트와 함께 확인하는 화면이에요.<br>
-    이상 결과가 발생했을 때 원인을 추적하거나, Comment 등록 및 결과 삭제 등 후속 처리를 할 때 사용해요.
+    이상 결과가 발생했을 때 원인을 추적하거나 후속 처리를 할 때 사용해요.<br>
+    테이블에서 결과를 선택하면 LJ 차트에 위치가 연동되고, 이상치에 Comment를 등록하거나 결과를 삭제할 수 있어요. 조회 결과는 Excel로 저장하거나 차트·테이블을 함께 인쇄할 수 있어요.
   </p>
-  <div class="field-box" style="margin-top:6px;">
-    <div class="field-title">주요 기능</div>
-  <div class="field-row"><span class="field-label">결과 선택 → 차트 연동</span><span class="field-desc">테이블에서 결과값을 클릭하면 차트에 해당 포인트가 초록 수직선으로 표시됨</span></div>
-  <div class="field-row"><span class="field-label">삭제</span><span class="field-desc">선택한 결과 삭제 (권한이 부여된 사용자만 가능)</span></div>
-  <div class="field-row"><span class="field-label">Comment 등록</span><span class="field-desc">이상치 데이터에 코멘트 등록</span></div>
-  <div class="field-row"><span class="field-label">Excel 출력</span><span class="field-desc">조회된 결과 전체를 엑셀 파일로 저장</span></div>
-  <div class="field-row"><span class="field-label">인쇄</span><span class="field-desc">차트 + 테이블을 함께 인쇄</span></div>
-  </div>
 
   <h2 class="section-title">화면 구성</h2>
 
@@ -625,20 +618,9 @@ table.flow-table th { background: var(--dark); }
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
     정도관리 결과를 <strong>상단 요약 지표 + 레벨별 현황 + 상세 테이블 + LJ 차트</strong>로 한 번에 확인하는 메인 화면이에요.<br>
-    어떤 레벨에서 거부가 발생했는지, 최근 추세가 흔들리는지, 통계값이 안정적인지 빠르게 판단할 때 사용해요.
+    어떤 레벨에서 거부가 발생했는지, 최근 추세가 흔들리는지, 통계값이 안정적인지 빠르게 판단할 때 사용해요.<br>
+    레벨별 보기와 검사별 보기를 전환하거나 일별·주별·월별 단위로 기간을 바꿔 단기 이상과 장기 추세를 함께 점검할 수 있어요. 도넛 차트나 LJ 차트 범례로 특정 LOT·레벨만 선택해 집중적으로 보거나, Multi Sort로 결과를 정렬해 이상 데이터를 빠르게 추적할 수 있어요.
   </p>
-  <div class="field-box" style="margin-top:6px;">
-    <div class="field-title">주요 기능</div>
-  <div class="field-row"><span class="field-label">보기 방식 전환</span><span class="field-desc">레벨별 보기와 검사별 보기를 전환해 상황에 맞게 화면을 해석할 수 있고,  검사별 보기에서는 검사항목 탭 중심으로 화면이 바뀌어요.</span></div>
-  <div class="field-row"><span class="field-label">기간 단위 변경</span><span class="field-desc">일별, 주별, 월별 단위로 바꿔서 단기 이상과 장기 추세를 모두 볼 수 있어요.</span></div>
-  <div class="field-row"><span class="field-label">최근 결과만 보기</span><span class="field-desc">조회 기간을 당일로 좁히고 시간 조건을 조절하면 가장 최근 결과만 빠르게 확인할 수 있어요.</span></div>
-  <div class="field-row"><span class="field-label">레벨별 현황 비교</span><span class="field-desc">각 레벨 카드의 총 건수와 상태 비율을 나란히 비교할 수 있어요.</span></div>
-  <div class="field-row"><span class="field-label">상세 결과 추적</span><span class="field-desc">하단 테이블에서 이상 결과의 시간, Rule, Comment, Range를 함께 확인해요.</span></div>
-  <div class="field-row"><span class="field-label">LOT/레벨 표시 전환</span><span class="field-desc">도넛 차트 또는 LJ 차트 범례를 눌러 특정 LOT·레벨만 남겨서 볼 수 있어요.</span></div>
-  <div class="field-row"><span class="field-label">추세 분석</span><span class="field-desc">오른쪽 LJ 차트에서 레벨별 추세와 Rule 위반 시점을 시각적으로 확인해요.</span></div>
-  <div class="field-row"><span class="field-label">통계 정보 확인</span><span class="field-desc">Target 평균, 표준편차, CV와 기간 통계를 대시보드 상단에서 바로 참고할 수 있어요.</span></div>
-  <div class="field-row"><span class="field-label">Multi Sort</span><span class="field-desc">여러 열 기준으로 정렬 순서를 조합해 이상 결과를 더 빠르게 찾을 수 있어요.</span></div>
-  </div>
 
   <h2 class="section-title">화면 구성</h2>
 
@@ -740,17 +722,9 @@ table.flow-table th { background: var(--dark); }
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
     QC 물질을 선택해 접수용 바코드를 생성하고 출력하는 화면이에요.
-    검사실, 장비, 물질, 레벨, 검사항목을 선택한 뒤 바코드를 접수하고, 생성된 이력을 다시 조회하거나 재출력할 때 사용해요.
+    검사실, 장비, 물질, 레벨, 검사항목을 선택한 뒤 접수 버튼으로 바코드를 생성해요.<br>
+    접수와 동시에 바로 인쇄하거나, 하단 이력 목록에서 재출력·접수 취소를 진행할 수 있어요. 라벨 위치·크기 등 출력 설정을 저장해두면 다음 출력에도 그대로 적용할 수 있어요.
   </p>
-  <div class="field-box" style="margin-top:6px;">
-    <div class="field-title">주요 기능</div>
-  <div class="field-row"><span class="field-label">접수</span><span class="field-desc">선택한 물질, 레벨, 검사항목 기준으로 바코드 생성</span></div>
-  <div class="field-row"><span class="field-label">즉시 출력</span><span class="field-desc">접수시 Barcode 출력 체크 시 접수와 동시에 인쇄</span></div>
-  <div class="field-row"><span class="field-label">Barcode 재출력</span><span class="field-desc">하단 목록에서 선택 후 Barcode 재출력 가능</span></div>
-  <div class="field-row"><span class="field-label">접수 취소</span><span class="field-desc">선택한 접수 건을 취소 처리</span></div>
-  <div class="field-row"><span class="field-label">출력 설정 저장</span><span class="field-desc">라벨 좌표와 폰트 크기 등 바코드 출력 위치 설정 저장</span></div>
-  <div class="field-row"><span class="field-label">접수 이력 조회</span><span class="field-desc">기간과 조건으로 생성된 바코드 접수 내역 확인</span></div>
-  </div>
 
   <h2 class="section-title">화면 구성</h2>
   <h3 class="sub-title">위 — 접수 조건 입력</h3>
@@ -825,16 +799,9 @@ table.flow-table th { background: var(--dark); }
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
     대시보드보다 세밀한 조건으로 QC 데이터를 조회할 때 사용해요.<br>
-    상태·규칙·Comment 등록 여부까지 필터링할 수 있고, Comment 등록·Excel 출력·Rule Refresh 등 후속 작업도 이 화면에서 진행해요.
+    상태·규칙·Comment 등록 여부까지 필터링할 수 있고, Comment 등록·Excel 출력·Rule Refresh 등 후속 작업도 이 화면에서 진행해요.<br>
+    중복 결과를 자동으로 체크해 취소 처리하거나, Multi Sort로 여러 컬럼을 동시에 정렬해 원하는 데이터를 빠르게 찾을 수 있어요.
   </p>
-  <div class="field-box" style="margin-top:6px;">
-    <div class="field-title">주요 기능</div>
-  <div class="field-row"><span class="field-label">Comment 등록</span><span class="field-desc">데이터 선택 → 코멘트 등록 버튼 → 코멘트 선택/입력 → 등록</span></div>
-  <div class="field-row"><span class="field-label">Excel 출력</span><span class="field-desc">조회한 모든 데이터를 엑셀로 저장 (선택 여부 무관)</span></div>
-  <div class="field-row"><span class="field-label">중복결과 체크 + 결과 취소</span><span class="field-desc">체크박스 체크 → 중복 결과 자동 체크됨 → 취소 버튼 클릭</span></div>
-  <div class="field-row"><span class="field-label">Rule Refresh</span><span class="field-desc">LOT 타깃값 수정 후 기존 결과 상태를 재계산 (별도 섹션 참조)</span></div>
-  <div class="field-row"><span class="field-label">Multi Sort</span><span class="field-desc">여러 컬럼 기준으로 동시 정렬</span></div>
-  </div>
 
   <h2 class="section-title">화면 구성</h2>
   <h3 class="sub-title">위 — 검색 조건 필터</h3>
@@ -905,15 +872,9 @@ table.flow-table th { background: var(--dark); }
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
     AgentQC에서 QC 데이터뿐 아니라 <strong>환자 데이터도 조회</strong>할 수 있는 화면이에요.<br>
-    인터페이스로 수신된 환자 검사 결과와 스캐터그램을 확인할 때 사용해요.
+    검사실·장비·날짜 조건 또는 검체번호로 원하는 환자 데이터를 바로 검색할 수 있어요.<br>
+    선택한 환자의 상세 결과와 스캐터그램(RBC, PLT, WBC, WNB, RET, RBC-VHF)을 함께 확인하고, 다운로드·인쇄와 FTP 전송 상태도 이 화면에서 볼 수 있어요.
   </p>
-  <div class="field-box" style="margin-top:6px;">
-    <div class="field-title">주요 기능</div>
-  <div class="field-row"><span class="field-label">데이터 검색</span><span class="field-desc">검사실, 장비, 날짜, 검체번호 조건으로 특정 환자 결과 검색</span></div>
-  <div class="field-row"><span class="field-label">결과 확인</span><span class="field-desc">우측 상세 결과 테이블에서 검사코드, 결과값, 결과일시, 검사자를 확인</span></div>
-  <div class="field-row"><span class="field-label">스캐터그램 확인</span><span class="field-desc">하단 패널에서 RBC, PLT, WBC, WNB, RET, RBC-VHF 이미지를 확인</span></div>
-  <div class="field-row"><span class="field-label">출력 및 상태 확인</span><span class="field-desc">다운로드, 인쇄, FTP 전송 상태를 화면 상단에서 함께 확인</span></div>
-  </div>
 
   <h2 class="section-title">화면 구성</h2>
   <h3 class="sub-title">위 — 조회 조건 및 실행 버튼</h3>
@@ -1014,14 +975,9 @@ table.flow-table th { background: var(--dark); }
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
     X-Bar 차트에 사용될 <strong>Mean / Limit 기준값을 검사항목별로 설정</strong>하는 화면이에요.<br>
-    처음 X-Bar를 사용하거나, 기준값을 변경할 때 이 화면에서 설정해요.
+    처음 X-Bar를 사용하거나 기준값을 변경할 때 이 화면에서 설정해요.<br>
+    등록된 기준값은 수정·삭제할 수 있고, 지정한 기간의 실측 데이터를 기반으로 Mean을 다시 계산해 Target을 재설정할 수도 있어요.
   </p>
-  <div class="field-box" style="margin-top:6px;">
-    <div class="field-title">주요 기능</div>
-  <div class="field-row"><span class="field-label">등록</span><span class="field-desc">입력한 기준값을 X-BAR 설정 이력으로 저장</span></div>
-  <div class="field-row"><span class="field-label">수정 / 삭제</span><span class="field-desc">하단 등록 리스트에서 기존 설정값 수정 또는 삭제</span></div>
-  <div class="field-row"><span class="field-label">Excel / X-Bar Target 재설정</span><span class="field-desc">설정 목록 엑셀 저장 및 지정 기간의 데이터로 Mean 재계산</span></div>
-  </div>
 
   <h2 class="section-title">화면 구성</h2>
   <h3 class="sub-title">위 — 검사실·장비 선택 및 검사항목 선택</h3>
@@ -1080,16 +1036,9 @@ table.flow-table th { background: var(--dark); }
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
     같은 검사를 수행하는 여러 장비의 결과가 서로 일치하는지 비교하는 화면이에요.<br>
-    기준 장비 1대와 최대 3대까지 동시에 비교할 수 있어요.
+    기준 장비 1대와 비교 장비 최대 3대를 동시에 비교할 수 있어요.<br>
+    일별·주별·월별 단위로 기간을 바꿔 분석하고, 회귀선과 통계 요약으로 상관성을 확인해요. 결과 표를 복사하거나 Excel 저장·인쇄, 계산 검증도 이 화면에서 진행해요.
   </p>
-  <div class="field-box" style="margin-top:6px;">
-    <div class="field-title">주요 기능</div>
-  <div class="field-row"><span class="field-label">장비 비교</span><span class="field-desc">기준 장비 1대와 비교 장비 최대 3대를 조건별로 비교</span></div>
-  <div class="field-row"><span class="field-label">기간별 조회</span><span class="field-desc">일별, 주별, 월별 단위로 기간을 바꿔 비교 결과 확인</span></div>
-  <div class="field-row"><span class="field-label">표 복사</span><span class="field-desc">조회된 비교 결과 표를 복사</span></div>
-  <div class="field-row"><span class="field-label">Excel / 인쇄</span><span class="field-desc">비교 결과를 엑셀로 저장하거나 바로 출력</span></div>
-  <div class="field-row"><span class="field-label">계산 검증</span><span class="field-desc">계산 검증 버튼 클릭 후 통계 계산 검증창에서 수치 확인</span></div>
-  </div>
 
   <h2 class="section-title">화면 구성</h2>
   <h3 class="sub-title">위 — 조회 조건 및 실행 버튼</h3>
@@ -1148,15 +1097,9 @@ table.flow-table th { background: var(--dark); }
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
     검사실 인증·평가에 필요한 정도관리 보고서를 조회하고 출력하는 화면이에요.<br>
-    이 중 <strong>허용범위 보고서</strong>는 기간 내 QC 결과를 바탕으로 제조사 기준과 실측 통계를 비교해 적합 여부를 확인할 때 사용해요.
+    이 중 <strong>허용범위 보고서</strong>는 기간 내 QC 결과를 바탕으로 제조사 기준과 실측 통계를 비교해 적합 여부를 확인해요.<br>
+    Reject 데이터를 제외한 상태로 통계를 재계산하거나, 계산 검증으로 수치를 별도 검토할 수 있어요. 결과는 Excel 저장 또는 인쇄로 출력해요.
   </p>
-  <div class="field-box" style="margin-top:6px;">
-    <div class="field-title">주요 기능</div>
-  <div class="field-row"><span class="field-label">허용범위 Report 조회</span><span class="field-desc">선택한 기간과 조건으로 제조사 기준 대비 검사실 통계 결과 확인</span></div>
-  <div class="field-row"><span class="field-label">계산 검증</span><span class="field-desc">표에 표시된 Mean, SD, CV 계산값을 별도로 검토</span></div>
-  <div class="field-row"><span class="field-label">Reject 데이터 제외</span><span class="field-desc">Reject 결과를 제외한 상태로 통계 다시 확인</span></div>
-  <div class="field-row"><span class="field-label">Excel / 인쇄</span><span class="field-desc">조회 결과를 엑셀로 저장하거나 바로 출력</span></div>
-  </div>
 
   <h2 class="section-title">화면 구성</h2>
   <h3 class="sub-title">위 - 조회 조건 및 실행 버튼</h3>
@@ -1209,15 +1152,9 @@ table.flow-table th { background: var(--dark); }
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
     기간별 QC 결과를 바탕으로 <strong>월별 CV(%) 추이와 평균 CV</strong>를 확인하는 보고서예요.<br>
-    장비, 물질, 검사 항목, 레벨별 변동성을 비교하고 월별 안정성을 점검할 때 사용해요.
+    숫자 테이블과 추이 그래프를 함께 보며 장비·물질·검사 항목·레벨별 월별 변화를 비교하고 안정성을 점검해요.<br>
+    Reject 데이터를 제외해 재계산할 수 있고, 결과는 Excel 저장 또는 인쇄로 출력해요.
   </p>
-  <div class="field-box" style="margin-top:6px;">
-    <div class="field-title">주요 기능</div>
-  <div class="field-row"><span class="field-label">월별 CV 조회</span><span class="field-desc">조회 기간 내 월별 CV와 평균 CV를 레벨별로 확인</span></div>
-  <div class="field-row"><span class="field-label">Reject 데이터 제외</span><span class="field-desc">Reject 결과를 제외한 상태로 CV 다시 계산</span></div>
-  <div class="field-row"><span class="field-label">테이블 + 그래프 동시 확인</span><span class="field-desc">숫자 테이블과 추이 그래프를 함께 보며 월별 변화 비교</span></div>
-  <div class="field-row"><span class="field-label">Excel / 인쇄</span><span class="field-desc">조회 결과를 엑셀로 저장하거나 바로 출력</span></div>
-  </div>
 
   <h2 class="section-title">화면 구성</h2>
   <h3 class="sub-title">위 - 조회 조건 및 실행 버튼</h3>
@@ -1273,15 +1210,9 @@ table.flow-table th { background: var(--dark); }
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
     기간 내 QC 결과를 기준 Range와 비교해 <strong>Pass / N/A</strong> 여부를 확인하는 정성 보고서예요.<br>
-    검사실, 장비, 물질, 검사 항목, 레벨 조건에 따라 개별 결과의 적합 여부를 빠르게 검토할 때 사용해요.
+    검사실, 장비, 물질, 검사 항목, 레벨 조건에 따라 개별 결과의 적합 여부를 빠르게 검토할 수 있어요.<br>
+    조회 건수는 화면 상단에서 바로 확인하고, 결과는 Excel 저장 또는 인쇄로 출력해요.
   </p>
-  <div class="field-box" style="margin-top:6px;">
-    <div class="field-title">주요 기능</div>
-  <div class="field-row"><span class="field-label">정성 Report 조회</span><span class="field-desc">조건에 맞는 결과 목록과 판정 상태 확인</span></div>
-  <div class="field-row"><span class="field-label">총 건수 확인</span><span class="field-desc">조회된 전체 결과 개수를 화면 상단에서 바로 확인</span></div>
-  <div class="field-row"><span class="field-label">Range 기반 판정</span><span class="field-desc">결과값이 Range 안이면 Pass, 벗어나면 N/A 표시</span></div>
-  <div class="field-row"><span class="field-label">Excel / 인쇄</span><span class="field-desc">조회 결과를 엑셀로 저장하거나 바로 출력</span></div>
-  </div>
 
   <h2 class="section-title">화면 구성</h2>
   <h3 class="sub-title">위 - 조회 조건 및 실행 버튼</h3>
@@ -1333,15 +1264,8 @@ table.flow-table th { background: var(--dark); }
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
     기간 조건으로 이미 생성된 보고서를 한 화면에서 다시 조회하는 메뉴예요.<br>
-    <strong>화면 중앙에는 선택한 기간 내 생성된 보고서 목록</strong>이 표시되며, 필요한 보고서를 다시 확인하거나 내려받을 때 사용해요.
+    검사실·장비 조건을 추가해 원하는 보고서만 빠르게 찾을 수 있고, 목록에서 보고서를 선택해 내용을 다시 확인하거나 다운로드할 수 있어요.
   </p>
-  <div class="field-box" style="margin-top:6px;">
-    <div class="field-title">주요 기능</div>
-  <div class="field-row"><span class="field-label">기간별 생성 보고서 조회</span><span class="field-desc">생성일자 기준으로 해당 기간에 만든 보고서 목록 확인</span></div>
-  <div class="field-row"><span class="field-label">검사실 / 장비별 필터링</span><span class="field-desc">조건을 추가해 원하는 보고서만 빠르게 찾기</span></div>
-  <div class="field-row"><span class="field-label">보고서 재확인</span><span class="field-desc">이미 생성된 보고서를 목록에서 다시 선택해 확인</span></div>
-  <div class="field-row"><span class="field-label">다운로드</span><span class="field-desc">목록에서 선택한 보고서를 저장</span></div>
-  </div>
 
   <h2 class="section-title">화면 구성</h2>
   <h3 class="sub-title">상단 - 조회 조건 및 실행 버튼</h3>
@@ -1394,12 +1318,9 @@ table.flow-table th { background: var(--dark); }
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
     병원에서 정도관리하는 검사항목을 등록·관리하는 화면이에요.<br>
-    새로운 검사항목이 추가될 때 이 화면에서 먼저 등록해야 QC LOT에서 사용할 수 있어요.
+    새로운 검사항목이 추가될 때 이 화면에서 먼저 등록해야 QC LOT에서 사용할 수 있어요.<br>
+    기존 항목의 수정과 삭제도 이 화면에서 진행해요.
   </p>
-  <div class="field-box" style="margin-top:6px;">
-    <div class="field-title">주요 기능</div>
-  <div class="field-row"><span class="field-label">신규 / 수정 / 삭제</span><span class="field-desc">검사항목 마스터 등록·편집</span></div>
-  </div>
 
   <h2 class="section-title">화면 구성</h2>
   <h3 class="sub-title">위 — 검사항목 입력 필드</h3>
@@ -1444,15 +1365,9 @@ table.flow-table th { background: var(--dark); }
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
     검사실·장비·검사항목을 하나의 LOT으로 묶고 타깃값(Mean, SD)을 설정하는 화면이에요.<br>
-    새 물질을 사용하거나 LOT를 교체할 때, 또는 제조사 타깃값을 불러올 때 사용해요.
+    새 물질을 사용하거나 LOT를 교체할 때, 또는 제조사 타깃값을 불러올 때 사용해요.<br>
+    타깃값은 직접 입력하거나 제조사 데이터를 자동으로 불러올 수 있고, 일괄 적용으로 모든 검사항목에 동일한 값을 한 번에 반영할 수 있어요. 등록된 LOT의 값 수정과 종료일자 변경도 이 화면에서 진행해요.
   </p>
-  <div class="field-box" style="margin-top:6px;">
-    <div class="field-title">주요 기능</div>
-  <div class="field-row"><span class="field-label">수동 등록</span><span class="field-desc">Mean·SD를 직접 입력하여 LOT 등록</span></div>
-  <div class="field-row"><span class="field-label">제조사 타깃값 불러오기</span><span class="field-desc">Mindray 물질의 타깃값을 시작일자 기준 최신값으로 자동 불러옴</span></div>
-  <div class="field-row"><span class="field-label">일괄 적용</span><span class="field-desc">맨 위 값을 모든 검사항목에 동일하게 적용</span></div>
-  <div class="field-row"><span class="field-label">수정 / 종료일자 수정</span><span class="field-desc">등록 리스트에서 값 수정 및 LOT 적용 기간 변경 가능</span></div>
-  </div>
 
   <h2 class="section-title">화면 구성</h2>
   <h3 class="sub-title">위 — 조회 조건</h3>
@@ -1598,14 +1513,9 @@ table.flow-table th { background: var(--dark); }
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
     우리 병원의 실제 QC 데이터를 기반으로 <strong>"이 범위까지는 정상으로 보겠다"는 기준을 새로 잡는 작업</strong>이에요.<br>
-    QC LOT를 일정 기간 사용한 뒤, 새 LOT로 교체하기 전에 이 화면에서 허용범위를 설정해요.
+    QC LOT를 일정 기간 사용한 뒤, 새 LOT로 교체하기 전에 이 화면에서 허용범위를 설정해요.<br>
+    조건 설정 후 집계 버튼을 눌러 해당 기간의 통계를 산출하고, 별도 데이터는 우클릭·더블클릭으로 개별 값을 추가하거나 제거할 수 있어요. 최종 기준을 확인한 뒤 QC 마스터로 일괄 저장해요.
   </p>
-  <div class="field-box" style="margin-top:6px;">
-    <div class="field-title">주요 기능</div>
-  <div class="field-row"><span class="field-label">데이터 집계</span><span class="field-desc">조건 설정 후 클릭 → 해당 기간의 QC 데이터를 집계해 통계 산출</span></div>
-  <div class="field-row"><span class="field-label">별도 데이터 편집</span><span class="field-desc">별도 데이터 영역 우클릭/더블클릭 → 개별 값 추가·제거</span></div>
-  <div class="field-row"><span class="field-label">QC 마스터로 일괄 저장</span><span class="field-desc">시작일자 선택 후 클릭 → 새로운 허용범위가 적용된 QC LOT 생성</span></div>
-  </div>
 
   <h2 class="section-title">화면 구성</h2>
   <h3 class="sub-title">위 — 데이터 선택 필터</h3>
@@ -1673,14 +1583,9 @@ table.flow-table th { background: var(--dark); }
     병원에서 사용하는 <strong>시약을 등록</strong>하고, 시약별 <strong>LOT를 관리</strong>하는 화면이에요.<br>
     시약 LOT는 <strong>Pooled SD</strong>를 산출하기 위한 기준 LOT로, QC LOT와 달리 타깃값 없이 LOT NO만 입력하면 돼요.<br>
     <strong>* Pooled SD</strong>란 같은 검사 조건에서 나온 QC 결과들을 모아 계산한 평균적인 SD예요.<br>
-    해당 시약·장비에서 QC 값이 얼마나 안정적으로 나오는지 보여주는 값이에요.
+    해당 시약·장비에서 QC 값이 얼마나 안정적으로 나오는지 보여주는 값이에요.<br>
+    시약을 처음 등록할 때는 시약 등록 버튼으로 시약코드·시약명을 신규 등록하고, 이후 LOT NO를 입력해 저장해요. 등록된 내역은 하단 리스트에서 수정·삭제하거나 Excel로 저장할 수 있어요.
   </p>
-  <div class="field-box" style="margin-top:6px;">
-    <div class="field-title">주요 기능</div>
-  <div class="field-row"><span class="field-label">시약 등록</span><span class="field-desc">시약코드를 신규 등록하고 기존 시약 정보를 관리</span></div>
-  <div class="field-row"><span class="field-label">등록</span><span class="field-desc">입력한 시약 LOT 정보를 설정 이력으로 저장</span></div>
-  <div class="field-row"><span class="field-label">수정 / 삭제 / 저장</span><span class="field-desc">하단 등록 리스트에서 기존 시약 LOT 설정을 수정, 삭제 또는 엑셀로 저장</span></div>
-  </div>
 
 
   <h2 class="section-title">화면 구성</h2>
@@ -1827,12 +1732,9 @@ table.flow-table th { background: var(--dark); }
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
     병원에서 사용하는 QC 물질을 등록·관리하는 화면이에요.<br>
-    새로운 물질이 들어왔을 때 여기서 먼저 등록해야 QC LOT에서 선택할 수 있어요.
+    새로운 물질이 들어왔을 때 여기서 먼저 등록해야 QC LOT에서 선택할 수 있어요.<br>
+    기존 물질의 수정과 삭제도 이 화면에서 진행해요.
   </p>
-  <div class="field-box" style="margin-top:6px;">
-    <div class="field-title">주요 기능</div>
-  <div class="field-row"><span class="field-label">신규 / 수정 / 삭제</span><span class="field-desc">물질 마스터 등록·편집 (검사실 기준으로 관리)</span></div>
-  </div>
 
   <h2 class="section-title">화면 구성</h2>
   <h3 class="sub-title">위 — 물질 입력 필드</h3>
