@@ -381,6 +381,17 @@ table.flow-table th { background: var(--dark); }
   /* 네비 경로 텍스트 */
   .flow-box   { font-size: 14px !important; }
 
+  /* 페이지 중간에서 잘리지 않아야 할 요소 */
+  .field-box,
+  .step-instruction,
+  .summary-box,
+  .notice-box,
+  .faq-item,
+  .two-col,
+  table.manual-table { break-inside: avoid; page-break-inside: avoid; }
+  h2.section-title,
+  h3.sub-title { break-after: avoid; page-break-after: avoid; }
+
   @page { size: A4; margin: 10mm 15mm; }
 }
 </style>
@@ -515,7 +526,7 @@ table.flow-table th { background: var(--dark); }
   <p style="font-size:13px; color:var(--gray); margin-bottom:10px;">정도관리 프로그램은 결과값뿐 아니라 <strong>
   어떤 조건에서 측정됐는지  </strong> 함께 관리해요. </p>
   <ul style="padding-left:20px; font-size:13px; color:var(--gray); line-height:2;">
-    <li>정도관리 물질 LOT(타깃값)</li>
+    <li>정도관리 물질 LOT(Target값)</li>
     <li>검사항목, 레벨</li>
     <li>장비 정보</li>
     <li>측정 날짜, LOT의 시작일자, 종료일자, 유효일자 등</li>
@@ -601,7 +612,7 @@ table.flow-table th { background: var(--dark); }
   <h2 class="section-title">주의사항</h2>
   <div class="notice-box">
     <p><strong>데이터 조회</strong>와 <strong>차트 조회</strong> 기간은 각각 독립적으로 설정할 수 있어요. <br>(예: 차트는 최근 1개월, 테이블은 최근 1주일만 표시)</p>
-    <p><strong>Target 재조정</strong>이 Comment 열에 표시된 경우, 해당 시점에 LOT 타깃값이 변경되었음을 의미해요.</p>
+    <p><strong>Target 재조정</strong>이 Comment 열에 표시된 경우, 해당 시점에 LOT Target값이 변경되었음을 의미해요.</p>
     <p>Rule 위반이 의심될 경우 해당 시점 전후 데이터를 함께 확인해주세요.</p>
   </div>
 </div>
@@ -718,7 +729,7 @@ table.flow-table th { background: var(--dark); }
 
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
-    QC 물질을 선택해 접수용 바코드를 생성하고 출력하는 화면이에요.<br>
+    QC 물질을 선택해 <strong>접수용 바코드를 생성하고 출력</strong>하는 화면이에요.<br>
     접수와 동시에 인쇄하거나, 하단 이력 목록에서 재출력·접수 취소를 진행할 수 있어요. 라벨 위치·크기 등 출력 설정을 저장해두면 다음 출력에도 그대로 적용할 수 있어요.
   </p>
 
@@ -755,11 +766,9 @@ table.flow-table th { background: var(--dark); }
   <div class="field-box">
     <div class="field-title">컬럼</div>
     <div class="field-row"><span class="field-label">바코드번호</span><span class="field-desc">접수 시 생성된 고유 바코드 번호</span></div>
-    <div class="field-row"><span class="field-label">물질 종류 / 물질명</span><span class="field-desc">예: QC / BC-6D</span></div>
     <div class="field-row"><span class="field-label">레벨</span><span class="field-desc">접수된 레벨 정보</span></div>
     <div class="field-row"><span class="field-label">검사코드 / 검사명</span><span class="field-desc">접수 대상 검사 항목 정보</span></div>
     <div class="field-row"><span class="field-label">결과일자</span><span class="field-desc">접수 또는 결과 기준 일자</span></div>
-    <div class="field-row"><span class="field-label">상태</span><span class="field-desc">예: 접수 상태 확인</span></div>
   </div>
 
   <h2 class="section-title">작업 순서</h2>
@@ -794,7 +803,7 @@ table.flow-table th { background: var(--dark); }
 
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
-    대시보드보다 세밀한 조건으로 QC 데이터를 조회하고 후속 처리까지 진행하는 화면이에요.<br>
+    대시보드보다 세밀한 조건으로 <strong>QC 데이터를 조회하고 후속 처리까지 진행</strong>하는 화면이에요.<br>
     상태·규칙·Comment 여부까지 필터링해 조회하고, Comment 등록·Excel 출력·Rule Refresh도 이 화면에서 진행해요. 중복 결과를 자동 체크해 취소 처리하거나, Multi Sort로 여러 컬럼을 동시에 정렬해 원하는 데이터를 빠르게 찾을 수도 있어요.
   </p>
 
@@ -828,7 +837,7 @@ table.flow-table th { background: var(--dark); }
   <h2 class="section-title">Rule Refresh</h2>
     <div class="step-instruction">
     <div class="step-content">
-      <strong>① 등록된 결과가 있는 LOT의 타깃값 변경</strong>
+      <strong>① 등록된 결과가 있는 LOT의 Target값 변경</strong>
     </div>
   </div>
 
@@ -851,7 +860,7 @@ table.flow-table th { background: var(--dark); }
     </div>
   </div>
   <div class="notice-box danger" style="margin-bottom:16px;">
-    <p>등록된 결과가 있는 LOT의 타깃값이 변경되었을 경우에는 <strong>필수적으로 Rule Refresh를 진행</strong>해주세요!</p>
+    <p>등록된 결과가 있는 LOT의 Target값이 변경되었을 경우에는 <strong>필수적으로 Rule Refresh를 진행</strong>해주세요!</p>
   </div>
 
 </div>
@@ -920,7 +929,7 @@ table.flow-table th { background: var(--dark); }
 
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
-    환자 데이터를 일정 개수(기본 20개)로 묶어 평균을 내고, 그 변화 추이를 시각적으로 확인하는 차트예요.<br>
+    <strong>환자 데이터를 일정 개수로 묶어 평균을 내고, 그 변화 추이를 시각적으로 확인</strong>하는 차트예요.<br>
     상한·하한선을 벗어난 포인트는 빨간 점으로 표시되며, 포인트 위에 마우스를 올리면 상세 정보를 확인할 수 있어요. 장비 탭을 전환하며 여러 장비의 X-Bar를 비교할 수 있어요.
   </p>
 
@@ -1028,7 +1037,7 @@ table.flow-table th { background: var(--dark); }
 
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
-    같은 검사를 수행하는 여러 장비의 결과가 서로 일치하는지 비교하는 화면이에요.<br>
+    같은 검사를 수행하는 <strong>여러 장비의 결과가 서로 일치하는지 비교</strong>하는 화면이에요.<br>
     기준 장비 1대와 비교 장비 최대 3대를 일별·주별·월별 단위로 비교하고, 회귀선·통계 요약으로 상관성을 확인할 수 있어요. 결과 표를 복사하거나 Excel 저장·인쇄, 계산 검증도 이 화면에서 진행해요.
   </p>
 
@@ -1088,7 +1097,7 @@ table.flow-table th { background: var(--dark); }
 
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
-    <strong>허용범위 보고서</strong>는 기간 내 QC 결과를 바탕으로 제조사 기준과 실측 통계를 비교해 적합 여부를 확인하는 화면이에요.<br>
+    허용범위 보고서는 기간 내 QC 결과를 바탕으로 <strong>제조사 기준과 실측 통계를 비교해 적합 여부를 확인 및 출력</strong>하는 화면이에요.<br>
     Reject 데이터를 제외한 상태로 통계를 재계산하거나, 계산 검증으로 수치를 별도 검토할 수 있어요. 결과는 Excel 저장 또는 인쇄로 출력해요.
   </p>
 
@@ -1142,7 +1151,7 @@ table.flow-table th { background: var(--dark); }
 
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
-    기간별 QC 결과를 바탕으로 <strong>월별 CV(%) 추이와 평균 CV</strong>를 확인하는 보고서예요.<br>
+    기간별 QC 결과를 바탕으로 <strong>월별 CV(%) 추이와 평균 CV를 확인</strong>하는 보고서예요.<br>
     숫자 테이블과 추이 그래프를 함께 보며 장비·물질·검사 항목·레벨별 월별 변화를 비교하고 안정성을 점검해요. Reject 데이터를 제외해 재계산할 수 있고, 결과는 Excel 저장 또는 인쇄로 출력해요.
   </p>
 
@@ -1154,7 +1163,6 @@ table.flow-table th { background: var(--dark); }
     <div class="field-row"><span class="field-label">검사실 · 장비</span><span class="field-desc">CV를 확인할 검사실과 장비 선택</span></div>
     <div class="field-row"><span class="field-label">물질 · 검사 항목</span><span class="field-desc">대상 물질과 검사 항목 선택</span></div>
     <div class="field-row"><span class="field-label">레벨</span><span class="field-desc">ALL 또는 특정 레벨 선택</span></div>
-    <div class="field-row"><span class="field-label">물질 종류</span><span class="field-desc">예: QC</span></div>
     <div class="field-row"><span class="field-label">Reject 데이터 제외</span><span class="field-desc">체크 시 Reject 판정 데이터는 CV 계산에서 제외</span></div>
     <div class="field-row"><span class="field-label">조회 / Excel / 인쇄</span><span class="field-desc">돋보기 버튼으로 조회하고, 결과를 엑셀 저장 또는 출력</span></div>
   </div>
@@ -1162,8 +1170,6 @@ table.flow-table th { background: var(--dark); }
   <h3 class="sub-title">중앙 - 월별 CV 결과 테이블</h3>
   <div class="field-box">
     <div class="field-title">컬럼</div>
-    <div class="field-row"><span class="field-label">물질명 / 물질종류</span><span class="field-desc">예: BC-6D / QC</span></div>
-    <div class="field-row"><span class="field-label">검사항목</span><span class="field-desc">예: WBC</span></div>
     <div class="field-row"><span class="field-label">레벨</span><span class="field-desc">Level1, Level2, Level3 등</span></div>
     <div class="field-row"><span class="field-label">월별 컬럼</span><span class="field-desc">2026-01, 2026-02, 2026-03, 2026-04처럼 월별 CV(%) 표시</span></div>
     <div class="field-row"><span class="field-label">평균</span><span class="field-desc">조회 기간 동안의 평균 CV(%)</span></div>
@@ -1199,7 +1205,7 @@ table.flow-table th { background: var(--dark); }
 
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
-    기간 내 QC 결과를 기준 Range와 비교해 <strong>Pass / N/A</strong> 여부를 확인하는 정성 보고서예요.<br>
+    기간 내 QC 결과를 기준 Range와 비교해 <strong>정성 결과의 Pass, N/A을 확인</strong>하는 보고서예요.<br>
     검사실, 장비, 물질, 검사 항목, 레벨 조건에 따라 개별 결과의 적합 여부를 빠르게 검토할 수 있어요. 조회 건수는 화면 상단에서 바로 확인하고, 결과는 Excel 저장 또는 인쇄로 출력해요.
   </p>
 
@@ -1220,8 +1226,6 @@ table.flow-table th { background: var(--dark); }
   <div class="field-box">
     <div class="field-title">컬럼</div>
     <div class="field-row"><span class="field-label">결과일시</span><span class="field-desc">QC 결과가 수신된 날짜와 시간</span></div>
-    <div class="field-row"><span class="field-label">물질명 / 물질종류</span><span class="field-desc">예: BC-6D / QC</span></div>
-    <div class="field-row"><span class="field-label">검사항목명</span><span class="field-desc">예: WBC</span></div>
     <div class="field-row"><span class="field-label">레벨</span><span class="field-desc">Level1, Level2, Level3 등</span></div>
     <div class="field-row"><span class="field-label">결과</span><span class="field-desc">해당 시점의 실제 측정 결과값</span></div>
     <div class="field-row"><span class="field-label">Range</span><span class="field-desc">적용 중인 허용 범위(예: 3.45 ~ 4.35)</span></div>
@@ -1252,7 +1256,7 @@ table.flow-table th { background: var(--dark); }
 
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
-    기간 조건으로 이미 생성된 보고서를 한 화면에서 다시 조회하는 메뉴예요.<br>
+    기간 조건으로 <strong>이미 생성된 보고서를 한 화면에서 다시 조회</strong>하는 메뉴예요.<br>
     검사실·장비 조건을 추가해 원하는 보고서만 빠르게 찾을 수 있어요. 목록에서 보고서를 선택해 내용을 다시 확인하거나 다운로드할 수 있어요.
   </p>
 
@@ -1306,7 +1310,7 @@ table.flow-table th { background: var(--dark); }
 
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
-    병원에서 정도관리하는 검사항목을 등록·관리하는 화면이에요.<br>
+    병원에서 정도관리를 실시하는 <strong>검사항목을 등록·관리</strong>하는 화면이에요.<br>
     새로운 검사항목이 추가될 때 이 화면에서 먼저 등록해야 QC LOT에서 사용할 수 있어요. 기존 항목의 수정과 삭제도 이 화면에서 진행해요.
   </p>
 
@@ -1352,8 +1356,8 @@ table.flow-table th { background: var(--dark); }
 
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
-    검사실·장비·검사항목을 하나의 LOT으로 묶고 타깃값(Mean, SD)을 설정하는 화면이에요.<br>
-    타깃값은 직접 입력하거나 제조사 데이터를 자동으로 불러올 수 있고, 일괄 적용으로 모든 검사항목에 동일한 값을 한 번에 반영할 수 있어요. 등록된 LOT의 값 수정과 종료일자 변경도 이 화면에서 진행해요.
+    검사실·장비·검사항목을 하나의 LOT으로 묶고 <strong>QC물질의 Target값(Mean, SD)를 설정</strong>하는 화면이에요.<br>
+    Target값은 직접 입력하거나 제조사 데이터를 자동으로 불러올 수 있고, 일괄 적용으로 모든 검사항목에 동일한 값을 한 번에 반영할 수 있어요. 등록된 LOT의 값 수정과 종료일자 변경도 이 화면에서 진행해요.
   </p>
 
   <h2 class="section-title">화면 구성</h2>
@@ -1366,7 +1370,7 @@ table.flow-table th { background: var(--dark); }
     <div class="field-row"><span class="field-label">조회 옵션</span><span class="field-desc">LAST: 현재 사용 중 / ALL: 전체 이력</span></div>
   </div>
 
-  <h3 class="sub-title">중앙 — 타깃값 입력 영역</h3>
+  <h3 class="sub-title">중앙 — Target값 입력 영역</h3>
   <div class="field-box">
     <div class="field-title">입력 항목</div>
     <div class="field-row"><span class="field-label">Mean · SD</span><span class="field-desc">입력하면 나머지(CV 등)는 자동 계산</span></div>
@@ -1402,9 +1406,9 @@ table.flow-table th { background: var(--dark); }
     <div class="step-content"><strong>⑦ 등록 → 하단 리스트 확인</strong></div>
   </div>
 
-  <h3 class="sub-title" style="margin-top:16px;">제조사 타깃값 불러오기 (Mindray)</h3>
+  <h3 class="sub-title" style="margin-top:16px;">제조사 Target값 불러오기 (Mindray)</h3>
   <div class="step-instruction">
-    <div class="step-content"><strong>① ~ ④ 동일하게 진행 후 '제조사 타깃값 불러오기' 버튼 클릭</strong></div>
+    <div class="step-content"><strong>① ~ ④ 동일하게 진행 후 '제조사 Target값 불러오기' 버튼 클릭</strong></div>
   </div>
   <div class="step-instruction">
     <div class="step-content"><strong>⑤ 적용 기준 · 물질 종류 확인 후 데이터 검토</strong></div>
@@ -1413,7 +1417,7 @@ table.flow-table th { background: var(--dark); }
     <div class="step-content"><strong>⑥ 등록</strong></div>
   </div>
   <div class="notice-box danger">
-    <p>제조사 타깃값은 카이저랩의 내부 검증을 거쳐 제공되지만, <strong>최종 검토 및 활용의 책임은 사용자에게 있습니다.</strong></p>
+    <p>제조사 Target값은 카이저랩의 내부 검증을 거쳐 제공되지만, <strong>최종 검토 및 활용의 책임은 사용자에게 있습니다.</strong></p>
     <p>카이저랩은 이 데이터 사용으로 발생하는 결과에 대해 법적 책임을 지지 않습니다.</p>
   </div>
 
@@ -1439,7 +1443,7 @@ table.flow-table th { background: var(--dark); }
     <div class="faq-q">BIAS(%)와 허용치가 무엇인가요?</div>
     <div class="faq-a">
       <strong>BIAS(%):</strong> QC 결과값이 대상 평균 값에서 얼마나 치우쳐도 허용할 지를 선택 기준이에요.<br>
-      <strong>허용치:</strong> 타깃값(mean, SD, CV)과 달리 '이 범위까지는 정상이로 보겠다.'라고 정해둔 허용 기준이에요.
+      <strong>허용치:</strong> Target값(mean, SD, CV)과 달리 '이 범위까지는 정상이로 보겠다.'라고 정해둔 허용 기준이에요.
     </div>
   </div>
 
@@ -1473,7 +1477,7 @@ table.flow-table th { background: var(--dark); }
   </div>
 
   <div class="faq-item">
-    <div class="faq-q">LOT 타깃값을 잘못 입력했어요. 이미 등록된 LOT의 값을 수정하고 싶은데 어떻게 하죠?</div>
+    <div class="faq-q">LOT Target값을 잘못 입력했어요. 이미 등록된 LOT의 값을 수정하고 싶은데 어떻게 하죠?</div>
     <div class="faq-a">
       수정하고 싶은 데이터를 조회 → 값을 수정하고 <strong>수정 버튼</strong>을 클릭하세요.<br>
       수정된 데이터는 저장하기 전까지 빨간색으로 보여요.
@@ -1509,7 +1513,7 @@ table.flow-table th { background: var(--dark); }
     <div class="field-title">조회 조건</div>
     <div class="field-row"><span class="field-label">검사실 · 장비 · 기간</span><span class="field-desc">집계할 데이터 범위 설정</span></div>
     <div class="field-row"><span class="field-label">물질 · 레벨</span><span class="field-desc">대상 물질 및 레벨</span></div>
-    <div class="field-row"><span class="field-label">데이터 종류</span><span class="field-desc">제조사 타깃값 / 누적 데이터 / 별도 데이터(신물질)</span></div>
+    <div class="field-row"><span class="field-label">데이터 종류</span><span class="field-desc">제조사 Target값 / 누적 데이터 / 별도 데이터(신물질)</span></div>
     <div class="field-row"><span class="field-label">산출 기준</span><span class="field-desc">SD / CV 중 선택</span></div>
   </div>
 
@@ -1541,9 +1545,9 @@ table.flow-table th { background: var(--dark); }
 
   <h2 class="section-title">주의사항</h2>
   <div class="faq-item">
-    <div class="faq-q">제조사 타깃값, 누적 데이터, 별도 데이터가 무엇인가요?</div>
+    <div class="faq-q">제조사 Target값, 누적 데이터, 별도 데이터가 무엇인가요?</div>
     <div class="faq-a">
-      <strong>제조사 타깃값:</strong> 물질 제조사에서 제공한 기준값. 보통 참고용으로 사용해요.<br>
+      <strong>제조사 Target값:</strong> 물질 제조사에서 제공한 기준값. 보통 참고용으로 사용해요.<br>
       <strong>누적 데이터:</strong> 우리 병원에서 실제로 쌓인 QC 결과값이에요.<br>
       <strong>별도 데이터:</strong> 신물질을 사용해 별도로 측정한 결과값들이에요.
     </div>
@@ -1637,7 +1641,7 @@ table.flow-table th { background: var(--dark); }
 
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
-    검사실·장비·MultiRule·Comment·단위 등 정도관리 기본 환경을 설정하는 화면이에요.<br>
+    검사실·장비·MultiRule·Comment·단위 등 정도관리 <strong>기본 환경을 설정</strong>하는 화면이에요.<br>
     마스터 구분 드롭다운으로 설정 항목을 전환하고, 신규·수정·삭제 버튼으로 마스터 데이터를 관리할 수 있어요. 사용자 계정 설정은 별도 섹션(계정 생성 / 비밀번호 변경)에서 확인할 수 있어요.
   </p>
   <h3 class="sub-title">검사실 설정 — 마스터 구분 '검사실'</h3>
@@ -1714,7 +1718,7 @@ table.flow-table th { background: var(--dark); }
 
   <h2 class="section-title">기능 개요</h2>
   <p class="intro-text">
-    병원에서 사용하는 QC 물질을 등록·관리하는 화면이에요.<br>
+    병원에서 사용하는 <strong>QC 물질을 등록·관리</strong>하는 화면이에요.<br>
     새로운 물질이 들어왔을 때 이 화면에서 먼저 등록해야 QC LOT에서 선택할 수 있어요. 기존 물질의 수정과 삭제도 이 화면에서 진행해요.
   </p>
 
@@ -1766,22 +1770,32 @@ table.flow-table th { background: var(--dark); }
     <div class="step-instruction">
       <div class="step-content">
         <strong>① 바로가기 아이콘을 클릭해서 프로그램 실행</strong>
-        <strong>② 초기 사용자 ID/비밀번호로 로그인</strong>
-        <div class="two-col" style="margin-top:8px;">
-          <div class="screen-mock">
-            사용자 ID: <span style="background:#ffe0e0; padding:1px 6px; border-radius:3px;">ID 입력</span><br>
-            비밀번호: <span style="background:#ffe0e0; padding:1px 6px; border-radius:3px;">비밀번호 입력(초기 비밀번호 : 1)</span><br>
-          </div>
-        </div>
+      </div>
+    </div>
+
+    <div class="step-instruction">
+      <div class="step-content">
+        <strong>② 초기 사용자 ID/비밀번호로 로그인(초기 비밀번호 : 1)</strong>      
       </div>
     </div>
 
     <div class="step-instruction">
       <div class="step-content">
         <strong>③ 기본 마스터 관리창 열기</strong>
-        <strong>④ 마스터 구분을 '사용자'로 변경 후, 신규 계정 작성</strong>
-        <strong>⑤ 우측 하단 신규버튼 클릭 후, 검사실, 사용자 아이디, 사용자명 입력 후 등록버튼 클릭</strong>
+      </div>
+    </div>
 
+    <div class="step-instruction">
+      <div class="step-content">
+        <strong>④ 마스터 구분을 '사용자'로 변경 후, 신규 계정 작성</strong>
+      </div>
+    </div>
+
+    <div class="step-instruction">
+      <div class="step-content">
+        <strong>⑤ 우측 하단 신규버튼 클릭 후, 검사실, 사용자 아이디, 사용자명 입력 후 등록버튼 클릭</strong>
+      </div>
+    </div>
         <div class="two-col" style="margin-top:8px;">
           <div class="screen-mock">
             검사실: 소속 검사실 선택<br>
@@ -1792,10 +1806,13 @@ table.flow-table th { background: var(--dark); }
             레벨: 0 : 일반<br>
             사용여부: 사용중
           </div>
-
+    <div class="step-instruction">
+      <div class="step-content">
+        <strong>⑥ 등록 후 재로그인</strong>
+      </div>
+    </div>
           <div class="field-box">
             <div class="field-title">정보 표시 단계(대시보드에 나타나는 정보를 몇 단계까지 표시할지 선택하는 설정)</div>
-                      
             <table class="manual-table" style="font-size:11px; margin:0;">
               <tr><th>단계</th><th>표시 내용</th></tr>
               <tr><td>1단계</td><td>Rule 설정 정보</td></tr>
@@ -1803,36 +1820,33 @@ table.flow-table th { background: var(--dark); }
               <tr><td>3단계</td><td>Period statistics</td></tr>
               <tr><td>4단계</td><td>Cumulative</td></tr>
             </table>
-
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="step-instruction">
-      <div class="step-content">
-        <strong>⑥ 등록 후 재로그인</strong>
-      </div>
-    </div>
+
 
     <h2 class="section-title">비밀번호 변경 (메뉴 > 로그인)</h2>
 
     <div class="step-instruction">
       <div class="step-content">
         <strong>① 프로그램이 실행중이라면 창 닫고 다시 실행 혹은 재로그인</strong>
-        <strong>② ID 입력한 후, 비밀번호 변경 버튼 클릭</strong>
-        <strong>③ 비밀번호 변경</strong>
-        <div class="two-col" style="margin-top:8px;">
-          <div class="screen-mock">
-            현재 비밀번호: <span style="background:#ffe0e0; padding:1px 6px; border-radius:3px;">현재 비밀번호 입력</span><br>
-            새 비밀번호: <span style="background:#ffe0e0; padding:1px 6px; border-radius:3px;">새로운 비밀번호 입력</span><br>
-            비밀번호 확인: <span style="background:#ffe0e0; padding:1px 6px; border-radius:3px;">새로운 비밀번호 확인(재입력)</span><br>
+      </div>
+    </div>
 
-            <div style="font-size:12px; line-height:1.9; color:var(--gray); margin-top:6px;">
-              <strong style="display:inline;">* 비밀번호를 잊어버린 경우에는</strong> 카이저랩으로 연락 부탁드립니다.
-            </div>
-          </div>
-        </div>
+    <div class="step-instruction">
+      <div class="step-content">
+        <strong>② ID 입력한 후, 비밀번호 변경 버튼 클릭</strong>
+      </div>
+    </div>
+
+    <div class="step-instruction">
+      <div class="step-content">
+        <strong>③ 비밀번호 변경</strong>(비밀번호를 잊어버린 경우에는 카이저랩으로 연락 부탁드립니다.)
+      </div>
+    </div>
+
+    <div class="step-instruction">
+      <div class="step-content">
         <strong>④ 변경된 비밀번호로 재로그인</strong>
       </div>
     </div>
