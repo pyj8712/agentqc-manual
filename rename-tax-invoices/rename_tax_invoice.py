@@ -76,8 +76,8 @@ def extract_tax_invoice(lines):
 def make_tax_invoice_name(date_str, recipient, item):
     date_part = date_str or "날짜미상"
     r = sanitize(recipient) if recipient else "거래처미상"
-    it = sanitize(item) if item else "품목미상"
-    return f"{date_part} 세금계산서({r} - {it}).pdf"
+    it = sanitize(item).replace(" ", "") if item else "품목미상"
+    return f"{date_part} 세금계산서({r}-{it}).pdf"
 
 
 # ── 거래명세서 ─────────────────────────────────────────────────────────
@@ -125,7 +125,7 @@ def make_receipt_name(date_str, recipient, joyo):
     date_part = date_str or "날짜미상"
     r = sanitize(recipient) if recipient else "거래처미상"
     j = sanitize(joyo) if joyo else "적요미상"
-    return f"{date_part} 거래명세서({r} {j}).pdf"
+    return f"{date_part} 거래명세서({r}-{j}).pdf"
 
 
 # ── 메인 ──────────────────────────────────────────────────────────────
