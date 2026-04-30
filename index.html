@@ -45,6 +45,7 @@ body { font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif; font-size
   padding: 20px 18px 16px;
   border-bottom: 1px solid #2e3545;
 }
+#sidebar-logo img { border-radius: 6px; padding: 4px 6px; background: rgba(255,255,255,0.95); }
 #sidebar-logo .logo-text { font-size: 15px; font-weight: 900; color: #fff; letter-spacing: 0.1em; }
 #sidebar-logo .logo-sub { font-size: 10px; color: #7a8aa0; margin-top: 2px; }
 #sidebar-logo .logo-ver { display: inline-block; background: var(--blue); color: #fff; font-size: 10px; font-weight: 700; padding: 1px 8px; border-radius: 3px; margin-top: 6px; }
@@ -404,7 +405,7 @@ table.flow-table th { background: var(--dark); }
 ══════════════════════════════════════════ -->
 <nav id="sidebar">
   <div id="sidebar-logo">
-    <div class="logo-text">(주)KAISER LAB</div>
+    <img src="img/logo.png" alt="Kaiser Lab" style="width:160px; display:block; margin-bottom:8px;">
     <div class="logo-sub">AgentQC 사용자 매뉴얼</div>
     <span class="logo-ver">VER 1.0</span>
   </div>
@@ -421,62 +422,42 @@ table.flow-table th { background: var(--dark); }
   </div>
   <div id="nav">
     <div class="nav-group-label">시작하기</div>
-    <div class="nav-item active" data-target="sec-intro"> 사전 안내
-    </div>
+    <div class="nav-item active" data-target="sec-intro"><img src="img/icon7.png" style="width:18px;height:18px;object-fit:contain;flex-shrink:0;"> 사전 안내</div>
 
     <div class="nav-group-label">홈</div>
-    <div class="nav-item" data-target="sec-qc-result"> QC 결과 확인
-    </div>
-    <div class="nav-item" data-target="sec-dashboard"> 대시보드
-    </div>
-    <div class="nav-item" data-target="sec-barcode"> 바코드 출력
-    </div>
-    <div class="nav-item" data-target="sec-data-query"> QC 데이터 조회
-    </div>
+    <div class="nav-item" data-target="sec-qc-result"><img src="img/icon3.png" style="width:18px;height:18px;object-fit:contain;flex-shrink:0;"> QC 결과 확인</div>
+    <div class="nav-item" data-target="sec-dashboard"><img src="img/icon4.png" style="width:18px;height:18px;object-fit:contain;flex-shrink:0;"> 대시보드</div>
+    <div class="nav-item" data-target="sec-barcode"><img src="img/icon6.png" style="width:18px;height:18px;object-fit:contain;flex-shrink:0;"> 바코드 출력</div>
+    <div class="nav-item" data-target="sec-data-query"><img src="img/icon5.png" style="width:18px;height:18px;object-fit:contain;flex-shrink:0;"> QC 데이터 조회</div>
 
     <div class="nav-group-label">환자 결과 확인</div>
-    <div class="nav-item" data-target="sec-patient"> 환자 결과 확인
-    </div>
+    <div class="nav-item" data-target="sec-patient"><img src="img/icon2.png" style="width:18px;height:18px;object-fit:contain;flex-shrink:0;"> 환자 결과 확인</div>
 
     <div class="nav-group-label">X-Bar</div>
-    <div class="nav-item" data-target="sec-xbar"> X-Bar 차트
-    </div>
-    <div class="nav-item" data-target="sec-xbar-settings"> X-Bar 설정
-    </div>
+    <div class="nav-item" data-target="sec-xbar"><img src="img/icon4.png" style="width:18px;height:18px;object-fit:contain;flex-shrink:0;"> X-Bar 차트</div>
+    <div class="nav-item" data-target="sec-xbar-settings"><img src="img/icon5.png" style="width:18px;height:18px;object-fit:contain;flex-shrink:0;"> X-Bar 설정</div>
 
     <div class="nav-group-label">장비간 상관성 평가</div>
-    <div class="nav-item" data-target="sec-correlation"> 장비간 상관성 평가
-    </div>
+    <div class="nav-item" data-target="sec-correlation"><img src="img/icon4.png" style="width:18px;height:18px;object-fit:contain;flex-shrink:0;"> 장비간 상관성 평가</div>
 
     <div class="nav-group-label">보고서</div>
-    <div class="nav-item" data-target="sec-reports-1"> 허용범위 보고서
-    </div>
-    <div class="nav-item" data-target="sec-reports-2"> CV Report
-    </div>
-    <div class="nav-item" data-target="sec-reports-3"> 정성 보고서
-    </div>
-    <div class="nav-item" data-target="sec-reports-4"> 보고서 통합 조회
-    </div>
+    <div class="nav-item" data-target="sec-reports-1"><img src="img/icon3.png" style="width:18px;height:18px;object-fit:contain;flex-shrink:0;"> 허용범위 보고서</div>
+    <div class="nav-item" data-target="sec-reports-2"><img src="img/icon3.png" style="width:18px;height:18px;object-fit:contain;flex-shrink:0;"> CV Report</div>
+    <div class="nav-item" data-target="sec-reports-3"><img src="img/icon3.png" style="width:18px;height:18px;object-fit:contain;flex-shrink:0;"> 정성 보고서</div>
+    <div class="nav-item" data-target="sec-reports-4"><img src="img/icon3.png" style="width:18px;height:18px;object-fit:contain;flex-shrink:0;"> 보고서 통합 조회</div>
 
     <div class="nav-group-label">정도관리 설정</div>
-    <div class="nav-item" data-target="sec-test-item"> 검사항목
-    </div>
-    <div class="nav-item" data-target="sec-qc-lot"> QC LOT
-    </div>
-    <div class="nav-item" data-target="sec-allowable"> Target/허용범위
-    </div>
-    <div class="nav-item" data-target="sec-reagent"> Reagent LOT
-    </div>
+    <div class="nav-item" data-target="sec-test-item"><img src="img/icon5.png" style="width:18px;height:18px;object-fit:contain;flex-shrink:0;"> 검사항목</div>
+    <div class="nav-item" data-target="sec-qc-lot"><img src="img/icon5.png" style="width:18px;height:18px;object-fit:contain;flex-shrink:0;"> QC LOT</div>
+    <div class="nav-item" data-target="sec-allowable"><img src="img/icon5.png" style="width:18px;height:18px;object-fit:contain;flex-shrink:0;"> Target/허용범위</div>
+    <div class="nav-item" data-target="sec-reagent"><img src="img/icon5.png" style="width:18px;height:18px;object-fit:contain;flex-shrink:0;"> Reagent LOT</div>
 
     <div class="nav-group-label">프로그램 설정</div>
-    <div class="nav-item" data-target="sec-basic-master"> 기본 마스터 관리
-    </div>
-    <div class="nav-item" data-target="sec-material"> 검사실별 물질 관리
-    </div>
+    <div class="nav-item" data-target="sec-basic-master"><img src="img/icon2.png" style="width:18px;height:18px;object-fit:contain;flex-shrink:0;"> 기본 마스터 관리</div>
+    <div class="nav-item" data-target="sec-material"><img src="img/icon2.png" style="width:18px;height:18px;object-fit:contain;flex-shrink:0;"> 검사실별 물질 관리</div>
 
     <div class="nav-group-label">로그인</div>
-    <div class="nav-item" data-target="sec-user-create"> 계정 생성/비밀번호 변경
-    </div>
+    <div class="nav-item" data-target="sec-user-create"><img src="img/icon2.png" style="width:18px;height:18px;object-fit:contain;flex-shrink:0;"> 계정 생성/비밀번호 변경</div>
   </div>
 </nav>
 
@@ -490,11 +471,14 @@ table.flow-table th { background: var(--dark); }
 <section class="section active" id="sec-intro">
 <div class="page">
       <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
-  <div class="chapter-header">
-    <h1>정도관리 프로그램 이용안내</h1>
-    <p>매뉴얼을 읽기 전에 반드시 이해해야 할 기본 개념을 설명합니다</p>
-    <p class="intro-text">본 매뉴얼을 읽기 전에, 카이저랩 AgentQC 프로그램이 <strong>어떤 구조로 동작하는지</strong>,<br>
-    그리고 정상적인 QC 데이터 흐름을 위해 <strong>반드시 이해해야 할 기본 개념</strong>을 설명할 것이에요!</p>
+  <div class="chapter-header" style="display:flex;align-items:center;gap:16px;">
+    <div style="flex:1;">
+      <h1>정도관리 프로그램 이용안내</h1>
+      <p>매뉴얼을 읽기 전에 반드시 이해해야 할 기본 개념을 설명합니다</p>
+      <p class="intro-text">본 매뉴얼을 읽기 전에, 카이저랩 AgentQC 프로그램이 <strong>어떤 구조로 동작하는지</strong>,<br>
+      그리고 정상적인 QC 데이터 흐름을 위해 <strong>반드시 이해해야 할 기본 개념</strong>을 설명할 것이에요!</p>
+    </div>
+    <img src="img/icon1-1.png" alt="Kaiser 마스코트" style="width:100px;object-fit:contain;flex-shrink:0;">
   </div>
 
   <h2 class="section-title">정도관리 데이터는 이렇게 들어와요</h2>
@@ -544,8 +528,9 @@ table.flow-table th { background: var(--dark); }
 <section class="section" id="sec-qc-result">
 <div class="page">
   <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
-  <div class="chapter-header">
-    <h1>QC 결과 확인 (홈 > QC 결과 확인)</h1>
+  <div class="chapter-header" style="display:flex;align-items:center;gap:16px;">
+    <div style="flex:1;"><h1>QC 결과 확인 (홈 > QC 결과 확인)</h1></div>
+    <img src="img/icon1.png" alt="" style="width:90px;object-fit:contain;flex-shrink:0;">
   </div>
 
   <h2 class="section-title">기능 개요</h2>
@@ -615,8 +600,9 @@ table.flow-table th { background: var(--dark); }
 <section class="section" id="sec-dashboard">
 <div class="page">
   <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
-  <div class="chapter-header">
-    <h1>대시보드 (홈 > 대시보드)</h1>
+  <div class="chapter-header" style="display:flex;align-items:center;gap:16px;">
+    <div style="flex:1;"><h1>대시보드 (홈 > 대시보드)</h1></div>
+    <img src="img/icon1-4.png" alt="" style="width:90px;object-fit:contain;flex-shrink:0;">
   </div>
 
   <h2 class="section-title">기능 개요</h2>
@@ -705,8 +691,9 @@ table.flow-table th { background: var(--dark); }
 <section class="section" id="sec-barcode">
 <div class="page">
   <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
-  <div class="chapter-header">
-    <h1>바코드 출력 (홈 > 바코드 출력)</h1>
+  <div class="chapter-header" style="display:flex;align-items:center;gap:16px;">
+    <div style="flex:1;"><h1>바코드 출력 (홈 > 바코드 출력)</h1></div>
+    <img src="img/icon1-3.png" alt="" style="width:90px;object-fit:contain;flex-shrink:0;">
   </div>
 
   <h2 class="section-title">기능 개요</h2>
@@ -890,8 +877,9 @@ table.flow-table th { background: var(--dark); }
 <section class="section" id="sec-xbar">
 <div class="page">
   <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
-  <div class="chapter-header">
-    <h1>X-Bar (X-Bar > X-Bar 차트)</h1>
+  <div class="chapter-header" style="display:flex;align-items:center;gap:16px;">
+    <div style="flex:1;"><h1>X-Bar (X-Bar > X-Bar 차트)</h1></div>
+    <img src="img/icon1-5.png" alt="" style="width:90px;object-fit:contain;flex-shrink:0;">
   </div>
 
   <h2 class="section-title">기능 개요</h2>
@@ -1354,7 +1342,10 @@ table.flow-table th { background: var(--dark); }
     <p>카이저랩은 이 데이터 사용으로 발생하는 결과에 대해 법적 책임을 지지 않습니다.</p>
   </div>
 <br><br>
-  <h2 class="section-title">LOT FAQ</h2>
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;">
+    <h2 class="section-title" style="margin:0;">LOT FAQ</h2>
+    <img src="img/icon1-6.png" alt="" style="width:90px;object-fit:contain;flex-shrink:0;">
+  </div>
   <div class="faq-item">
     <div class="faq-q">물질 종류(검사실 Target, 허용범위용 Target, 제조사 Target)가 무엇인가요?</div>
     <div class="faq-a">
@@ -1686,12 +1677,14 @@ table.flow-table th { background: var(--dark); }
   <div class="page">
     <div class="page-contact">KAISER LAB 기술부 : 070-7770-0018(ARS 1번)</div>
 
-    <div class="chapter-header">
+    <div class="chapter-header" style="display:flex;align-items:center;gap:16px;">
+      <div style="flex:1;">
       <h1>계정 생성 / 비밀번호 변경</h1>
       <p class="intro-text">
         초기 설치 시, 카이저랩에서 사용자 계정을 생성해서 배포하고 있어요.<br>
         <strong>새로운 사용자 계정 등록</strong>이 필요하다면 아래의 순서대로 진행해주세요!
       </p>
+      </div>
     </div>
 
     <h2 class="section-title">사용자 계정 생성 (프로그램 설정 > 기본 마스터 관리)</h2>
