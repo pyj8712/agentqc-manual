@@ -909,6 +909,17 @@ table.flow-table th { background: var(--dark); }
     <div class="field-title">구성 요소</div>
     <div class="field-row"><span class="field-label">기준선</span><span class="field-desc">Upper Limit / Mean / Lower Limit 수평선 표시</span></div>
     <div class="field-row"><span class="field-label">빨간 점</span><span class="field-desc">Limit을 벗어난 데이터 포인트 강조<br>* 포인트 위에 마우스 올리면 일시·평균 결과·Mean·Lower/Upper Limit·M-A 순번 표시</span></div>
+    <div class="field-row"><span class="field-label">포인트 클릭</span><span class="field-desc">차트의 데이터 포인트를 클릭하면 해당 평균을 구성하는 <strong>Moving Average 상세 리스트</strong> 팝업 표시</span></div>
+  </div>
+
+  <h3 class="sub-title">포인트 클릭 — Moving Average 상세 리스트</h3>
+  <div class="field-box">
+    <div class="field-title">팝업 구성</div>
+    <div class="field-row"><span class="field-label">M-A 산출일시</span><span class="field-desc">해당 Moving Average가 산출된 날짜·시간</span></div>
+    <div class="field-row"><span class="field-label">Sample ID · 장비명 · 검사일시</span><span class="field-desc">해당 평균을 구성하는 환자 샘플 목록</span></div>
+    <div class="field-row"><span class="field-label">이름 · 나이 · 성별 · 진료과 · 접수번호</span><span class="field-desc">환자 기본 정보</span></div>
+    <div class="field-row"><span class="field-label">검사 결과값 (MCV · MCH · MCHC 등)</span><span class="field-desc">각 항목 측정값 — Limit 초과 시 <span style="color:#e00;">H</span>(High) / <span style="color:#00a;">L</span>(Low) 표시</span></div>
+    <div class="field-row"><span class="field-label">Comment · Target 정보</span><span class="field-desc">M-A 코멘트 및 검사항목별 Target · Lower/Upper Limit 기준값</span></div>
   </div>
 
   <h2 class="section-title">작업 순서</h2>
@@ -920,6 +931,25 @@ table.flow-table th { background: var(--dark); }
   </div>
   <div class="step-instruction">
     <div class="step-content"><strong>③ 빨간 점 또는 이상 구간 확인 → 좌측 패널의 통계값과 비교</strong></div>
+  </div>
+  <div class="step-instruction">
+    <div class="step-content"><strong>④ 차트의 포인트 클릭 → Moving Average 상세 리스트에서 해당 평균을 구성한 환자 샘플 및 Target 기준값 확인</strong></div>
+  </div>
+
+  <h3 class="sub-title">이동 평균 재설정&nbsp;&nbsp;&nbsp;<span style="font-size:12px; color:var(--red);">※ 데이터 변경 및 평균값 재산출이 필요할 때 사용해요.</span></h3>
+  <div class="step-instruction">
+    <div class="step-content"><strong style="display: inline;">① 검사실·장비·검사항목·이동평균 산출일자 선택 후 조회</strong> : 조회된 총건수 / 체크된 총건수, 기준 횟수 확인</div>
+  </div>
+  <div class="step-instruction">
+    <div class="step-content"><strong style="display: inline;">② M-A SEQ Refresh 클릭</strong> → 재산정 방식 선택 팝업 표시</div>
+  </div>
+<div class="step-content">
+  <strong>③ 재산정 방식 선택</strong>
+  <strong style="display: inline;"> 기준횟수 미달이어도 그 안에서만 이동 평균 재정</strong> : 현재 구간 내 데이터만으로 재산정<br>
+  <strong style="display: inline;"> 선택한 시점~오늘까지 모든 데이터 재산정</strong> : 선택 시점부터 오늘까지 전체 재산정</strong>
+</div>
+  <div class="step-instruction">
+    <div class="step-content"><strong>④ 재산정 확인 팝업에서 예(Y) 클릭</strong></div>
   </div>
 </div>
 </section>
